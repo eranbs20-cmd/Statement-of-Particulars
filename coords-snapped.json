@@ -1,0 +1,4034 @@
+{
+  "generated": "2026-05-24T20:19:06.945Z",
+  "threshold_snap": 15,
+  "threshold_tight": 3,
+  "fields": [
+    {
+      "section": "parties",
+      "id": "plaintiff_name",
+      "label": "שם התובע/ת",
+      "page": 0,
+      "orig": {
+        "rightEdge": 524,
+        "y": 618.7,
+        "maxWidth": 199,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 618.7,
+        "x_left": 320.71,
+        "x_right": 523.98,
+        "cell_width": 203.27,
+        "distance": 0
+      },
+      "new_maxWidth": 199.3,
+      "action": "aligned"
+    },
+    {
+      "section": "parties",
+      "id": "defendant_name",
+      "label": "שם הנתבע/ת",
+      "page": 0,
+      "orig": {
+        "rightEdge": 238.6,
+        "y": 618.7,
+        "maxWidth": 179,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 238.6,
+        "y": 618.7,
+        "x_left": 55.65,
+        "x_right": 238.65,
+        "cell_width": 182.99,
+        "distance": 0
+      },
+      "new_maxWidth": 178.9,
+      "action": "aligned"
+    },
+    {
+      "section": "parties",
+      "id": "g_name",
+      "label": "שם בעל הדין",
+      "page": 0,
+      "orig": {
+        "rightEdge": 524,
+        "y": 520,
+        "maxWidth": 115,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 521.6,
+        "x_left": 426.83,
+        "x_right": 523.98,
+        "cell_width": 97.16,
+        "distance": 1.6
+      },
+      "new_maxWidth": 93.2,
+      "action": "aligned"
+    },
+    {
+      "section": "parties",
+      "id": "g_id",
+      "label": "מס׳ זהות",
+      "page": 0,
+      "orig": {
+        "rightEdge": 426.8,
+        "y": 520,
+        "maxWidth": 79,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 426.8,
+        "y": 521.6,
+        "x_left": 343.82,
+        "x_right": 426.83,
+        "cell_width": 83.01,
+        "distance": 1.6
+      },
+      "new_maxWidth": 79,
+      "action": "aligned"
+    },
+    {
+      "section": "parties",
+      "id": "g_address",
+      "label": "מען מגוריו",
+      "page": 0,
+      "orig": {
+        "rightEdge": 343.8,
+        "y": 520,
+        "maxWidth": 178,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 343.8,
+        "y": 521.6,
+        "x_left": 161.77,
+        "x_right": 343.82,
+        "cell_width": 182.05,
+        "distance": 1.6
+      },
+      "new_maxWidth": 178,
+      "action": "aligned"
+    },
+    {
+      "section": "parties",
+      "id": "g_relation",
+      "label": "הקרבה בין בעלי הדין",
+      "page": 0,
+      "orig": {
+        "rightEdge": 161,
+        "y": 520,
+        "maxWidth": 80,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 161.8,
+        "y": 521.6,
+        "x_left": 69.8,
+        "x_right": 161.77,
+        "cell_width": 91.97,
+        "distance": 1.79
+      },
+      "new_maxWidth": 88,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_1_name",
+      "label": "בנק 1 — שם הבנק",
+      "page": 2,
+      "orig": {
+        "rightEdge": 474,
+        "y": 699,
+        "maxWidth": 80,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 699.3,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 0.58
+      },
+      "new_maxWidth": 379.9,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_2_name",
+      "label": "בנק 2 — שם הבנק",
+      "page": 2,
+      "orig": {
+        "rightEdge": 474,
+        "y": 681,
+        "maxWidth": 80,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 680.9,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 0.51
+      },
+      "new_maxWidth": 379.9,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_3_name",
+      "label": "בנק 3 — שם הבנק",
+      "page": 2,
+      "orig": {
+        "rightEdge": 474,
+        "y": 662,
+        "maxWidth": 80,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 662.5,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 0.71
+      },
+      "new_maxWidth": 379.9,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse",
+      "id": "marriage_date",
+      "label": "תאריך נישואין",
+      "page": 2,
+      "orig": {
+        "rightEdge": 524,
+        "y": 524,
+        "maxWidth": 70,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 524,
+        "x_left": 424.94,
+        "x_right": 523.98,
+        "cell_width": 99.04,
+        "distance": 0
+      },
+      "new_maxWidth": 95.1,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_age",
+      "label": "גיל",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 444.3,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 444.3,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_addr",
+      "label": "מען",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 425.9,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 425.9,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_deps",
+      "label": "מס׳ תלויים",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 408,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 408,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_rel",
+      "label": "הקרבה",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 389.6,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 389.6,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_occ",
+      "label": "התעסקויות",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 371.2,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 371.2,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_inc",
+      "label": "הכנסה",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 352.8,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 352.8,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_assets",
+      "label": "רכוש",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 334.9,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 334.9,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_debts",
+      "label": "חובות",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 316.5,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 316.5,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_name",
+      "label": "שם",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 298.2,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 298.2,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_addr",
+      "label": "מען",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 261.9,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 261.9,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_deps",
+      "label": "מס׳ תלויים",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 243.5,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 243.5,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_occ",
+      "label": "התעסקויות",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 207.2,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 207.2,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_inc",
+      "label": "הכנסה",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 188.8,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 188.8,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_assets",
+      "label": "רכוש",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 170.4,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 170.4,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_debts",
+      "label": "חובות",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 152.5,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 152.5,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 0
+      },
+      "new_maxWidth": 295,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_age",
+      "label": "גיל",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 699.8,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 699.8,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_addr",
+      "label": "מען",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 681.4,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 681.4,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_deps",
+      "label": "מס׳ תלויים",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 663,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 663,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_occ",
+      "label": "התעסקויות",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 626.7,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 626.7,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_inc",
+      "label": "הכנסה",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 608.3,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 608.3,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_assets",
+      "label": "רכוש",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 589.9,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 589.9,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_name",
+      "label": "שם",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 535.3,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 535.3,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_age",
+      "label": "גיל",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 517.4,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 517.4,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_addr",
+      "label": "מען",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 499,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 499,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_deps",
+      "label": "מס׳ תלויים",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 480.6,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 480.6,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_rel",
+      "label": "הקרבה",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 462.2,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 462.2,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_occ",
+      "label": "התעסקויות",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 444.3,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 444.3,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_inc",
+      "label": "הכנסה",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 425.9,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 425.9,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_assets",
+      "label": "רכוש",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 408,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 408,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "rel_4_2",
+      "id": "r42_debts",
+      "label": "חובות",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 389.6,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 389.6,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 0
+      },
+      "new_maxWidth": 294.6,
+      "action": "aligned"
+    },
+    {
+      "section": "section_a_general",
+      "id": "section_a_general_c1",
+      "label": "פרטים כלליים (טבלת סעיף א) שורה 1/1",
+      "page": 0,
+      "orig": {
+        "rightEdge": 524,
+        "y": 521.6,
+        "maxWidth": 93.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 521.6,
+        "x_left": 426.83,
+        "x_right": 523.98,
+        "cell_width": 97.16,
+        "distance": 0
+      },
+      "new_maxWidth": 93.2,
+      "action": "aligned"
+    },
+    {
+      "section": "section_a_general",
+      "id": "section_a_general_c2",
+      "label": "פרטים כלליים (טבלת סעיף א) שורה 1/2",
+      "page": 0,
+      "orig": {
+        "rightEdge": 426.8,
+        "y": 521.6,
+        "maxWidth": 79,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 426.8,
+        "y": 521.6,
+        "x_left": 343.82,
+        "x_right": 426.83,
+        "cell_width": 83.01,
+        "distance": 0
+      },
+      "new_maxWidth": 79,
+      "action": "aligned"
+    },
+    {
+      "section": "section_a_general",
+      "id": "section_a_general_c3",
+      "label": "פרטים כלליים (טבלת סעיף א) שורה 1/3",
+      "page": 0,
+      "orig": {
+        "rightEdge": 343.8,
+        "y": 521.6,
+        "maxWidth": 178,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 343.8,
+        "y": 521.6,
+        "x_left": 161.77,
+        "x_right": 343.82,
+        "cell_width": 182.05,
+        "distance": 0
+      },
+      "new_maxWidth": 178,
+      "action": "aligned"
+    },
+    {
+      "section": "section_a_general",
+      "id": "section_a_general_c4",
+      "label": "פרטים כלליים (טבלת סעיף א) שורה 1/4",
+      "page": 0,
+      "orig": {
+        "rightEdge": 161.8,
+        "y": 521.6,
+        "maxWidth": 88,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 161.8,
+        "y": 521.6,
+        "x_left": 69.8,
+        "x_right": 161.77,
+        "cell_width": 91.97,
+        "distance": 0
+      },
+      "new_maxWidth": 88,
+      "action": "aligned"
+    },
+    {
+      "section": "prior_case_extra",
+      "id": "prior_case_extra_c1",
+      "label": "הליכים קודמים (פרטים נוספים) שורה 1/1",
+      "page": 0,
+      "orig": {
+        "rightEdge": 505.4,
+        "y": 474.9,
+        "maxWidth": 431.6,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 505.4,
+        "y": 474.9,
+        "x_left": 69.8,
+        "x_right": 523.98,
+        "cell_width": 454.18,
+        "distance": 0
+      },
+      "new_maxWidth": 431.6,
+      "action": "aligned"
+    },
+    {
+      "section": "property_p1",
+      "id": "property_p1_r1c1",
+      "label": "רכוש שורה 1/1",
+      "page": 1,
+      "orig": {
+        "rightEdge": 297,
+        "y": 364.1,
+        "maxWidth": 223.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 297,
+        "y": 364.1,
+        "x_left": 69.8,
+        "x_right": 523.98,
+        "cell_width": 454.18,
+        "distance": 0
+      },
+      "new_maxWidth": 223.2,
+      "action": "aligned"
+    },
+    {
+      "section": "property_p1",
+      "id": "property_p1_r2c1",
+      "label": "רכוש שורה 2/1",
+      "page": 1,
+      "orig": {
+        "rightEdge": 524,
+        "y": 333,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 333,
+        "x_left": 372.59,
+        "x_right": 523.98,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "property_p1",
+      "id": "property_p1_r2c2",
+      "label": "רכוש שורה 2/2",
+      "page": 1,
+      "orig": {
+        "rightEdge": 372.6,
+        "y": 333,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 372.6,
+        "y": 333,
+        "x_left": 221.2,
+        "x_right": 372.59,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "property_p1",
+      "id": "property_p1_r2c3",
+      "label": "רכוש שורה 2/3",
+      "page": 1,
+      "orig": {
+        "rightEdge": 221.2,
+        "y": 333,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 221.2,
+        "y": 333,
+        "x_left": 69.8,
+        "x_right": 221.2,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "property_p1",
+      "id": "property_p1_r3c1",
+      "label": "רכוש שורה 3/1",
+      "page": 1,
+      "orig": {
+        "rightEdge": 311.6,
+        "y": 320.8,
+        "maxWidth": 237.8,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 311.6,
+        "y": 320.8,
+        "x_left": 69.8,
+        "x_right": 523.98,
+        "cell_width": 454.18,
+        "distance": 0
+      },
+      "new_maxWidth": 237.8,
+      "action": "aligned"
+    },
+    {
+      "section": "property_p1",
+      "id": "property_p1_r4c1",
+      "label": "רכוש שורה 4/1",
+      "page": 1,
+      "orig": {
+        "rightEdge": 524,
+        "y": 290.1,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 290.1,
+        "x_left": 372.59,
+        "x_right": 523.98,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "property_p1",
+      "id": "property_p1_r4c2",
+      "label": "רכוש שורה 4/2",
+      "page": 1,
+      "orig": {
+        "rightEdge": 372.6,
+        "y": 290.1,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 372.6,
+        "y": 290.1,
+        "x_left": 221.2,
+        "x_right": 372.59,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "property_p1",
+      "id": "property_p1_r4c3",
+      "label": "רכוש שורה 4/3",
+      "page": 1,
+      "orig": {
+        "rightEdge": 221.2,
+        "y": 290.1,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 221.2,
+        "y": 290.1,
+        "x_left": 69.8,
+        "x_right": 221.2,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "debts_p1",
+      "id": "debts_p1_r1c1",
+      "label": "חובות שורה 1/1",
+      "page": 1,
+      "orig": {
+        "rightEdge": 297,
+        "y": 230.3,
+        "maxWidth": 223.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 297,
+        "y": 230.3,
+        "x_left": 69.8,
+        "x_right": 523.98,
+        "cell_width": 454.18,
+        "distance": 0
+      },
+      "new_maxWidth": 223.2,
+      "action": "aligned"
+    },
+    {
+      "section": "debts_p1",
+      "id": "debts_p1_r2c1",
+      "label": "חובות שורה 2/1",
+      "page": 1,
+      "orig": {
+        "rightEdge": 524,
+        "y": 199.2,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 199.2,
+        "x_left": 372.59,
+        "x_right": 523.98,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "debts_p1",
+      "id": "debts_p1_r2c2",
+      "label": "חובות שורה 2/2",
+      "page": 1,
+      "orig": {
+        "rightEdge": 372.6,
+        "y": 199.2,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 372.6,
+        "y": 199.2,
+        "x_left": 221.2,
+        "x_right": 372.59,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "debts_p1",
+      "id": "debts_p1_r2c3",
+      "label": "חובות שורה 2/3",
+      "page": 1,
+      "orig": {
+        "rightEdge": 221.2,
+        "y": 199.2,
+        "maxWidth": 147.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 221.2,
+        "y": 199.2,
+        "x_left": 69.8,
+        "x_right": 221.2,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 147.4,
+      "action": "aligned"
+    },
+    {
+      "section": "debts_p1",
+      "id": "debts_p1_r3c1",
+      "label": "חובות שורה 3/1",
+      "page": 1,
+      "orig": {
+        "rightEdge": 311.6,
+        "y": 186.9,
+        "maxWidth": 237.8,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 311.6,
+        "y": 186.9,
+        "x_left": 69.8,
+        "x_right": 523.98,
+        "cell_width": 454.18,
+        "distance": 0
+      },
+      "new_maxWidth": 237.8,
+      "action": "aligned"
+    },
+    {
+      "section": "debts_p1",
+      "id": "debts_p1_r4c1",
+      "label": "חובות שורה 4/1",
+      "page": 1,
+      "orig": {
+        "rightEdge": 451.2,
+        "y": 156.3,
+        "maxWidth": 74.6,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 451.2,
+        "y": 156.3,
+        "x_left": 372.59,
+        "x_right": 523.98,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 74.6,
+      "action": "aligned"
+    },
+    {
+      "section": "debts_p1",
+      "id": "debts_p1_r4c2",
+      "label": "חובות שורה 4/2",
+      "page": 1,
+      "orig": {
+        "rightEdge": 297.4,
+        "y": 156.3,
+        "maxWidth": 72.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 297.4,
+        "y": 156.3,
+        "x_left": 221.2,
+        "x_right": 372.59,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 72.2,
+      "action": "aligned"
+    },
+    {
+      "section": "debts_p1",
+      "id": "debts_p1_r4c3",
+      "label": "חובות שורה 4/3",
+      "page": 1,
+      "orig": {
+        "rightEdge": 163.5,
+        "y": 156.3,
+        "maxWidth": 89.7,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 163.5,
+        "y": 156.3,
+        "x_left": 69.8,
+        "x_right": 221.2,
+        "cell_width": 151.39,
+        "distance": 0
+      },
+      "new_maxWidth": 89.7,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts",
+      "id": "bank_accounts_r1c1",
+      "label": "חשבונות בנק שורה 1/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 487,
+        "y": 699.3,
+        "maxWidth": 8.5,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 487,
+        "y": 699.3,
+        "x_left": 474.46,
+        "x_right": 509.83,
+        "cell_width": 35.37,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts",
+      "id": "bank_accounts_r1c2",
+      "label": "חשבונות בנק שורה 1/2",
+      "page": 2,
+      "orig": {
+        "rightEdge": 474.5,
+        "y": 699.3,
+        "maxWidth": 379.9,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 699.3,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 0
+      },
+      "new_maxWidth": 379.9,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts",
+      "id": "bank_accounts_r2c1",
+      "label": "חשבונות בנק שורה 2/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 487.5,
+        "y": 680.9,
+        "maxWidth": 9,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 487.5,
+        "y": 680.9,
+        "x_left": 474.46,
+        "x_right": 509.83,
+        "cell_width": 35.37,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts",
+      "id": "bank_accounts_r2c2",
+      "label": "חשבונות בנק שורה 2/2",
+      "page": 2,
+      "orig": {
+        "rightEdge": 474.5,
+        "y": 680.9,
+        "maxWidth": 379.9,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 680.9,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 0
+      },
+      "new_maxWidth": 379.9,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts",
+      "id": "bank_accounts_r3c1",
+      "label": "חשבונות בנק שורה 3/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 509.8,
+        "y": 662.5,
+        "maxWidth": 31.3,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 509.8,
+        "y": 662.5,
+        "x_left": 474.46,
+        "x_right": 509.83,
+        "cell_width": 35.37,
+        "distance": 0
+      },
+      "new_maxWidth": 31.3,
+      "action": "aligned"
+    },
+    {
+      "section": "bank_accounts",
+      "id": "bank_accounts_r3c2",
+      "label": "חשבונות בנק שורה 3/2",
+      "page": 2,
+      "orig": {
+        "rightEdge": 474.5,
+        "y": 662.5,
+        "maxWidth": 379.9,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 662.5,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 0
+      },
+      "new_maxWidth": 379.9,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r1c1",
+      "label": "בני זוג (פרטים) שורה 1/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 524,
+        "y": 524,
+        "maxWidth": 95.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 524,
+        "x_left": 424.94,
+        "x_right": 523.98,
+        "cell_width": 99.04,
+        "distance": 0
+      },
+      "new_maxWidth": 95.1,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r2c1",
+      "label": "בני זוג (פרטים) שורה 2/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 524,
+        "y": 498.5,
+        "maxWidth": 95.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 498.5,
+        "x_left": 424.94,
+        "x_right": 523.98,
+        "cell_width": 99.04,
+        "distance": 0
+      },
+      "new_maxWidth": 95.1,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r2c2",
+      "label": "בני זוג (פרטים) שורה 2/2",
+      "page": 2,
+      "orig": {
+        "rightEdge": 410.1,
+        "y": 498.5,
+        "maxWidth": 130.7,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 410.1,
+        "y": 498.5,
+        "x_left": 275.43,
+        "x_right": 424.94,
+        "cell_width": 149.51,
+        "distance": 0
+      },
+      "new_maxWidth": 130.7,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r2c3",
+      "label": "בני זוג (פרטים) שורה 2/3",
+      "page": 2,
+      "orig": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "maxWidth": 180.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 0
+      },
+      "new_maxWidth": 180.4,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r3c1",
+      "label": "בני זוג (פרטים) שורה 3/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 499.3,
+        "y": 480.6,
+        "maxWidth": 70.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 499.3,
+        "y": 480.6,
+        "x_left": 424.94,
+        "x_right": 523.98,
+        "cell_width": 99.04,
+        "distance": 0
+      },
+      "new_maxWidth": 70.4,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r3c2",
+      "label": "בני זוג (פרטים) שורה 3/2",
+      "page": 2,
+      "orig": {
+        "rightEdge": 424.9,
+        "y": 480.6,
+        "maxWidth": 145.5,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 424.9,
+        "y": 480.6,
+        "x_left": 275.43,
+        "x_right": 424.94,
+        "cell_width": 149.51,
+        "distance": 0
+      },
+      "new_maxWidth": 145.5,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r3c3",
+      "label": "בני זוג (פרטים) שורה 3/3",
+      "page": 2,
+      "orig": {
+        "rightEdge": 275.4,
+        "y": 480.6,
+        "maxWidth": 180.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 480.6,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 0
+      },
+      "new_maxWidth": 180.4,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r4c1",
+      "label": "בני זוג (פרטים) שורה 4/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 498.3,
+        "y": 462.2,
+        "maxWidth": 69.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 498.3,
+        "y": 462.2,
+        "x_left": 424.94,
+        "x_right": 523.98,
+        "cell_width": 99.04,
+        "distance": 0
+      },
+      "new_maxWidth": 69.4,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r4c2",
+      "label": "בני זוג (פרטים) שורה 4/2",
+      "page": 2,
+      "orig": {
+        "rightEdge": 424.9,
+        "y": 462.2,
+        "maxWidth": 145.5,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 424.9,
+        "y": 462.2,
+        "x_left": 275.43,
+        "x_right": 424.94,
+        "cell_width": 149.51,
+        "distance": 0
+      },
+      "new_maxWidth": 145.5,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r4c3",
+      "label": "בני זוג (פרטים) שורה 4/3",
+      "page": 2,
+      "orig": {
+        "rightEdge": 275.4,
+        "y": 462.2,
+        "maxWidth": 180.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 462.2,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 0
+      },
+      "new_maxWidth": 180.4,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_table",
+      "id": "spouse_table_r5c1",
+      "label": "בני זוג (פרטים) שורה 5/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 524,
+        "y": 407.5,
+        "maxWidth": 429,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 407.5,
+        "x_left": 91.03,
+        "x_right": 523.98,
+        "cell_width": 432.96,
+        "distance": 0
+      },
+      "new_maxWidth": 429,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_table",
+      "id": "parent_table_r1c1",
+      "label": "הורים (פרטים) שורה 1/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 488.9,
+        "y": 282.6,
+        "maxWidth": 395.8,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 488.9,
+        "y": 282.6,
+        "x_left": 89.14,
+        "x_right": 523.98,
+        "cell_width": 434.85,
+        "distance": 0
+      },
+      "new_maxWidth": 395.8,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_table",
+      "id": "parent_table_r2c1",
+      "label": "הורים (פרטים) שורה 2/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 378.1,
+        "y": 274.6,
+        "maxWidth": 285,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 378.1,
+        "y": 274.6,
+        "x_left": 89.14,
+        "x_right": 523.98,
+        "cell_width": 434.85,
+        "distance": 0
+      },
+      "new_maxWidth": 285,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_table",
+      "id": "parent_table_r3c1",
+      "label": "הורים (פרטים) שורה 3/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 492.2,
+        "y": 244.4,
+        "maxWidth": 399.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 492.2,
+        "y": 244.4,
+        "x_left": 89.14,
+        "x_right": 523.98,
+        "cell_width": 434.85,
+        "distance": 0
+      },
+      "new_maxWidth": 399.1,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_table",
+      "id": "parent_table_r4c1",
+      "label": "הורים (פרטים) שורה 4/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 524,
+        "y": 192.6,
+        "maxWidth": 88.5,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 192.6,
+        "x_left": 431.54,
+        "x_right": 523.98,
+        "cell_width": 92.44,
+        "distance": 0
+      },
+      "new_maxWidth": 88.5,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_table",
+      "id": "parent_table_r4c2",
+      "label": "הורים (פרטים) שורה 4/2",
+      "page": 2,
+      "orig": {
+        "rightEdge": 334.7,
+        "y": 192.6,
+        "maxWidth": 241.6,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 334.7,
+        "y": 192.6,
+        "x_left": 89.14,
+        "x_right": 431.54,
+        "cell_width": 342.41,
+        "distance": 0
+      },
+      "new_maxWidth": 241.6,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_table",
+      "id": "parent_table_r5c1",
+      "label": "הורים (פרטים) שורה 5/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 524,
+        "y": 171.3,
+        "maxWidth": 88.5,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 171.3,
+        "x_left": 431.54,
+        "x_right": 523.98,
+        "cell_width": 92.44,
+        "distance": 0
+      },
+      "new_maxWidth": 88.5,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_table",
+      "id": "parent_table_r5c2",
+      "label": "הורים (פרטים) שורה 5/2",
+      "page": 2,
+      "orig": {
+        "rightEdge": 334.7,
+        "y": 171.3,
+        "maxWidth": 241.6,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 334.7,
+        "y": 171.3,
+        "x_left": 89.14,
+        "x_right": 431.54,
+        "cell_width": 342.41,
+        "distance": 0
+      },
+      "new_maxWidth": 241.6,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_table",
+      "id": "parent_table_r6c1",
+      "label": "הורים (פרטים) שורה 6/1",
+      "page": 2,
+      "orig": {
+        "rightEdge": 482.3,
+        "y": 141.2,
+        "maxWidth": 389.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 482.3,
+        "y": 141.2,
+        "x_left": 89.14,
+        "x_right": 523.98,
+        "cell_width": 434.85,
+        "distance": 0
+      },
+      "new_maxWidth": 389.2,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r1c1",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 1/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 524.5,
+        "y": 693.2,
+        "maxWidth": 24.8,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 524.5,
+        "y": 693.2,
+        "x_left": 495.69,
+        "x_right": 524.46,
+        "cell_width": 28.77,
+        "distance": 0
+      },
+      "new_maxWidth": 24.8,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r1c2",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 1/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 495.7,
+        "y": 693.2,
+        "maxWidth": 117.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 495.7,
+        "y": 693.2,
+        "x_left": 374.48,
+        "x_right": 495.69,
+        "cell_width": 121.21,
+        "distance": 0
+      },
+      "new_maxWidth": 117.2,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r1c3",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 1/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 374.5,
+        "y": 693.2,
+        "maxWidth": 55.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 693.2,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 0
+      },
+      "new_maxWidth": 55.9,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r1c4",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 1/4",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 693.2,
+        "maxWidth": 111,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 693.2,
+        "x_left": 93.85,
+        "x_right": 208.93,
+        "cell_width": 115.08,
+        "distance": 0
+      },
+      "new_maxWidth": 111,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r2c1",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 2/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 507.3,
+        "y": 672,
+        "maxWidth": 7.6,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 507.3,
+        "y": 672,
+        "x_left": 495.69,
+        "x_right": 524.46,
+        "cell_width": 28.77,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r2c2",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 2/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 495.7,
+        "y": 672,
+        "maxWidth": 117.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 495.7,
+        "y": 672,
+        "x_left": 374.48,
+        "x_right": 495.69,
+        "cell_width": 121.21,
+        "distance": 0
+      },
+      "new_maxWidth": 117.2,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r2c3",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 2/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 374.5,
+        "y": 672,
+        "maxWidth": 55.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 672,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 0
+      },
+      "new_maxWidth": 55.9,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r2c4",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 2/4",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 672,
+        "maxWidth": 111,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 672,
+        "x_left": 93.85,
+        "x_right": 208.93,
+        "cell_width": 115.08,
+        "distance": 0
+      },
+      "new_maxWidth": 111,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r3c1",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 3/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 506.4,
+        "y": 650.8,
+        "maxWidth": 6.7,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 506.4,
+        "y": 650.8,
+        "x_left": 495.69,
+        "x_right": 524.46,
+        "cell_width": 28.77,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r3c2",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 3/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 495.7,
+        "y": 650.8,
+        "maxWidth": 117.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 495.7,
+        "y": 650.8,
+        "x_left": 374.48,
+        "x_right": 495.69,
+        "cell_width": 121.21,
+        "distance": 0
+      },
+      "new_maxWidth": 117.2,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r3c3",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 3/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 374.5,
+        "y": 650.8,
+        "maxWidth": 55.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 650.8,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 0
+      },
+      "new_maxWidth": 55.9,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_p3",
+      "id": "oc_def_p3_r3c4",
+      "label": "ילדים אחרים של הנתבע (טבלה) שורה 3/4",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 650.8,
+        "maxWidth": 111,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 650.8,
+        "x_left": 93.85,
+        "x_right": 208.93,
+        "cell_width": 115.08,
+        "distance": 0
+      },
+      "new_maxWidth": 111,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r1c1",
+      "label": "ילדי בן/בת זוג הנתבע שורה 1/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 495.7,
+        "y": 529.6,
+        "maxWidth": 117.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 495.7,
+        "y": 529.6,
+        "x_left": 374.48,
+        "x_right": 495.69,
+        "cell_width": 121.21,
+        "distance": 0
+      },
+      "new_maxWidth": 117.2,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r1c2",
+      "label": "ילדי בן/בת זוג הנתבע שורה 1/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 374.5,
+        "y": 529.6,
+        "maxWidth": 55.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 529.6,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 0
+      },
+      "new_maxWidth": 55.9,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r2c1",
+      "label": "ילדי בן/בת זוג הנתבע שורה 2/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 506.8,
+        "y": 508.4,
+        "maxWidth": 7.1,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 506.8,
+        "y": 508.4,
+        "x_left": 495.69,
+        "x_right": 524.46,
+        "cell_width": 28.77,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r2c2",
+      "label": "ילדי בן/בת זוג הנתבע שורה 2/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 495.7,
+        "y": 508.4,
+        "maxWidth": 117.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 495.7,
+        "y": 508.4,
+        "x_left": 374.48,
+        "x_right": 495.69,
+        "cell_width": 121.21,
+        "distance": 0
+      },
+      "new_maxWidth": 117.2,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r2c3",
+      "label": "ילדי בן/בת זוג הנתבע שורה 2/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 374.5,
+        "y": 508.4,
+        "maxWidth": 55.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 508.4,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 0
+      },
+      "new_maxWidth": 55.9,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r2c4",
+      "label": "ילדי בן/בת זוג הנתבע שורה 2/4",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 508.4,
+        "maxWidth": 111,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 508.4,
+        "x_left": 93.85,
+        "x_right": 208.93,
+        "cell_width": 115.08,
+        "distance": 0
+      },
+      "new_maxWidth": 111,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r3c1",
+      "label": "ילדי בן/בת זוג הנתבע שורה 3/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 506.8,
+        "y": 487.2,
+        "maxWidth": 7.1,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 506.8,
+        "y": 487.2,
+        "x_left": 495.69,
+        "x_right": 524.46,
+        "cell_width": 28.77,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r3c2",
+      "label": "ילדי בן/בת זוג הנתבע שורה 3/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 495.7,
+        "y": 487.2,
+        "maxWidth": 117.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 495.7,
+        "y": 487.2,
+        "x_left": 374.48,
+        "x_right": 495.69,
+        "cell_width": 121.21,
+        "distance": 0
+      },
+      "new_maxWidth": 117.2,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r3c3",
+      "label": "ילדי בן/בת זוג הנתבע שורה 3/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 374.5,
+        "y": 487.2,
+        "maxWidth": 55.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 487.2,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 0
+      },
+      "new_maxWidth": 55.9,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r3c4",
+      "label": "ילדי בן/בת זוג הנתבע שורה 3/4",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 487.2,
+        "maxWidth": 111,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 487.2,
+        "x_left": 93.85,
+        "x_right": 208.93,
+        "cell_width": 115.08,
+        "distance": 0
+      },
+      "new_maxWidth": 111,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r4c1",
+      "label": "ילדי בן/בת זוג הנתבע שורה 4/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 507.3,
+        "y": 466,
+        "maxWidth": 7.6,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 507.3,
+        "y": 466,
+        "x_left": 495.69,
+        "x_right": 524.46,
+        "cell_width": 28.77,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r4c2",
+      "label": "ילדי בן/בת זוג הנתבע שורה 4/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 495.7,
+        "y": 466,
+        "maxWidth": 117.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 495.7,
+        "y": 466,
+        "x_left": 374.48,
+        "x_right": 495.69,
+        "cell_width": 121.21,
+        "distance": 0
+      },
+      "new_maxWidth": 117.2,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r4c3",
+      "label": "ילדי בן/בת זוג הנתבע שורה 4/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 374.5,
+        "y": 466,
+        "maxWidth": 55.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 466,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 0
+      },
+      "new_maxWidth": 55.9,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r4c4",
+      "label": "ילדי בן/בת זוג הנתבע שורה 4/4",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 466,
+        "maxWidth": 111,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 466,
+        "x_left": 93.85,
+        "x_right": 208.93,
+        "cell_width": 115.08,
+        "distance": 0
+      },
+      "new_maxWidth": 111,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r5c1",
+      "label": "ילדי בן/בת זוג הנתבע שורה 5/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 506.4,
+        "y": 444.8,
+        "maxWidth": 6.7,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 506.4,
+        "y": 444.8,
+        "x_left": 495.69,
+        "x_right": 524.46,
+        "cell_width": 28.77,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r5c2",
+      "label": "ילדי בן/בת זוג הנתבע שורה 5/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 495.7,
+        "y": 444.8,
+        "maxWidth": 117.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 495.7,
+        "y": 444.8,
+        "x_left": 374.48,
+        "x_right": 495.69,
+        "cell_width": 121.21,
+        "distance": 0
+      },
+      "new_maxWidth": 117.2,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r5c3",
+      "label": "ילדי בן/בת זוג הנתבע שורה 5/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 374.5,
+        "y": 444.8,
+        "maxWidth": 55.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 444.8,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 0
+      },
+      "new_maxWidth": 55.9,
+      "action": "aligned"
+    },
+    {
+      "section": "spouse_kids_p3",
+      "id": "spouse_kids_p3_r5c4",
+      "label": "ילדי בן/בת זוג הנתבע שורה 5/4",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 444.8,
+        "maxWidth": 111,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 444.8,
+        "x_left": 93.85,
+        "x_right": 208.93,
+        "cell_width": 115.08,
+        "distance": 0
+      },
+      "new_maxWidth": 111,
+      "action": "aligned"
+    },
+    {
+      "section": "parent_kids_p3",
+      "id": "parent_kids_p3_c1",
+      "label": "ילדים אחרים של ההורה שורה 1/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 448.4,
+        "y": 372.6,
+        "maxWidth": 218.5,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 448.4,
+        "y": 372.6,
+        "x_left": 225.91,
+        "x_right": 523.98,
+        "cell_width": 298.07,
+        "distance": 0
+      },
+      "new_maxWidth": 218.5,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r1c1",
+      "label": "פרטים נוספים (עמוד 3) שורה 1/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 496.2,
+        "y": 264.7,
+        "maxWidth": 177.6,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 496.2,
+        "y": 264.7,
+        "x_left": 314.58,
+        "x_right": 496.16,
+        "cell_width": 181.58,
+        "distance": 0
+      },
+      "new_maxWidth": 177.6,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r2c1",
+      "label": "פרטים נוספים (עמוד 3) שורה 2/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 506.8,
+        "y": 243.5,
+        "maxWidth": 6.6,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 506.8,
+        "y": 243.5,
+        "x_left": 496.16,
+        "x_right": 524.46,
+        "cell_width": 28.3,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r2c2",
+      "label": "פרטים נוספים (עמוד 3) שורה 2/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 496.2,
+        "y": 243.5,
+        "maxWidth": 177.6,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 496.2,
+        "y": 243.5,
+        "x_left": 314.58,
+        "x_right": 496.16,
+        "cell_width": 181.58,
+        "distance": 0
+      },
+      "new_maxWidth": 177.6,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r2c3",
+      "label": "פרטים נוספים (עמוד 3) שורה 2/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 243.5,
+        "maxWidth": 89.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 243.5,
+        "x_left": 115.55,
+        "x_right": 208.93,
+        "cell_width": 93.38,
+        "distance": 0
+      },
+      "new_maxWidth": 89.4,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r3c1",
+      "label": "פרטים נוספים (עמוד 3) שורה 3/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 506.8,
+        "y": 222.3,
+        "maxWidth": 6.6,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 506.8,
+        "y": 222.3,
+        "x_left": 496.16,
+        "x_right": 524.46,
+        "cell_width": 28.3,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r3c2",
+      "label": "פרטים נוספים (עמוד 3) שורה 3/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 496.2,
+        "y": 222.3,
+        "maxWidth": 177.6,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 496.2,
+        "y": 222.3,
+        "x_left": 314.58,
+        "x_right": 496.16,
+        "cell_width": 181.58,
+        "distance": 0
+      },
+      "new_maxWidth": 177.6,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r3c3",
+      "label": "פרטים נוספים (עמוד 3) שורה 3/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 222.3,
+        "maxWidth": 89.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 222.3,
+        "x_left": 115.55,
+        "x_right": 208.93,
+        "cell_width": 93.38,
+        "distance": 0
+      },
+      "new_maxWidth": 89.4,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r4c1",
+      "label": "פרטים נוספים (עמוד 3) שורה 4/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 506.4,
+        "y": 179.8,
+        "maxWidth": 6.2,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 506.4,
+        "y": 179.8,
+        "x_left": 496.16,
+        "x_right": 524.46,
+        "cell_width": 28.3,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r4c2",
+      "label": "פרטים נוספים (עמוד 3) שורה 4/2",
+      "page": 3,
+      "orig": {
+        "rightEdge": 371.5,
+        "y": 179.8,
+        "maxWidth": 52.9,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 371.5,
+        "y": 179.8,
+        "x_left": 314.58,
+        "x_right": 496.16,
+        "cell_width": 181.58,
+        "distance": 0
+      },
+      "new_maxWidth": 52.9,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r4c3",
+      "label": "פרטים נוספים (עמוד 3) שורה 4/3",
+      "page": 3,
+      "orig": {
+        "rightEdge": 208.9,
+        "y": 179.8,
+        "maxWidth": 89.4,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 208.9,
+        "y": 179.8,
+        "x_left": 115.55,
+        "x_right": 208.93,
+        "cell_width": 93.38,
+        "distance": 0
+      },
+      "new_maxWidth": 89.4,
+      "action": "aligned"
+    },
+    {
+      "section": "misc_p3",
+      "id": "misc_p3_r5c1",
+      "label": "פרטים נוספים (עמוד 3) שורה 5/1",
+      "page": 3,
+      "orig": {
+        "rightEdge": 524,
+        "y": 89.8,
+        "maxWidth": 294.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 89.8,
+        "x_left": 225.91,
+        "x_right": 523.98,
+        "cell_width": 298.07,
+        "distance": 0
+      },
+      "new_maxWidth": 294.1,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r1c1",
+      "label": "מגורי בעלי הדין שורה 1/1",
+      "page": 4,
+      "orig": {
+        "rightEdge": 488.6,
+        "y": 714.4,
+        "maxWidth": 159.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 488.6,
+        "y": 714.4,
+        "x_left": 325.43,
+        "x_right": 488.61,
+        "cell_width": 163.18,
+        "distance": 0
+      },
+      "new_maxWidth": 159.2,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r1c2",
+      "label": "מגורי בעלי הדין שורה 1/2",
+      "page": 4,
+      "orig": {
+        "rightEdge": 325.4,
+        "y": 714.4,
+        "maxWidth": 244.5,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 325.4,
+        "y": 714.4,
+        "x_left": 76.88,
+        "x_right": 325.43,
+        "cell_width": 248.55,
+        "distance": 0
+      },
+      "new_maxWidth": 244.5,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r2c1",
+      "label": "מגורי בעלי הדין שורה 2/1",
+      "page": 4,
+      "orig": {
+        "rightEdge": 488.6,
+        "y": 696,
+        "maxWidth": 159.2,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 488.6,
+        "y": 696,
+        "x_left": 325.43,
+        "x_right": 488.61,
+        "cell_width": 163.18,
+        "distance": 0
+      },
+      "new_maxWidth": 159.2,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r2c2",
+      "label": "מגורי בעלי הדין שורה 2/2",
+      "page": 4,
+      "orig": {
+        "rightEdge": 325.4,
+        "y": 696,
+        "maxWidth": 244.5,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 325.4,
+        "y": 696,
+        "x_left": 76.88,
+        "x_right": 325.43,
+        "cell_width": 248.55,
+        "distance": 0
+      },
+      "new_maxWidth": 244.5,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r3c1",
+      "label": "מגורי בעלי הדין שורה 3/1",
+      "page": 4,
+      "orig": {
+        "rightEdge": 446.2,
+        "y": 624.4,
+        "maxWidth": 145.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 446.2,
+        "y": 624.4,
+        "x_left": 297.13,
+        "x_right": 446.16,
+        "cell_width": 149.04,
+        "distance": 0
+      },
+      "new_maxWidth": 145.1,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r3c2",
+      "label": "מגורי בעלי הדין שורה 3/2",
+      "page": 4,
+      "orig": {
+        "rightEdge": 297.1,
+        "y": 624.4,
+        "maxWidth": 81.8,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 297.1,
+        "y": 624.4,
+        "x_left": 211.29,
+        "x_right": 297.13,
+        "cell_width": 85.84,
+        "distance": 0
+      },
+      "new_maxWidth": 81.8,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r3c3",
+      "label": "מגורי בעלי הדין שורה 3/3",
+      "page": 4,
+      "orig": {
+        "rightEdge": 211.3,
+        "y": 624.4,
+        "maxWidth": 130.9,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 211.3,
+        "y": 624.4,
+        "x_left": 76.4,
+        "x_right": 211.29,
+        "cell_width": 134.89,
+        "distance": 0
+      },
+      "new_maxWidth": 130.9,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r4c1",
+      "label": "מגורי בעלי הדין שורה 4/1",
+      "page": 4,
+      "orig": {
+        "rightEdge": 484.8,
+        "y": 606,
+        "maxWidth": 34.6,
+        "size": 8
+      },
+      "nearest": {
+        "rightEdge": 484.8,
+        "y": 606,
+        "x_left": 446.16,
+        "x_right": 484.84,
+        "cell_width": 38.67,
+        "distance": 0
+      },
+      "new_maxWidth": 34.6,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r4c2",
+      "label": "מגורי בעלי הדין שורה 4/2",
+      "page": 4,
+      "orig": {
+        "rightEdge": 446.2,
+        "y": 606,
+        "maxWidth": 145.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 446.2,
+        "y": 606,
+        "x_left": 297.13,
+        "x_right": 446.16,
+        "cell_width": 149.04,
+        "distance": 0
+      },
+      "new_maxWidth": 145.1,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r4c3",
+      "label": "מגורי בעלי הדין שורה 4/3",
+      "page": 4,
+      "orig": {
+        "rightEdge": 297.1,
+        "y": 606,
+        "maxWidth": 81.8,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 297.1,
+        "y": 606,
+        "x_left": 211.29,
+        "x_right": 297.13,
+        "cell_width": 85.84,
+        "distance": 0
+      },
+      "new_maxWidth": 81.8,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r5c1",
+      "label": "מגורי בעלי הדין שורה 5/1",
+      "page": 4,
+      "orig": {
+        "rightEdge": 460.1,
+        "y": 587.6,
+        "maxWidth": 9.9,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 460.1,
+        "y": 587.6,
+        "x_left": 446.16,
+        "x_right": 484.84,
+        "cell_width": 38.67,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r5c2",
+      "label": "מגורי בעלי הדין שורה 5/2",
+      "page": 4,
+      "orig": {
+        "rightEdge": 446.2,
+        "y": 587.6,
+        "maxWidth": 145.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 446.2,
+        "y": 587.6,
+        "x_left": 297.13,
+        "x_right": 446.16,
+        "cell_width": 149.04,
+        "distance": 0
+      },
+      "new_maxWidth": 145.1,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r5c3",
+      "label": "מגורי בעלי הדין שורה 5/3",
+      "page": 4,
+      "orig": {
+        "rightEdge": 297.1,
+        "y": 587.6,
+        "maxWidth": 81.8,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 297.1,
+        "y": 587.6,
+        "x_left": 211.29,
+        "x_right": 297.13,
+        "cell_width": 85.84,
+        "distance": 0
+      },
+      "new_maxWidth": 81.8,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r6c1",
+      "label": "מגורי בעלי הדין שורה 6/1",
+      "page": 4,
+      "orig": {
+        "rightEdge": 460.6,
+        "y": 569.2,
+        "maxWidth": 10.4,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 460.6,
+        "y": 569.2,
+        "x_left": 446.16,
+        "x_right": 484.84,
+        "cell_width": 38.67,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r6c2",
+      "label": "מגורי בעלי הדין שורה 6/2",
+      "page": 4,
+      "orig": {
+        "rightEdge": 446.2,
+        "y": 569.2,
+        "maxWidth": 145.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 446.2,
+        "y": 569.2,
+        "x_left": 297.13,
+        "x_right": 446.16,
+        "cell_width": 149.04,
+        "distance": 0
+      },
+      "new_maxWidth": 145.1,
+      "action": "aligned"
+    },
+    {
+      "section": "residence_pq_p4",
+      "id": "residence_pq_p4_r6c3",
+      "label": "מגורי בעלי הדין שורה 6/3",
+      "page": 4,
+      "orig": {
+        "rightEdge": 297.1,
+        "y": 569.2,
+        "maxWidth": 81.8,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 297.1,
+        "y": 569.2,
+        "x_left": 211.29,
+        "x_right": 297.13,
+        "cell_width": 85.84,
+        "distance": 0
+      },
+      "new_maxWidth": 81.8,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_table_p4",
+      "id": "oc_def_table_p4_c1",
+      "label": "ילדים אחרים (טבלה 2) שורה 1/1",
+      "page": 4,
+      "orig": {
+        "rightEdge": 460.6,
+        "y": 569.2,
+        "maxWidth": 10.4,
+        "size": 7
+      },
+      "nearest": {
+        "rightEdge": 460.6,
+        "y": 569.2,
+        "x_left": 446.16,
+        "x_right": 484.84,
+        "cell_width": 38.67,
+        "distance": 0
+      },
+      "new_maxWidth": 20,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_table_p4",
+      "id": "oc_def_table_p4_c2",
+      "label": "ילדים אחרים (טבלה 2) שורה 1/2",
+      "page": 4,
+      "orig": {
+        "rightEdge": 446.2,
+        "y": 569.2,
+        "maxWidth": 145.1,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 446.2,
+        "y": 569.2,
+        "x_left": 297.13,
+        "x_right": 446.16,
+        "cell_width": 149.04,
+        "distance": 0
+      },
+      "new_maxWidth": 145.1,
+      "action": "aligned"
+    },
+    {
+      "section": "oc_def_table_p4",
+      "id": "oc_def_table_p4_c3",
+      "label": "ילדים אחרים (טבלה 2) שורה 1/3",
+      "page": 4,
+      "orig": {
+        "rightEdge": 297.1,
+        "y": 569.2,
+        "maxWidth": 81.8,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 297.1,
+        "y": 569.2,
+        "x_left": 211.29,
+        "x_right": 297.13,
+        "cell_width": 85.84,
+        "distance": 0
+      },
+      "new_maxWidth": 81.8,
+      "action": "aligned"
+    }
+  ],
+  "tables": [
+    {
+      "section": "income_applicant",
+      "page": 0,
+      "isChildren": false,
+      "orig_yStart": 347.2,
+      "new_yStart": 347.2,
+      "orig_yStep": 18.4,
+      "new_yStep": 22.311,
+      "cols": [
+        {
+          "col": "p",
+          "orig_rightEdge": 435,
+          "new_rightEdge": 439.1,
+          "orig_y": 347.2,
+          "new_y": 347.2,
+          "orig_maxWidth": 100,
+          "new_maxWidth": 105.4,
+          "distance": 4.1
+        },
+        {
+          "col": "g",
+          "orig_rightEdge": 286,
+          "new_rightEdge": 290.1,
+          "orig_y": 347.2,
+          "new_y": 347.2,
+          "orig_maxWidth": 90,
+          "new_maxWidth": 95.6,
+          "distance": 4.1
+        },
+        {
+          "col": "n",
+          "orig_rightEdge": 150,
+          "new_rightEdge": 153.8,
+          "orig_y": 347.2,
+          "new_y": 347.2,
+          "orig_maxWidth": 76,
+          "new_maxWidth": 80.9,
+          "distance": 3.8
+        }
+      ]
+    },
+    {
+      "section": "income_defendant",
+      "page": 1,
+      "isChildren": false,
+      "orig_yStart": 705.4,
+      "new_yStart": 705.4,
+      "orig_yStep": 18.3,
+      "new_yStep": 22.8,
+      "cols": [
+        {
+          "col": "p",
+          "orig_rightEdge": 435,
+          "new_rightEdge": 439.1,
+          "orig_y": 705.4,
+          "new_y": 705.4,
+          "orig_maxWidth": 100,
+          "new_maxWidth": 105.4,
+          "distance": 4.1
+        },
+        {
+          "col": "g",
+          "orig_rightEdge": 286,
+          "new_rightEdge": 290.1,
+          "orig_y": 705.4,
+          "new_y": 705.4,
+          "orig_maxWidth": 90,
+          "new_maxWidth": 95.6,
+          "distance": 4.1
+        },
+        {
+          "col": "n",
+          "orig_rightEdge": 150,
+          "new_rightEdge": 153.8,
+          "orig_y": 705.4,
+          "new_y": 705.4,
+          "orig_maxWidth": 76,
+          "new_maxWidth": 80.9,
+          "distance": 3.8
+        }
+      ]
+    },
+    {
+      "section": "other_children",
+      "page": 4,
+      "isChildren": true,
+      "orig_yStart": 624.4,
+      "new_yStart": 624.4,
+      "orig_yStep": 18.4,
+      "new_yStep": 18.4,
+      "cols": [
+        {
+          "col": "name",
+          "orig_rightEdge": 442,
+          "new_rightEdge": 446.2,
+          "orig_y": 624.4,
+          "new_y": 624.4,
+          "orig_maxWidth": 140,
+          "new_maxWidth": 145.1,
+          "distance": 4.2
+        },
+        {
+          "col": "age",
+          "orig_rightEdge": 293,
+          "new_rightEdge": 297.1,
+          "orig_y": 624.4,
+          "new_y": 624.4,
+          "orig_maxWidth": 80,
+          "new_maxWidth": 81.8,
+          "distance": 4.1
+        },
+        {
+          "col": "amount",
+          "orig_rightEdge": 208,
+          "new_rightEdge": 211.3,
+          "orig_y": 624.4,
+          "new_y": 624.4,
+          "orig_maxWidth": 126,
+          "new_maxWidth": 130.9,
+          "distance": 3.3
+        }
+      ]
+    }
+  ],
+  "suspect": [
+    {
+      "section": "case",
+      "id": "case_court",
+      "label": "בית המשפט (עיר)",
+      "page": 0,
+      "orig": {
+        "rightEdge": 516.9,
+        "y": 756.6,
+        "maxWidth": 105,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 524,
+        "y": 618.7,
+        "x_left": 320.71,
+        "x_right": 523.98,
+        "cell_width": 203.27,
+        "distance": 138.08
+      },
+      "new_maxWidth": 199.3,
+      "action": "suspect"
+    },
+    {
+      "section": "case",
+      "id": "case_number",
+      "label": "מס׳ תיק תמ״ש",
+      "page": 0,
+      "orig": {
+        "rightEdge": 182.1,
+        "y": 756.6,
+        "maxWidth": 110,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 238.6,
+        "y": 618.7,
+        "x_left": 55.65,
+        "x_right": 238.65,
+        "cell_width": 182.99,
+        "distance": 149.03
+      },
+      "new_maxWidth": 178.9,
+      "action": "suspect"
+    },
+    {
+      "section": "parties",
+      "id": "g_birth",
+      "label": "תאריך לידה",
+      "page": 0,
+      "orig": {
+        "rightEdge": 245,
+        "y": 520,
+        "maxWidth": 80,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 161.8,
+        "y": 521.6,
+        "x_left": 69.8,
+        "x_right": 161.77,
+        "cell_width": 91.97,
+        "distance": 83.22
+      },
+      "new_maxWidth": 88,
+      "action": "suspect"
+    },
+    {
+      "section": "history",
+      "id": "prior_case_details",
+      "label": "הליך קודם — פרטים (אם \"כן\")",
+      "page": 0,
+      "orig": {
+        "rightEdge": 433.4,
+        "y": 488.8,
+        "maxWidth": 185,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 426.8,
+        "y": 521.6,
+        "x_left": 343.82,
+        "x_right": 426.83,
+        "cell_width": 83.01,
+        "distance": 33.46
+      },
+      "new_maxWidth": 79,
+      "action": "suspect"
+    },
+    {
+      "section": "history",
+      "id": "prior_case_outcome",
+      "label": "הליך קודם — תוצאה/החלטה",
+      "page": 0,
+      "orig": {
+        "rightEdge": 440,
+        "y": 470.9,
+        "maxWidth": 215,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 426.8,
+        "y": 521.6,
+        "x_left": 343.82,
+        "x_right": 426.83,
+        "cell_width": 83.01,
+        "distance": 52.39
+      },
+      "new_maxWidth": 79,
+      "action": "suspect"
+    },
+    {
+      "section": "history",
+      "id": "last_payment_amount",
+      "label": "סכום אחרון ששולם (₪)",
+      "page": 0,
+      "orig": {
+        "rightEdge": 451.8,
+        "y": 416.7,
+        "maxWidth": 118,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 471,
+        "y": 412.7,
+        "x_left": 69.8,
+        "x_right": 523.98,
+        "cell_width": 454.18,
+        "distance": 19.61
+      },
+      "new_maxWidth": 397.2,
+      "action": "suspect"
+    },
+    {
+      "section": "history",
+      "id": "last_payment_date",
+      "label": "תאריך התשלום האחרון",
+      "page": 0,
+      "orig": {
+        "rightEdge": 240.1,
+        "y": 416.7,
+        "maxWidth": 100,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 290.1,
+        "y": 347.2,
+        "x_left": 190.54,
+        "x_right": 290.05,
+        "cell_width": 99.51,
+        "distance": 85.62
+      },
+      "new_maxWidth": 95.6,
+      "action": "suspect"
+    },
+    {
+      "section": "banks_cars",
+      "id": "cars_details",
+      "label": "מכוניות — פרטים (תיאור כללי)",
+      "page": 2,
+      "orig": {
+        "rightEdge": 244.8,
+        "y": 630.7,
+        "maxWidth": 142,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 135.7
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "banks_cars",
+      "id": "vehicle_type",
+      "label": "סוג רכב (יצרן/דגם)",
+      "page": 2,
+      "orig": {
+        "rightEdge": 140,
+        "y": 632,
+        "maxWidth": 90,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 190.15
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "banks_cars",
+      "id": "monthly_alimony",
+      "label": "סכום מזונות חודשי דרוש (₪)",
+      "page": 2,
+      "orig": {
+        "rightEdge": 271.2,
+        "y": 612.8,
+        "maxWidth": 52,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 114.38
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_1_branch",
+      "label": "בנק 1 — סניף",
+      "page": 2,
+      "orig": {
+        "rightEdge": 300,
+        "y": 699,
+        "maxWidth": 60,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 699.3,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 174.5
+      },
+      "new_maxWidth": 379.9,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_1_account",
+      "label": "בנק 1 — מס׳ חשבון",
+      "page": 2,
+      "orig": {
+        "rightEdge": 200,
+        "y": 699,
+        "maxWidth": 120,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 214.21
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_2_branch",
+      "label": "בנק 2 — סניף",
+      "page": 2,
+      "orig": {
+        "rightEdge": 300,
+        "y": 681,
+        "maxWidth": 60,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 680.9,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 174.5
+      },
+      "new_maxWidth": 379.9,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_2_account",
+      "label": "בנק 2 — מס׳ חשבון",
+      "page": 2,
+      "orig": {
+        "rightEdge": 200,
+        "y": 681,
+        "maxWidth": 120,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 197.46
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_3_branch",
+      "label": "בנק 3 — סניף",
+      "page": 2,
+      "orig": {
+        "rightEdge": 300,
+        "y": 662,
+        "maxWidth": 60,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 165.34
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_3_account",
+      "label": "בנק 3 — מס׳ חשבון",
+      "page": 2,
+      "orig": {
+        "rightEdge": 200,
+        "y": 662,
+        "maxWidth": 120,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 180.05
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_4_name",
+      "label": "בנק 4 — שם הבנק",
+      "page": 2,
+      "orig": {
+        "rightEdge": 474,
+        "y": 644,
+        "maxWidth": 80,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 474.5,
+        "y": 662.5,
+        "x_left": 90.55,
+        "x_right": 474.46,
+        "cell_width": 383.91,
+        "distance": 18.51
+      },
+      "new_maxWidth": 379.9,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_4_branch",
+      "label": "בנק 4 — סניף",
+      "page": 2,
+      "orig": {
+        "rightEdge": 300,
+        "y": 644,
+        "maxWidth": 60,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 147.56
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "bank_accounts_v2",
+      "id": "bank_4_account",
+      "label": "בנק 4 — מס׳ חשבון",
+      "page": 2,
+      "orig": {
+        "rightEdge": 200,
+        "y": 644,
+        "maxWidth": 120,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 275.4,
+        "y": 498.5,
+        "x_left": 91.03,
+        "x_right": 275.43,
+        "cell_width": 184.41,
+        "distance": 163.88
+      },
+      "new_maxWidth": 180.4,
+      "action": "suspect"
+    },
+    {
+      "section": "parents_minor",
+      "id": "parents_status",
+      "label": "מצב משפחתי ההורים (פרודים/גרושים/אינם בני זוג)",
+      "page": 2,
+      "orig": {
+        "rightEdge": 464.1,
+        "y": 314.9,
+        "maxWidth": 58,
+        "size": 9
+      },
+      "nearest": {
+        "rightEdge": 488.9,
+        "y": 282.6,
+        "x_left": 89.14,
+        "x_right": 523.98,
+        "cell_width": 434.85,
+        "distance": 40.72
+      },
+      "new_maxWidth": 395.8,
+      "action": "suspect"
+    },
+    {
+      "section": "parents_minor",
+      "id": "parents_split_dt",
+      "label": "תאריך/פרטי פרידה",
+      "page": 2,
+      "orig": {
+        "rightEdge": 346.2,
+        "y": 278.6,
+        "maxWidth": 100,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 378.1,
+        "y": 274.6,
+        "x_left": 89.14,
+        "x_right": 523.98,
+        "cell_width": 434.85,
+        "distance": 32.15
+      },
+      "new_maxWidth": 285,
+      "action": "suspect"
+    },
+    {
+      "section": "parents_minor",
+      "id": "plaintiff_resid",
+      "label": "מקום מושב התובע",
+      "page": 2,
+      "orig": {
+        "rightEdge": 359.9,
+        "y": 254.1,
+        "maxWidth": 148,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 378.1,
+        "y": 274.6,
+        "x_left": 89.14,
+        "x_right": 523.98,
+        "cell_width": 434.85,
+        "distance": 27.41
+      },
+      "new_maxWidth": 285,
+      "action": "suspect"
+    },
+    {
+      "section": "parents_minor",
+      "id": "custody_with",
+      "label": "בחזקתו של מי נמצא",
+      "page": 2,
+      "orig": {
+        "rightEdge": 374.9,
+        "y": 151.3,
+        "maxWidth": 255,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 334.7,
+        "y": 171.3,
+        "x_left": 89.14,
+        "x_right": 431.54,
+        "cell_width": 342.41,
+        "distance": 44.9
+      },
+      "new_maxWidth": 241.6,
+      "action": "suspect"
+    },
+    {
+      "section": "parents_minor",
+      "id": "independent_explain",
+      "label": "הסבר — מתקיים בלתי-תלוי",
+      "page": 3,
+      "orig": {
+        "rightEdge": 313.6,
+        "y": 622.7,
+        "maxWidth": 137,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 374.5,
+        "y": 650.8,
+        "x_left": 314.58,
+        "x_right": 374.48,
+        "cell_width": 59.9,
+        "distance": 67.07
+      },
+      "new_maxWidth": 55.9,
+      "action": "suspect"
+    },
+    {
+      "section": "rel_3_1",
+      "id": "r31_name",
+      "label": "שם",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 462.6,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 444.3,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 18.3
+      },
+      "new_maxWidth": 295,
+      "action": "suspect"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_age",
+      "label": "גיל",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 279.9,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 261.9,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 18
+      },
+      "new_maxWidth": 295,
+      "action": "suspect"
+    },
+    {
+      "section": "rel_3_2",
+      "id": "r32_rel",
+      "label": "הקרבה",
+      "page": 4,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 225.4,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 243.5,
+        "x_left": 80.18,
+        "x_right": 379.19,
+        "cell_width": 299.01,
+        "distance": 18.1
+      },
+      "new_maxWidth": 295,
+      "action": "suspect"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_name",
+      "label": "שם",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 718.2,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 699.8,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 18.4
+      },
+      "new_maxWidth": 294.6,
+      "action": "suspect"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_rel",
+      "label": "הקרבה",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 644.9,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 663,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 18.1
+      },
+      "new_maxWidth": 294.6,
+      "action": "suspect"
+    },
+    {
+      "section": "rel_4_1",
+      "id": "r41_debts",
+      "label": "חובות",
+      "page": 5,
+      "orig": {
+        "rightEdge": 379.2,
+        "y": 571.5,
+        "maxWidth": 294,
+        "size": 10
+      },
+      "nearest": {
+        "rightEdge": 379.2,
+        "y": 589.9,
+        "x_left": 80.65,
+        "x_right": 379.19,
+        "cell_width": 298.54,
+        "distance": 18.4
+      },
+      "new_maxWidth": 294.6,
+      "action": "suspect"
+    }
+  ],
+  "summary": {
+    "snapped": 0,
+    "already_aligned": 147,
+    "suspect": 30,
+    "total": 177
+  }
+}
