@@ -272,8 +272,8 @@ const FORM_SCHEMA = {
       {id:'parents_split_exists', label:'האם ההורים פרודים או גרושים?', type:'radio', options:[{val:'yes',label:'כן'},{val:'no',label:'לא'}], page:2, coords:{yes:{x:507.34,y:314.26},no:{x:507.34,y:295.51}}},
       {id:'parents_status',   label:'מצב משפחתי ההורים (פרודים/גרושים/אינם בני זוג)', page:2, rightEdge:464.1, y:314.9, maxWidth:58,  size:9},
       {id:'parents_split_dt', label:'תאריך/פרטי פרידה',                                page:2, rightEdge:346.2, y:278.6, maxWidth:100, size:10},
-      {id:'plaintiff_resid',  label:'מקום מושב התובע',                                 page:2, rightEdge:359.9, y:254.1, maxWidth:148, size:10},
-      {id:'custody_with',     label:'בחזקתו של מי נמצא',                                page:2, rightEdge:374.9, y:151.3, maxWidth:255, size:10},
+      {id:'plaintiff_resid',  label:'מקום מושב התובע', default:'ישראל',                page:2, rightEdge:359.9, y:254.1, maxWidth:148, size:10},
+      {id:'custody_with',     label:'בחזקתו של מי נמצא',                                page:2, rightEdge:374.9, y:151.3, maxWidth:255, size:10, type:'select', options:[{val:'האם',label:'האם'},{val:'האב',label:'האב'},{val:'שני ההורים',label:'שני ההורים'},{val:'אחר',label:'אחר'}]},
       {id:'independent_explain', label:'הסבר — מתקיים בלתי-תלוי',                       page:3, rightEdge:313.6, y:622.7, maxWidth:137, size:10},
     ]
   },
@@ -375,30 +375,30 @@ const FORM_SCHEMA = {
     ]
   },
   spouse_table: {
-    label: 'בני זוג (פרטים)',
+    label: 'בני זוג — מקום מושב / אזרחות / דת',
     fields: [
-      {id:'spouse_table_r2c1',label:'בני זוג (פרטים) שורה 2/1',page:2,rightEdge:524.0,y:498.5,maxWidth:95.1,size:9},
-      {id:'spouse_table_r2c2',label:'בני זוג (פרטים) שורה 2/2',page:2,rightEdge:410.1,y:498.5,maxWidth:130.7,size:9},
-      {id:'spouse_table_r2c3',label:'בני זוג (פרטים) שורה 2/3',page:2,rightEdge:275.4,y:498.5,maxWidth:180.4,size:9},
-      {id:'spouse_table_r3c1',label:'בני זוג (פרטים) שורה 3/1',page:2,rightEdge:499.3,y:480.6,maxWidth:70.4,size:9},
-      {id:'spouse_table_r3c2',label:'בני זוג (פרטים) שורה 3/2',page:2,rightEdge:424.9,y:480.6,maxWidth:145.5,size:9},
-      {id:'spouse_table_r3c3',label:'בני זוג (פרטים) שורה 3/3',page:2,rightEdge:275.4,y:480.6,maxWidth:180.4,size:9},
-      {id:'spouse_table_r4c1',label:'בני זוג (פרטים) שורה 4/1',page:2,rightEdge:498.3,y:462.2,maxWidth:69.4,size:9},
-      {id:'spouse_table_r4c2',label:'בני זוג (פרטים) שורה 4/2',page:2,rightEdge:424.9,y:462.2,maxWidth:145.5,size:9},
-      {id:'spouse_table_r4c3',label:'בני זוג (פרטים) שורה 4/3',page:2,rightEdge:275.4,y:462.2,maxWidth:180.4,size:9},
-      {id:'spouse_table_r5c1',label:'בני זוג (פרטים) שורה 5/1',page:2,rightEdge:524.0,y:407.5,maxWidth:429.0,size:9},
+      {id:'spouse_table_r2c1',label:'מקום מושב משותף של בני הזוג', default:'ישראל', page:2,rightEdge:524.0,y:498.5,maxWidth:95.1,size:9},
+      {id:'spouse_table_r2c2',label:'אזרחות (בעל)', default:'תושב ישראל', page:2,rightEdge:410.1,y:498.5,maxWidth:130.7,size:9},
+      {id:'spouse_table_r2c3',label:'אזרחות (אישה)', default:'תושבת ישראל', page:2,rightEdge:275.4,y:498.5,maxWidth:180.4,size:9},
+      {id:'spouse_table_r3c1',label:'הערה נוספת (אופציונלי)', page:2,rightEdge:499.3,y:480.6,maxWidth:70.4,size:9},
+      {id:'spouse_table_r3c2',label:'דת (בעל)', default:'יהודי', page:2,rightEdge:424.9,y:480.6,maxWidth:145.5,size:9},
+      {id:'spouse_table_r3c3',label:'דת (אישה)', default:'יהודייה', page:2,rightEdge:275.4,y:480.6,maxWidth:180.4,size:9},
+      {id:'spouse_table_r4c1',label:'הערה נוספת (אופציונלי)', page:2,rightEdge:498.3,y:462.2,maxWidth:69.4,size:9},
+      {id:'spouse_table_r4c2',label:'הערה נוספת (אופציונלי)', page:2,rightEdge:424.9,y:462.2,maxWidth:145.5,size:9},
+      {id:'spouse_table_r4c3',label:'הערה נוספת (אופציונלי)', page:2,rightEdge:275.4,y:462.2,maxWidth:180.4,size:9},
+      {id:'spouse_table_r5c1',label:'אם בני הזוג לא גרים יחד — מי גר בדירה', page:2,rightEdge:524.0,y:407.5,maxWidth:429.0,size:9},
     ]
   },
   parent_table: {
-    label: 'הורים (פרטים)',
+    label: 'הורים — אזרחות / דת (שם / ערך)',
     fields: [
-      {id:'parent_table_r1c1',label:'הורים (פרטים) שורה 1/1',page:2,rightEdge:488.9,y:282.6,maxWidth:395.8,size:9},
-      {id:'parent_table_r2c1',label:'הורים (פרטים) שורה 2/1',page:2,rightEdge:378.1,y:274.6,maxWidth:285.0,size:9},
-      {id:'parent_table_r3c1',label:'הורים (פרטים) שורה 3/1',page:2,rightEdge:492.2,y:244.4,maxWidth:399.1,size:9},
-      {id:'parent_table_r4c1',label:'הורים (פרטים) שורה 4/1',page:2,rightEdge:524.0,y:192.6,maxWidth:88.5,size:9},
-      {id:'parent_table_r4c2',label:'הורים (פרטים) שורה 4/2',page:2,rightEdge:334.7,y:192.6,maxWidth:241.6,size:9},
-      {id:'parent_table_r5c1',label:'הורים (פרטים) שורה 5/1',page:2,rightEdge:524.0,y:171.3,maxWidth:88.5,size:9},
-      {id:'parent_table_r5c2',label:'הורים (פרטים) שורה 5/2',page:2,rightEdge:334.7,y:171.3,maxWidth:241.6,size:9},
+      {id:'parent_table_r1c1',label:'שורה 1 — הערה',page:2,rightEdge:488.9,y:282.6,maxWidth:395.8,size:9},
+      {id:'parent_table_r2c1',label:'שורה 2 — הערה',page:2,rightEdge:378.1,y:274.6,maxWidth:285.0,size:9},
+      {id:'parent_table_r3c1',label:'שורה 3 — הערה',page:2,rightEdge:492.2,y:244.4,maxWidth:399.1,size:9},
+      {id:'parent_table_r4c1',label:'אזרחות הורה 1 — שם', page:2,rightEdge:524.0,y:192.6,maxWidth:88.5,size:9},
+      {id:'parent_table_r4c2',label:'אזרחות הורה 1', default:'תושב ישראל', page:2,rightEdge:334.7,y:192.6,maxWidth:241.6,size:9},
+      {id:'parent_table_r5c1',label:'אזרחות הורה 2 — שם', page:2,rightEdge:524.0,y:171.3,maxWidth:88.5,size:9},
+      {id:'parent_table_r5c2',label:'אזרחות הורה 2', default:'תושבת ישראל', page:2,rightEdge:334.7,y:171.3,maxWidth:241.6,size:9},
       {id:'parent_table_r6c1',label:'הורים (פרטים) שורה 6/1',page:2,rightEdge:482.3,y:141.2,maxWidth:389.2,size:9},
     ]
   },
@@ -549,13 +549,23 @@ function _buildFormUI(){
         if(f.type==='radio'){
           html+=`<label style="margin-top:10px">${f.label}</label><div class="radio-group">`;
           for(const opt of f.options){
-            html+=`<label class="radio-label"><input type="radio" name="${f.id}" value="${opt.val}" onchange="sync()"> ${opt.label}</label>`;
+            const checked = (f.default && f.default === opt.val) ? ' checked' : '';
+            html+=`<label class="radio-label"><input type="radio" name="${f.id}" value="${opt.val}"${checked} onchange="sync()"> ${opt.label}</label>`;
           }
           html+=`</div>`;
+        } else if(f.type==='select'){
+          html+=`<label>${f.label}</label><select id="${f.id}" onchange="sync()">`;
+          html+=`<option value=""></option>`;
+          for(const opt of (f.options || [])){
+            const sel = (f.default && f.default === opt.val) ? ' selected' : '';
+            html+=`<option value="${opt.val}"${sel}>${opt.label}</option>`;
+          }
+          html+=`</select>`;
         } else {
           const isNumeric = /amount|date|age|deps|num/.test(f.id);
           const inputMode = isNumeric ? ' inputmode="text"' : '';
-          html+=`<label>${f.label}</label><input type="text" id="${f.id}"${inputMode} onchange="sync()">`;
+          const defVal = f.default ? ` value="${f.default}"` : '';
+          html+=`<label>${f.label}</label><input type="text" id="${f.id}"${inputMode}${defVal} onchange="sync()">`;
         }
       }
     }
@@ -643,15 +653,18 @@ ${fields.join(',\n')}
 📊 טבלאות (שים לב למבנה השורות):
 ${tableNotes.join('\n')}
 
-⚠️ כללים נוקשים:
+⚠️ כללים נוקשים (חוסר ציות → תוצאה דחויה):
 1. החזר אובייקט JSON בלבד — ללא הסבר, ללא markdown, ללא code fences
 2. אל תוסיף שדות שאינם ברשימה
-3. דלג על שדות שלא מוזכרים במסמך
-4. מספרים: רק ספרות, ללא פסיקים וללא ₪ (לדוגמה "8500" לא "8,500 ש״ח")
-5. תאריכים: dd/mm/yyyy בדיוק
-6. ת.ז.: בדיוק 9 ספרות (אם פחות — דלג על השדה)
-7. שמות בעברית: כתוב כפי שמופיע במסמך
-8. בטבלאות הכנסות: אם רואה תלוש משכורת לחודש ספציפי — מלא inc_p_X / inc_g_X / inc_n_X של אותה שורה
+3. **דלג על שדות שאין להם ערך מפורש במסמך**. אל תמציא, אל תנחש, אל תכתוב כותרות/תוויות/שמות קבצים כערכים. עדיף JSON ריק {} מאשר ערך שגוי
+4. **התעלם מ-metadata**: שורות כמו "--- FILE BOUNDARY ---", שמות קבצים, תוויות שדה כמו "שם בעל הדין:", "מס׳ זהות:" — אלה לא ערכים, אלה כותרות
+5. **רק נתונים שמתאימים סמנטית לשדה הספציפי**: אם המסמך מזכיר שם אדם — שייך אותו ל-name field המתאים, לא לכל name field
+6. אם רואים תלוש משכורת — חלץ ברוטו/נטו/תקופה לטבלת הכנסות (inc_p_X / inc_g_X / inc_n_X). אחרת אל תיגע בטבלה.
+7. מספרים: רק ספרות, ללא פסיקים וללא ₪
+8. תאריכים: dd/mm/yyyy בדיוק
+9. ת.ז.: בדיוק 9 ספרות (אם פחות — דלג על השדה)
+10. שמות בעברית: כתוב כפי שמופיע במסמך
+11. אם אתה בספק לגבי שדה כלשהו — דלג עליו, אל תמלא
 
 📄 המסמך לחילוץ:
 """
@@ -675,12 +688,38 @@ function _normalizeDate(s){
   return null;
 }
 
+// Strings that should NEVER appear as a field value — metadata, labels, placeholder text
+const _BLACKLIST_VALUES = new Set([
+  'מתוך הקובץ', 'מתוך', 'הקובץ', 'FILE BOUNDARY', 'filename',
+  'לתשומת ליבך', 'לא ידוע', 'לא רלוונטי', 'אין', 'אין מידע',
+  'שם בעל הדין', 'מס׳ זהות', 'מספר זהות', 'מען מגוריו', 'תאריך לידה', 'הקרבה',
+  'התקופה', 'ברוטו', 'נטו', 'שם', 'גיל', 'מען', 'הקרבה', 'התעסקות', 'הכנסה', 'רכוש', 'חובות',
+  'בעל הדין', 'בעל הדין שכנגד', 'בעל', 'הנתבע', 'התובע', 'הנושה', 'הנתבעת',
+  '___', '____', '_____', '________', '________________',
+  'undefined', 'null', 'N/A', 'n/a'
+]);
+function _isBlacklisted(s){
+  if(!s) return true;
+  const trim = s.trim();
+  if(trim.length < 2) return true;
+  if(_BLACKLIST_VALUES.has(trim)) return true;
+  // Reject if it matches any blacklist exactly (case-insensitive)
+  const low = trim.toLowerCase();
+  for(const b of _BLACKLIST_VALUES){
+    if(low === b.toLowerCase()) return true;
+  }
+  // Reject if it's only underscores/dashes/dots
+  if(/^[_\-\.\s]+$/.test(trim)) return true;
+  return false;
+}
+
 function _normalizeExtracted(obj){
   if(!obj || typeof obj !== 'object') return {};
   const out = {};
   for(const [k, raw] of Object.entries(obj)){
     if(raw === null || raw === undefined || raw === '') continue;
     let v = String(raw).trim();
+    if(_isBlacklisted(v)) continue;
     if(/_id$|^g_id$/i.test(k)){
       const digits = v.replace(/\D/g,'');
       if(digits.length === 9) v = digits;
@@ -1056,7 +1095,8 @@ async function extractFromFile(input){
         text = await file.text();
       }
       if(text && text.trim()){
-        chunks.push(`\n\n========== מתוך הקובץ: ${file.name} ==========\n${text.trim()}`);
+        // Use English/punctuation-only delimiter so AI doesn't mistake it for Hebrew content
+        chunks.push(`\n\n--- FILE BOUNDARY (filename: ${file.name}) ---\n${text.trim()}`);
       } else {
         showToast(`⚠ ${file.name}: לא הצלחתי לקרוא טקסט (אולי PDF סרוק)`, 'err');
       }
