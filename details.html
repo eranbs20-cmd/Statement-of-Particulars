@@ -375,30 +375,30 @@ const FORM_SCHEMA = {
     ]
   },
   spouse_table: {
-    label: 'בני זוג — מקום מושב / אזרחות / דת',
+    label: 'בני זוג — מקום מושב / אזרחות / דת (זהירות: ברירות מחדל הוסרו עד לכיול)',
     fields: [
-      {id:'spouse_table_r2c1',label:'מקום מושב משותף של בני הזוג', default:'ישראל', page:2,rightEdge:524.0,y:498.5,maxWidth:95.1,size:9},
-      {id:'spouse_table_r2c2',label:'אזרחות (בעל)', default:'תושב ישראל', page:2,rightEdge:410.1,y:498.5,maxWidth:130.7,size:9},
-      {id:'spouse_table_r2c3',label:'אזרחות (אישה)', default:'תושבת ישראל', page:2,rightEdge:275.4,y:498.5,maxWidth:180.4,size:9},
-      {id:'spouse_table_r3c1',label:'הערה נוספת (אופציונלי)', page:2,rightEdge:499.3,y:480.6,maxWidth:70.4,size:9},
-      {id:'spouse_table_r3c2',label:'דת (בעל)', default:'יהודי', page:2,rightEdge:424.9,y:480.6,maxWidth:145.5,size:9},
-      {id:'spouse_table_r3c3',label:'דת (אישה)', default:'יהודייה', page:2,rightEdge:275.4,y:480.6,maxWidth:180.4,size:9},
-      {id:'spouse_table_r4c1',label:'הערה נוספת (אופציונלי)', page:2,rightEdge:498.3,y:462.2,maxWidth:69.4,size:9},
-      {id:'spouse_table_r4c2',label:'הערה נוספת (אופציונלי)', page:2,rightEdge:424.9,y:462.2,maxWidth:145.5,size:9},
-      {id:'spouse_table_r4c3',label:'הערה נוספת (אופציונלי)', page:2,rightEdge:275.4,y:462.2,maxWidth:180.4,size:9},
+      {id:'spouse_table_r2c1',label:'תא 1 (rightEdge=524, y=498.5)', page:2,rightEdge:524.0,y:498.5,maxWidth:95.1,size:9},
+      {id:'spouse_table_r2c2',label:'תא 2 (rightEdge=410, y=498.5)', page:2,rightEdge:410.1,y:498.5,maxWidth:130.7,size:9},
+      {id:'spouse_table_r2c3',label:'תא 3 (rightEdge=275, y=498.5)', page:2,rightEdge:275.4,y:498.5,maxWidth:180.4,size:9},
+      {id:'spouse_table_r3c1',label:'תא 4 (rightEdge=499, y=480.6)', page:2,rightEdge:499.3,y:480.6,maxWidth:70.4,size:9},
+      {id:'spouse_table_r3c2',label:'תא 5 (rightEdge=425, y=480.6)', page:2,rightEdge:424.9,y:480.6,maxWidth:145.5,size:9},
+      {id:'spouse_table_r3c3',label:'תא 6 (rightEdge=275, y=480.6)', page:2,rightEdge:275.4,y:480.6,maxWidth:180.4,size:9},
+      {id:'spouse_table_r4c1',label:'תא 7 (rightEdge=498, y=462.2)', page:2,rightEdge:498.3,y:462.2,maxWidth:69.4,size:9},
+      {id:'spouse_table_r4c2',label:'תא 8 (rightEdge=425, y=462.2)', page:2,rightEdge:424.9,y:462.2,maxWidth:145.5,size:9},
+      {id:'spouse_table_r4c3',label:'תא 9 (rightEdge=275, y=462.2)', page:2,rightEdge:275.4,y:462.2,maxWidth:180.4,size:9},
       {id:'spouse_table_r5c1',label:'אם בני הזוג לא גרים יחד — מי גר בדירה', page:2,rightEdge:524.0,y:407.5,maxWidth:429.0,size:9},
     ]
   },
   parent_table: {
-    label: 'הורים — אזרחות / דת (שם / ערך)',
+    label: 'הורים — פרטים (זהירות: ברירות מחדל הוסרו עד לכיול)',
     fields: [
-      {id:'parent_table_r1c1',label:'שורה 1 — הערה',page:2,rightEdge:488.9,y:282.6,maxWidth:395.8,size:9},
-      {id:'parent_table_r2c1',label:'שורה 2 — הערה',page:2,rightEdge:378.1,y:274.6,maxWidth:285.0,size:9},
-      {id:'parent_table_r3c1',label:'שורה 3 — הערה',page:2,rightEdge:492.2,y:244.4,maxWidth:399.1,size:9},
-      {id:'parent_table_r4c1',label:'אזרחות הורה 1 — שם', page:2,rightEdge:524.0,y:192.6,maxWidth:88.5,size:9},
-      {id:'parent_table_r4c2',label:'אזרחות הורה 1', default:'תושב ישראל', page:2,rightEdge:334.7,y:192.6,maxWidth:241.6,size:9},
-      {id:'parent_table_r5c1',label:'אזרחות הורה 2 — שם', page:2,rightEdge:524.0,y:171.3,maxWidth:88.5,size:9},
-      {id:'parent_table_r5c2',label:'אזרחות הורה 2', default:'תושבת ישראל', page:2,rightEdge:334.7,y:171.3,maxWidth:241.6,size:9},
+      {id:'parent_table_r1c1',label:'תא 1 (rightEdge=489, y=282.6)',page:2,rightEdge:488.9,y:282.6,maxWidth:395.8,size:9},
+      {id:'parent_table_r2c1',label:'תא 2 (rightEdge=378, y=274.6)',page:2,rightEdge:378.1,y:274.6,maxWidth:285.0,size:9},
+      {id:'parent_table_r3c1',label:'תא 3 (rightEdge=492, y=244.4)',page:2,rightEdge:492.2,y:244.4,maxWidth:399.1,size:9},
+      {id:'parent_table_r4c1',label:'תא 4 (rightEdge=524, y=192.6)', page:2,rightEdge:524.0,y:192.6,maxWidth:88.5,size:9},
+      {id:'parent_table_r4c2',label:'תא 5 (rightEdge=335, y=192.6)', page:2,rightEdge:334.7,y:192.6,maxWidth:241.6,size:9},
+      {id:'parent_table_r5c1',label:'תא 6 (rightEdge=524, y=171.3)', page:2,rightEdge:524.0,y:171.3,maxWidth:88.5,size:9},
+      {id:'parent_table_r5c2',label:'תא 7 (rightEdge=335, y=171.3)', page:2,rightEdge:334.7,y:171.3,maxWidth:241.6,size:9},
       {id:'parent_table_r6c1',label:'הורים (פרטים) שורה 6/1',page:2,rightEdge:482.3,y:141.2,maxWidth:389.2,size:9},
     ]
   },
@@ -653,18 +653,20 @@ ${fields.join(',\n')}
 📊 טבלאות (שים לב למבנה השורות):
 ${tableNotes.join('\n')}
 
-⚠️ כללים נוקשים (חוסר ציות → תוצאה דחויה):
-1. החזר אובייקט JSON בלבד — ללא הסבר, ללא markdown, ללא code fences
-2. אל תוסיף שדות שאינם ברשימה
-3. **דלג על שדות שאין להם ערך מפורש במסמך**. אל תמציא, אל תנחש, אל תכתוב כותרות/תוויות/שמות קבצים כערכים. עדיף JSON ריק {} מאשר ערך שגוי
-4. **התעלם מ-metadata**: שורות כמו "--- FILE BOUNDARY ---", שמות קבצים, תוויות שדה כמו "שם בעל הדין:", "מס׳ זהות:" — אלה לא ערכים, אלה כותרות
-5. **רק נתונים שמתאימים סמנטית לשדה הספציפי**: אם המסמך מזכיר שם אדם — שייך אותו ל-name field המתאים, לא לכל name field
-6. אם רואים תלוש משכורת — חלץ ברוטו/נטו/תקופה לטבלת הכנסות (inc_p_X / inc_g_X / inc_n_X). אחרת אל תיגע בטבלה.
-7. מספרים: רק ספרות, ללא פסיקים וללא ₪
-8. תאריכים: dd/mm/yyyy בדיוק
-9. ת.ז.: בדיוק 9 ספרות (אם פחות — דלג על השדה)
-10. שמות בעברית: כתוב כפי שמופיע במסמך
-11. אם אתה בספק לגבי שדה כלשהו — דלג עליו, אל תמלא
+📌 הנחיות חילוץ:
+1. **המטרה: לחלץ כמה שיותר פרטים אמיתיים מהמסמך** — אל תיהיה שמרני מדי. אם המסמך מזכיר שם, ת.ז., כתובת, סכום, תאריך — חלץ אותם!
+2. **דוגמה**: במסמך "אני הח״מ ליטל עואמי, ת.ז. 039187877 לאחר שהוזהרתי..." — חלץ: plaintiff_name="ליטל עואמי", g_name="ליטל עואמי", g_id="039187877"
+3. **דוגמה**: "סכום מזונות 5,000 ש״ח לחודש" — חלץ monthly_alimony=5000
+4. החזר JSON תקין בלבד, ללא הסבר, ללא markdown, ללא code fences
+5. **אל תכלול שדות שאינם ברשימה למעלה**
+6. **אל תכלול את הטקסט "--- FILE BOUNDARY ---" או שם קובץ כערך**
+7. **אל תכלול תוויות כמו "שם בעל הדין:", "ברוטו", "נטו", "התקופה"** כערכים — אלה רק שמות העמודות
+8. אם רואה תלוש משכורת/אישור הכנסה — חלץ ברוטו/נטו/תקופה לטבלת הכנסות (inc_p_X, inc_g_X, inc_n_X)
+9. מספרים: רק ספרות, ללא פסיקים וללא ₪ (פסיקים יורדו אוטומטית)
+10. תאריכים: dd/mm/yyyy
+11. ת.ז.: בדיוק 9 ספרות
+12. שמות אנשים: כפי שמופיעים בעברית
+13. אם שם מוזכר כ"אני הח״מ X" או "מבקש X" או "תובע X" — שייך אותו ל-plaintiff_name וגם ל-g_name
 
 📄 המסמך לחילוץ:
 """
@@ -695,6 +697,13 @@ const _BLACKLIST_VALUES = new Set([
   'שם בעל הדין', 'מס׳ זהות', 'מספר זהות', 'מען מגוריו', 'תאריך לידה', 'הקרבה',
   'התקופה', 'ברוטו', 'נטו', 'שם', 'גיל', 'מען', 'הקרבה', 'התעסקות', 'הכנסה', 'רכוש', 'חובות',
   'בעל הדין', 'בעל הדין שכנגד', 'בעל', 'הנתבע', 'התובע', 'הנושה', 'הנתבעת',
+  // From תצהיר / affidavit templates
+  'חתימת המבקש', 'חתימת', 'חתימה', 'חתימת עורך דין', 'חתימת עורך הדין', 'חתימת עו"ד',
+  'תצהיר', 'אישור', 'ויתור על חיסיון', 'הצהרה', 'מצהיר', 'מצהירה',
+  'תאריך חתימת המבקש', 'תאריך חתימת עורך הדין המאשר', 'תאריך', 'מס׳ סידורי',
+  'הנני הח"מ', 'אני הח"מ', 'הח"מ',
+  // Form metadata
+  'הרצאת פרטים', 'טופס 4', 'תקנה', 'תקנה 12', 'מהדורה',
   '___', '____', '_____', '________', '________________',
   'undefined', 'null', 'N/A', 'n/a'
 ]);
@@ -1184,16 +1193,27 @@ async function extractFromText(text){
   if(localStorage.getItem('claude_api_key')){
     try {
       showToast('🟠 מחלץ עם Claude AI...', '');
-      const result = _normalizeExtracted(await extractWithClaude(text));
-      if(result && typeof result === 'object'){
+      const rawResult = await extractWithClaude(text);
+      console.log('[AI/Claude] raw response:', rawResult);
+      const result = _normalizeExtracted(rawResult);
+      console.log('[AI/Claude] after normalize:', result);
+      const rawCount = rawResult ? Object.keys(rawResult).length : 0;
+      const normCount = Object.keys(result).length;
+      if(result && typeof result === 'object' && normCount > 0){
         const count = _applyExtractedFields(result);
-        showToast(`✓ Claude חילץ ${count} שדות`, 'ok');
+        showToast(`✓ Claude חילץ ${count} שדות (מ-${rawCount} שהאי״ה החזיר)`, 'ok');
         sync();
         return;
       }
+      // If got 0 → log and fall through to Groq
+      if(rawCount === 0){
+        showToast('Claude לא מצא שדות במסמך — מנסה Groq', '');
+      } else {
+        showToast(`Claude החזיר ${rawCount} שדות אבל ${rawCount-normCount} נדחו (לא תקינים) — מנסה Groq`, '');
+      }
     } catch(e){
       console.error('Claude failed:', e);
-      showToast('Claude נכשל (' + e.message.slice(0,50) + ') — מנסה Groq', 'err');
+      showToast('Claude נכשל (' + e.message.slice(0,80) + ') — מנסה Groq', 'err');
     }
   }
 
@@ -1201,16 +1221,24 @@ async function extractFromText(text){
   if(localStorage.getItem('groq_api_key')){
     try {
       showToast('🟢 מחלץ עם Groq AI...', '');
-      const result = _normalizeExtracted(await extractWithGroq(text));
-      if(result && typeof result === 'object'){
+      const rawResult = await extractWithGroq(text);
+      console.log('[AI/Groq] raw response:', rawResult);
+      const result = _normalizeExtracted(rawResult);
+      console.log('[AI/Groq] after normalize:', result);
+      const rawCount = rawResult ? Object.keys(rawResult).length : 0;
+      const normCount = Object.keys(result).length;
+      if(result && typeof result === 'object' && normCount > 0){
         const count = _applyExtractedFields(result);
-        showToast(`✓ Groq חילץ ${count} שדות`, 'ok');
+        showToast(`✓ Groq חילץ ${count} שדות (מ-${rawCount})`, 'ok');
         sync();
         return;
       }
+      if(rawCount === 0){
+        showToast('Groq לא מצא שדות — חוזר לזיהוי regex', '');
+      }
     } catch(e){
       console.error('Groq failed:', e);
-      showToast('Groq נכשל (' + e.message.slice(0,50) + ') — חוזר לזיהוי רגיל', 'err');
+      showToast('Groq נכשל (' + e.message.slice(0,80) + ') — חוזר לזיהוי רגיל', 'err');
     }
   }
   try {
