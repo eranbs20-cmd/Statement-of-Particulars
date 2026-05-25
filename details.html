@@ -815,6 +815,30 @@ async function extractWithGroq(text){
   return JSON.parse(jsonText);
 }
 
+function _showDebugOverlay(source, raw, normalized, appliedCount){
+  let box = document.getElementById('ai-debug-overlay');
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'ai-debug-overlay';
+    box.style.cssText = 'margin:10px 0;padding:12px;background:#fef3c7;border:2px solid #f59e0b;border-radius:10px;direction:rtl;font-size:11.5px;font-family:monospace;max-height:400px;overflow:auto;text-align:left;line-height:1.5';
+    const extractCard = document.querySelector('.extraction-card');
+    if(extractCard) extractCard.appendChild(box); else document.body.appendChild(box);
+  }
+  const rawStr = JSON.stringify(raw, null, 2);
+  const normStr = JSON.stringify(normalized, null, 2);
+  box.innerHTML = `
+    <div style="direction:rtl;font-family:Arial,sans-serif;font-weight:700;color:#92400e;font-size:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+      <span>🔍 דיבאג חילוץ AI (${source}) — נכתבו ${appliedCount} שדות</span>
+      <button onclick="this.parentElement.parentElement.style.display='none'" style="background:#fff;border:1px solid #f59e0b;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px">סגור ✕</button>
+    </div>
+    <div style="direction:rtl;font-family:Arial,sans-serif;font-size:11px;color:#78350f;margin-bottom:4px">📥 גולמי שה-AI החזיר (${raw ? Object.keys(raw).length : 0} שדות):</div>
+    <pre style="background:#fff;padding:8px;border-radius:6px;margin:4px 0;overflow:auto;direction:ltr;text-align:left">${rawStr.replace(/</g,'&lt;')}</pre>
+    <div style="direction:rtl;font-family:Arial,sans-serif;font-size:11px;color:#78350f;margin-bottom:4px;margin-top:6px">✨ אחרי סינון וניקוי (${normalized ? Object.keys(normalized).length : 0} שדות):</div>
+    <pre style="background:#fff;padding:8px;border-radius:6px;margin:4px 0;overflow:auto;direction:ltr;text-align:left">${normStr.replace(/</g,'&lt;')}</pre>
+  `;
+  box.style.display = 'block';
+}
+
 function _applyExtractedFields(result){
   const overwrite = !!($('overwrite-existing') && $('overwrite-existing').checked);
   let filled = 0, skipped = 0, overwritten = 0;
@@ -1195,6 +1219,7 @@ async function extractFromText(text){
       showToast('🟠 מחלץ עם Claude AI...', '');
       const rawResult = await extractWithClaude(text);
       console.log('[AI/Claude] raw response:', rawResult);
+      window._lastAiResponse = rawResult;
       const result = _normalizeExtracted(rawResult);
       console.log('[AI/Claude] after normalize:', result);
       const rawCount = rawResult ? Object.keys(rawResult).length : 0;
@@ -1202,17 +1227,19 @@ async function extractFromText(text){
       if(result && typeof result === 'object' && normCount > 0){
         const count = _applyExtractedFields(result);
         showToast(`✓ Claude חילץ ${count} שדות (מ-${rawCount} שהאי״ה החזיר)`, 'ok');
+        _showDebugOverlay('Claude', rawResult, result, count);
         sync();
         return;
       }
-      // If got 0 → log and fall through to Groq
+      _showDebugOverlay('Claude', rawResult, result, 0);
       if(rawCount === 0){
-        showToast('Claude לא מצא שדות במסמך — מנסה Groq', '');
+        showToast('Claude לא מצא שדות — מנסה Groq', '');
       } else {
-        showToast(`Claude החזיר ${rawCount} שדות אבל ${rawCount-normCount} נדחו (לא תקינים) — מנסה Groq`, '');
+        showToast(`Claude החזיר ${rawCount} שדות אבל כולם נדחו — מנסה Groq`, '');
       }
     } catch(e){
       console.error('Claude failed:', e);
+      _showDebugOverlay('Claude ERROR', {error: e.message}, {}, 0);
       showToast('Claude נכשל (' + e.message.slice(0,80) + ') — מנסה Groq', 'err');
     }
   }
@@ -1223,22 +1250,32 @@ async function extractFromText(text){
       showToast('🟢 מחלץ עם Groq AI...', '');
       const rawResult = await extractWithGroq(text);
       console.log('[AI/Groq] raw response:', rawResult);
+      window._lastAiResponse = rawResult; // accessible from console as window._lastAiResponse
       const result = _normalizeExtracted(rawResult);
       console.log('[AI/Groq] after normalize:', result);
       const rawCount = rawResult ? Object.keys(rawResult).length : 0;
       const normCount = Object.keys(result).length;
       if(result && typeof result === 'object' && normCount > 0){
         const count = _applyExtractedFields(result);
-        showToast(`✓ Groq חילץ ${count} שדות (מ-${rawCount})`, 'ok');
+        showToast(`✓ Groq חילץ ${count} שדות (מ-${rawCount} שהאי״ה החזיר)`, 'ok');
+        _showDebugOverlay('Groq', rawResult, result, count);
         sync();
         return;
       }
+      // Show debug overlay even on failure
+      _showDebugOverlay('Groq', rawResult, result, 0);
       if(rawCount === 0){
-        showToast('Groq לא מצא שדות — חוזר לזיהוי regex', '');
+        showToast('Groq החזיר JSON ריק — בדוק את הפאנל למטה', 'err');
+        return;
+      } else {
+        showToast(`Groq החזיר ${rawCount} שדות אבל כולם נדחו — בדוק את הפאנל למטה`, 'err');
+        return;
       }
     } catch(e){
       console.error('Groq failed:', e);
-      showToast('Groq נכשל (' + e.message.slice(0,80) + ') — חוזר לזיהוי רגיל', 'err');
+      _showDebugOverlay('Groq ERROR', {error: e.message}, {}, 0);
+      showToast('Groq נכשל: ' + e.message.slice(0,80), 'err');
+      return;
     }
   }
   try {
