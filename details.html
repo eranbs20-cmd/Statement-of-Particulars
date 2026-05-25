@@ -82,8 +82,15 @@ details.sect>summary:hover{background:#ede8f6}
     <div style="font-size:11.5px;color:#475569;margin-bottom:12px">גרור קובץ PDF, JSON או טקסט, או לחץ לבחירה:</div>
     <div id="drop-zone" class="drop-zone" onclick="$('file-upload-input').click()">
       <span style="font-size:26px;display:block;margin-bottom:6px">📥</span>
-      <span style="font-size:12px;color:#2d1b69;font-weight:700">בחר או גרור קובץ לחילוץ</span>
-      <input type="file" id="file-upload-input" accept=".json,.txt,.pdf" style="display:none" onchange="extractFromFile(this)">
+      <span style="font-size:12px;color:#2d1b69;font-weight:700">בחר או גרור קבצים לחילוץ (PDF / טקסט / JSON — אפשר כמה ביחד)</span>
+      <input type="file" id="file-upload-input" accept=".json,.txt,.pdf,image/*" multiple style="display:none" onchange="extractFromFile(this)">
+    </div>
+    <div id="uploaded-files-list" style="margin-top:6px;font-size:11px;color:#475569;text-align:right;display:none"></div>
+    <div style="margin-top:10px;display:flex;align-items:center;gap:8px;justify-content:flex-end">
+      <label style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#475569;cursor:pointer">
+        <input type="checkbox" id="overwrite-existing" style="width:16px;height:16px;cursor:pointer">
+        החלף ערכים קיימים בעת חילוץ חדש
+      </label>
     </div>
     <div style="margin-top:12px;border-top:1px solid #e2e8f0;padding-top:12px">
       <label style="display:block;font-size:11.5px;color:#475569;text-align:right;font-weight:600;margin-bottom:4px">או — הדבק טקסט חופשי לחילוץ:</label>
@@ -544,7 +551,11 @@ function _buildFormUI(){
         }
         html+=`</tbody></table>`;
       } else {
-        html+=`<table class="income-table">
+        html+=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px">
+          <button type="button" class="qbtn" style="background:#0ea5e9;color:#fff;border:none;padding:6px 10px;font-size:11.5px;border-radius:6px;cursor:pointer" onclick="copyIncomeRow1ToAll('${section.prefix}')">⤓ העתק שורה 1 לכל 12 החודשים (הכנסה קבועה)</button>
+          <button type="button" class="qbtn" style="background:#94a3b8;color:#fff;border:none;padding:6px 10px;font-size:11.5px;border-radius:6px;cursor:pointer" onclick="clearIncomeTable('${section.prefix}')">🗑 נקה טבלה</button>
+        </div>
+        <table class="income-table">
           <thead>
             <tr>
               <th style="width:40%">חודש / תקופה</th>
@@ -786,18 +797,36 @@ async function extractWithGroq(text){
 }
 
 function _applyExtractedFields(result){
-  let count = 0;
+  const overwrite = !!($('overwrite-existing') && $('overwrite-existing').checked);
+  let filled = 0, skipped = 0, overwritten = 0;
   for(const [k,val] of Object.entries(result)){
     if(val === '' || val === null || val === undefined) continue;
     const el = $(k);
-    if(el && !el.value){
-      el.value = String(val);
-      el.dispatchEvent(new Event('input',{bubbles:true}));
-      el.dispatchEvent(new Event('change',{bubbles:true}));
-      count++;
+    if(!el){
+      // Try radio
+      const radios = document.getElementsByName(k);
+      if(radios && radios.length){
+        for(const r of radios){
+          if(r.value === String(val)){
+            if(!r.checked || overwrite){ r.checked = true; filled++; }
+            break;
+          }
+        }
+      }
+      continue;
     }
+    const had = !!el.value;
+    if(had && !overwrite){ skipped++; continue; }
+    if(had) overwritten++;
+    el.value = String(val);
+    el.dispatchEvent(new Event('input',{bubbles:true}));
+    el.dispatchEvent(new Event('change',{bubbles:true}));
+    filled++;
   }
-  return count;
+  if(skipped > 0){
+    showToast(`✓ נכתבו ${filled} שדות${overwritten?` (מהם ${overwritten} שדרסו ערך קיים)`:''} · דולגו ${skipped} שכבר היו מלאים (סמן "החלף ערכים" אם רוצה לדרוס)`, 'ok');
+  }
+  return filled;
 }
 
 // Mark all fields in a section as "לא ידוע"
@@ -822,6 +851,55 @@ function markUnknown(sectionKey, isChecked){
     }
   }
   showToast(isChecked ? '✓ הסקציה סומנה כ"לא ידוע"' : 'הסימון בוטל', 'ok');
+}
+
+// Copy row 1 of an income table (inc/opp) to all 12 rows — auto-increment the period (mm/yy)
+function copyIncomeRow1ToAll(prefix){
+  const p1 = $(prefix+'_p_1');
+  const g1 = $(prefix+'_g_1');
+  const n1 = $(prefix+'_n_1');
+  if(!p1 || !g1 || !n1) return;
+  const gross = g1.value || '';
+  const net = n1.value || '';
+  if(!gross && !net){
+    showToast('מלא קודם את שורה 1 (ברוטו/נטו) ואז לחץ שוב', 'err');
+    return;
+  }
+  // Parse period mm/yy and auto-advance (12 months back-counting from the entered month going forward)
+  let mm = 0, yy = 0;
+  const periodMatch = (p1.value||'').match(/(\d{1,2})[\/\-\.](\d{2,4})/);
+  if(periodMatch){
+    mm = parseInt(periodMatch[1], 10);
+    yy = parseInt(periodMatch[2], 10);
+    if(periodMatch[2].length === 4) yy = yy % 100;
+  }
+  let updated = 0;
+  for(let i=2; i<=12; i++){
+    const eg = $(prefix+'_g_'+i), en = $(prefix+'_n_'+i), ep = $(prefix+'_p_'+i);
+    if(eg && !eg.value && gross){ eg.value = gross; updated++; }
+    if(en && !en.value && net){ en.value = net; updated++; }
+    if(ep && !ep.value && mm){
+      let nm = mm + (i-1);
+      let ny = yy;
+      while(nm > 12){ nm -= 12; ny = (ny+1) % 100; }
+      ep.value = String(nm).padStart(2,'0') + '/' + String(ny).padStart(2,'0');
+      updated++;
+    }
+  }
+  showToast(`✓ הועתק לכל 12 החודשים (${updated} שדות עודכנו)`, 'ok');
+  sync();
+}
+
+// Clear all rows of an income table
+function clearIncomeTable(prefix){
+  for(let i=1; i<=12; i++){
+    for(const c of ['_p_','_g_','_n_']){
+      const el = $(prefix + c + i);
+      if(el) el.value = '';
+    }
+  }
+  showToast('הטבלה נוקתה', 'ok');
+  sync();
 }
 
 // AI prompt template — copies a structured JSON template to clipboard for use in ChatGPT/Claude
@@ -991,40 +1069,67 @@ function initDragAndDrop(){
   }, false);
 }
 
-// Extraction logic
+// Extraction logic — supports multiple files; concatenates their content before extraction
 async function extractFromFile(input){
-  const file=input.files[0];if(!file)return;
-  showToast('קורא קובץ...');
-  if(file.name.endsWith('.pdf')){
-    await extractFromPDF(file);
-  } else {
-    const reader=new FileReader();
-    reader.onload=function(e){
-      extractFromText(e.target.result);
-    };
-    reader.readAsText(file,'UTF-8');
+  const files = Array.from(input.files || []);
+  if(!files.length) return;
+  _showUploadedFiles(files);
+  showToast(`קורא ${files.length} קובץ${files.length>1?'ים':''}...`);
+  const chunks = [];
+  for(const file of files){
+    try {
+      let text = '';
+      if(file.name.toLowerCase().endsWith('.pdf')){
+        text = await _readPdfText(file);
+      } else {
+        text = await file.text();
+      }
+      if(text && text.trim()){
+        chunks.push(`\n\n========== מתוך הקובץ: ${file.name} ==========\n${text.trim()}`);
+      } else {
+        showToast(`⚠ ${file.name}: לא הצלחתי לקרוא טקסט (אולי PDF סרוק)`, 'err');
+      }
+    } catch(e){
+      console.error('File read failed:', file.name, e);
+      showToast(`שגיאה בקריאת ${file.name}: ${e.message.slice(0,60)}`, 'err');
+    }
   }
-  input.value='';
+  if(!chunks.length){
+    showToast('לא חולץ טקסט מאף קובץ — נסה לבדוק שהקבצים תקינים', 'err');
+    input.value = '';
+    return;
+  }
+  const combined = chunks.join('\n');
+  // Try pay-slip extraction first (only if there's exactly one file and it looks like a pay-slip)
+  if(files.length === 1 && _tryExtractPaySlip(combined)){
+    input.value = '';
+    return;
+  }
+  await extractFromText(combined);
+  input.value = '';
 }
 
-async function extractFromPDF(file){
-  try {
-    const arrayBuffer = await file.arrayBuffer();
-    const pdfDoc = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
-    let fullText = '';
-    for(let i=1; i<=pdfDoc.numPages; i++){
-      const page = await pdfDoc.getPage(i);
-      const textContent = await page.getTextContent();
-      const pageText = textContent.items.map(item => item.str).join(' ');
-      fullText += pageText + '\n';
-    }
-    // Try pay-slip extraction first; falls back to generic extractFromText
-    if(_tryExtractPaySlip(fullText)) return;
-    extractFromText(fullText);
-  } catch(e) {
-    console.error('PDF extraction failed:', e);
-    showToast('שגיאה בקריאת PDF: ' + e.message, 'err');
+async function _readPdfText(file){
+  const arrayBuffer = await file.arrayBuffer();
+  const pdfDoc = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+  let fullText = '';
+  for(let i=1; i<=pdfDoc.numPages; i++){
+    const page = await pdfDoc.getPage(i);
+    const textContent = await page.getTextContent();
+    const pageText = textContent.items.map(item => item.str).join(' ');
+    fullText += pageText + '\n';
   }
+  return fullText;
+}
+
+function _showUploadedFiles(files){
+  const box = $('uploaded-files-list');
+  if(!box) return;
+  box.style.display = 'block';
+  box.innerHTML = '<b>קבצים שהועלו:</b> ' + files.map(f => {
+    const kb = Math.round(f.size/1024);
+    return `<span style="display:inline-block;background:#eef2ff;color:#2d1b69;padding:2px 8px;border-radius:10px;margin:2px 3px;font-size:10.5px">📄 ${f.name} (${kb}KB)</span>`;
+  }).join('');
 }
 
 // Pay-slip (תלוש משכורת) extraction
