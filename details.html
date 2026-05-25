@@ -760,6 +760,56 @@ function _normalizeExtracted(obj){
   return out;
 }
 
+// Compact extraction prompt — for Groq (smaller context window, 32K tokens).
+// Uses CSV-style field listing and trims document text to fit.
+function _buildExtractionPromptCompact(text){
+  // Compact field list: one line per field with id|label
+  const fieldLines = [];
+  for(const section of Object.values(FORM_SCHEMA)){
+    if(section.isTable){
+      const rows = section.isChildren ? 5 : 12;
+      const cols = section.isChildren ? ['name','age','amount'] : ['p','g','n'];
+      // Only include first 3 rows of tables in compact mode (saves ~70%)
+      for(let i=1; i<=Math.min(rows, 3); i++){
+        for(const c of cols){
+          fieldLines.push(`${section.prefix}_${c}_${i}|${c==='p'?'תקופה':c==='g'?'ברוטו':c==='n'?'נטו':c}`);
+        }
+      }
+    } else if(section.fields){
+      for(const f of section.fields){
+        if(f.type === 'radio') continue;
+        fieldLines.push(`${f.id}|${f.label.slice(0, 40)}`);
+      }
+    }
+  }
+  // Truncate document text to 18KB to fit context (Hebrew chars are 2-3 bytes each)
+  const MAX_DOC_CHARS = 18000;
+  const docText = text.length > MAX_DOC_CHARS
+    ? text.slice(0, MAX_DOC_CHARS) + '\n[הטקסט נחתך — היו עוד ' + (text.length - MAX_DOC_CHARS) + ' תווים]'
+    : text;
+
+  return `אתה עוזר משפטי המחלץ פרטים לטופס "הרצאת פרטים" (טופס 4) של בית משפט לענייני משפחה בישראל.
+
+📋 חלץ ערכים מהמסמך שלהלן ל-JSON. רשימת השדות המותרים (id|תיאור):
+${fieldLines.join('\n')}
+
+📌 כללים:
+1. החזר JSON תקין בלבד (ללא הסבר, ללא markdown)
+2. דלג על שדות שלא מוזכרים במסמך — אל תמציא
+3. אל תוסיף שדות שאינם ברשימה
+4. מספרים — רק ספרות (ללא פסיק, ללא ₪)
+5. תאריכים — dd/mm/yyyy
+6. ת.ז. — 9 ספרות בדיוק
+7. אל תכלול ערכים כמו "לתשומת ליבך", "חתימת המבקש", "FILE BOUNDARY" — אלה לא ערכים אמיתיים
+
+📄 המסמך:
+"""
+${docText}
+"""
+
+JSON:`;
+}
+
 async function extractWithClaude(text){
   const key = localStorage.getItem('claude_api_key');
   if(!key) return null;
@@ -795,7 +845,8 @@ async function extractWithClaude(text){
 async function extractWithGroq(text){
   const key = localStorage.getItem('groq_api_key');
   if(!key) return null;
-  const prompt = _buildExtractionPrompt(text);
+  const prompt = _buildExtractionPromptCompact(text);
+  console.log('[Groq] prompt size:', prompt.length, 'chars');
   const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
@@ -803,16 +854,73 @@ async function extractWithGroq(text){
       model: 'llama-3.3-70b-versatile',
       messages: [{ role: 'user', content: prompt }],
       response_format: { type: 'json_object' },
-      temperature: 0.1
+      temperature: 0.1,
+      max_tokens: 2048
     })
   });
   if(!r.ok){
     const errTxt = await r.text();
+    // If 413: try with even smaller prompt — keep only first 30 fields + 6KB text
+    if(r.status === 413){
+      console.warn('[Groq] 413 → retry with minimal prompt');
+      return await _extractWithGroqMinimal(text, key);
+    }
     throw new Error('Groq API ' + r.status + ': ' + errTxt.slice(0,200));
   }
   const data = await r.json();
   const jsonText = data.choices[0].message.content;
   return JSON.parse(jsonText);
+}
+
+// Minimal fallback when even the compact prompt is too large for Groq.
+// Sends only top-priority fields (personal details + first 3 income rows).
+async function _extractWithGroqMinimal(text, key){
+  const TOP_FIELDS = [
+    'case_court|בית המשפט (עיר)',
+    'case_number|מספר תיק',
+    'plaintiff_name|שם התובע',
+    'defendant_name|שם הנתבע',
+    'g_name|שם בעל הדין',
+    'g_id|מספר זהות (9 ספרות)',
+    'g_address|מען מגוריו',
+    'g_birth|תאריך לידה',
+    'g_relation|הקרבה',
+    'last_payment_amount|סכום אחרון ששולם',
+    'last_payment_date|תאריך תשלום אחרון',
+    'inc_p_1|תקופה שורה 1', 'inc_g_1|ברוטו שורה 1', 'inc_n_1|נטו שורה 1',
+    'inc_p_2|תקופה שורה 2', 'inc_g_2|ברוטו שורה 2', 'inc_n_2|נטו שורה 2',
+    'monthly_alimony|סכום מזונות חודשי',
+    'marriage_date|תאריך נישואין',
+    'plaintiff_resid|מקום מושב התובע',
+  ];
+  const shortText = text.slice(0, 6000);
+  const prompt = `חלץ פרטים מהמסמך הבא ל-JSON. שדות מותרים בלבד:
+${TOP_FIELDS.join('\n')}
+
+כללים: JSON תקין, דלג על שדות לא מוזכרים, ת.ז. 9 ספרות, תאריכים dd/mm/yyyy, מספרים רק ספרות.
+
+מסמך:
+"""${shortText}"""
+
+JSON:`;
+  console.log('[Groq minimal] prompt size:', prompt.length);
+  const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [{ role: 'user', content: prompt }],
+      response_format: { type: 'json_object' },
+      temperature: 0.1,
+      max_tokens: 1024
+    })
+  });
+  if(!r.ok){
+    const errTxt = await r.text();
+    throw new Error('Groq API ' + r.status + ' (minimal): ' + errTxt.slice(0,200));
+  }
+  const data = await r.json();
+  return JSON.parse(data.choices[0].message.content);
 }
 
 function _showDebugOverlay(source, raw, normalized, appliedCount){
