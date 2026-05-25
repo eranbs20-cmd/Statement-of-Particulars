@@ -760,10 +760,21 @@ function _normalizeExtracted(obj){
   return out;
 }
 
+// Fetch with timeout — Safari iOS doesn't always raise clear timeout errors
+async function _fetchWithTimeout(url, opts, timeoutMs){
+  const ctrl = new AbortController();
+  const tid = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...opts, signal: ctrl.signal });
+  } finally {
+    clearTimeout(tid);
+  }
+}
+
 // Compact extraction prompt — for Groq (smaller context window, 32K tokens).
-// Uses CSV-style field listing and trims document text to fit.
+// Target size: ~4KB total (vs ~6KB in v22).
 function _buildExtractionPromptCompact(text){
-  // Compact field list: one line per field with id|label
+  // Compact field list: one short line per field
   const fieldLines = [];
   for(const section of Object.values(FORM_SCHEMA)){
     if(section.isTable){
@@ -772,42 +783,30 @@ function _buildExtractionPromptCompact(text){
       // Only include first 3 rows of tables in compact mode (saves ~70%)
       for(let i=1; i<=Math.min(rows, 3); i++){
         for(const c of cols){
-          fieldLines.push(`${section.prefix}_${c}_${i}|${c==='p'?'תקופה':c==='g'?'ברוטו':c==='n'?'נטו':c}`);
+          fieldLines.push(`${section.prefix}_${c}_${i}`);
         }
       }
     } else if(section.fields){
       for(const f of section.fields){
         if(f.type === 'radio') continue;
-        fieldLines.push(`${f.id}|${f.label.slice(0, 40)}`);
+        // Just id, no label — saves ~30% of size
+        fieldLines.push(f.id);
       }
     }
   }
-  // Truncate document text to 18KB to fit context (Hebrew chars are 2-3 bytes each)
-  const MAX_DOC_CHARS = 18000;
+  // Truncate document text to 12KB (was 18KB in v22)
+  const MAX_DOC_CHARS = 12000;
   const docText = text.length > MAX_DOC_CHARS
-    ? text.slice(0, MAX_DOC_CHARS) + '\n[הטקסט נחתך — היו עוד ' + (text.length - MAX_DOC_CHARS) + ' תווים]'
+    ? text.slice(0, MAX_DOC_CHARS) + '...[נחתך]'
     : text;
 
-  return `אתה עוזר משפטי המחלץ פרטים לטופס "הרצאת פרטים" (טופס 4) של בית משפט לענייני משפחה בישראל.
+  return `חלץ נתונים למילוי טופס "הרצאת פרטים" (טופס 4) מהמסמך למטה.
+שדות מותרים: ${fieldLines.join(',')}
 
-📋 חלץ ערכים מהמסמך שלהלן ל-JSON. רשימת השדות המותרים (id|תיאור):
-${fieldLines.join('\n')}
+החזר JSON תקין בלבד. דלג על שדות שלא במסמך. ת.ז. = 9 ספרות. מספרים = ספרות בלבד. תאריכים = dd/mm/yyyy. אל תכלול תוויות כמו "לתשומת ליבך"/"חתימה"/"ברוטו" כערכים.
 
-📌 כללים:
-1. החזר JSON תקין בלבד (ללא הסבר, ללא markdown)
-2. דלג על שדות שלא מוזכרים במסמך — אל תמציא
-3. אל תוסיף שדות שאינם ברשימה
-4. מספרים — רק ספרות (ללא פסיק, ללא ₪)
-5. תאריכים — dd/mm/yyyy
-6. ת.ז. — 9 ספרות בדיוק
-7. אל תכלול ערכים כמו "לתשומת ליבך", "חתימת המבקש", "FILE BOUNDARY" — אלה לא ערכים אמיתיים
-
-📄 המסמך:
-"""
-${docText}
-"""
-
-JSON:`;
+מסמך:
+${docText}`;
 }
 
 async function extractWithClaude(text){
@@ -847,29 +846,48 @@ async function extractWithGroq(text){
   if(!key) return null;
   const prompt = _buildExtractionPromptCompact(text);
   console.log('[Groq] prompt size:', prompt.length, 'chars');
-  const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'llama-3.3-70b-versatile',
-      messages: [{ role: 'user', content: prompt }],
-      response_format: { type: 'json_object' },
-      temperature: 0.1,
-      max_tokens: 2048
-    })
-  });
-  if(!r.ok){
-    const errTxt = await r.text();
-    // If 413: try with even smaller prompt — keep only first 30 fields + 6KB text
-    if(r.status === 413){
-      console.warn('[Groq] 413 → retry with minimal prompt');
-      return await _extractWithGroqMinimal(text, key);
+  try {
+    const r = await _fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [{ role: 'user', content: prompt }],
+        response_format: { type: 'json_object' },
+        temperature: 0.1,
+        max_tokens: 2048
+      })
+    }, 15000); // 15s timeout
+    if(!r.ok){
+      const errTxt = await r.text();
+      // If 413: try minimal
+      if(r.status === 413){
+        console.warn('[Groq] 413 → retry with minimal prompt');
+        return await _extractWithGroqMinimal(text, key);
+      }
+      throw new Error('Groq API ' + r.status + ': ' + errTxt.slice(0,200));
     }
-    throw new Error('Groq API ' + r.status + ': ' + errTxt.slice(0,200));
+    const data = await r.json();
+    const jsonText = data.choices[0].message.content;
+    return JSON.parse(jsonText);
+  } catch(e){
+    // Network-level failures (TypeError: Load failed, AbortError, etc.)
+    // Fall back to minimal prompt — smaller body, more likely to succeed
+    if(e.name === 'AbortError' || /load failed|network|fetch/i.test(e.message || '')){
+      console.warn('[Groq] network error → retry with minimal prompt:', e.message);
+      try {
+        return await _extractWithGroqMinimal(text, key);
+      } catch(e2){
+        // Build descriptive error for user
+        let userMsg;
+        if(e.name === 'AbortError') userMsg = 'Timeout (Groq לא הגיב תוך 15 שניות)';
+        else if(/load failed|network/i.test(e.message||'')) userMsg = 'שגיאת רשת — בדוק WiFi או נסה שוב';
+        else userMsg = e.message;
+        throw new Error(userMsg + ' (גם fallback מצומצם נכשל: ' + (e2.message||'').slice(0,60) + ')');
+      }
+    }
+    throw e;
   }
-  const data = await r.json();
-  const jsonText = data.choices[0].message.content;
-  return JSON.parse(jsonText);
 }
 
 // Minimal fallback when even the compact prompt is too large for Groq.
@@ -904,7 +922,7 @@ ${TOP_FIELDS.join('\n')}
 
 JSON:`;
   console.log('[Groq minimal] prompt size:', prompt.length);
-  const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+  const r = await _fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -914,7 +932,7 @@ JSON:`;
       temperature: 0.1,
       max_tokens: 1024
     })
-  });
+  }, 12000);
   if(!r.ok){
     const errTxt = await r.text();
     throw new Error('Groq API ' + r.status + ' (minimal): ' + errTxt.slice(0,200));
