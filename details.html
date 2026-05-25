@@ -342,6 +342,12 @@ const FORM_SCHEMA = {
       {id:'r42_debts',   label:'חובות',       page:5, rightEdge:379.2, y:389.6, maxWidth:294, size:10},
     ]
   },
+  reason_no_alimony_section: {
+    label: 'סעיף ד.5 — הסיבה לאי קבלת מזונות מקרובים ⚠ קואורדינטות אומדן',
+    fields: [
+      {id:'reason_no_alimony', label:'ד.5) הסיבה שהתובע אינו יכול לקבל מזונות מקרובים', page:5, rightEdge:524.0, y:330.0, maxWidth:454.0, size:10},
+    ]
+  },
   prior_case_extra: {
     label: 'הליכים קודמים (פרטים נוספים)',
     fields: [
@@ -349,140 +355,172 @@ const FORM_SCHEMA = {
     ]
   },
   property_p1: {
-    label: 'רכוש',
+    label: 'סעיף 10 — רכוש בעלי הדין',
     fields: [
-      {id:'property_p1_r1c1',label:'רכוש שורה 1/1',page:1,rightEdge:297.0,y:364.1,maxWidth:223.2,size:9},
-      {id:'property_p1_r2c1',label:'רכוש שורה 2/1',page:1,rightEdge:524.0,y:333.0,maxWidth:147.4,size:9},
-      {id:'property_p1_r2c2',label:'רכוש שורה 2/2',page:1,rightEdge:372.6,y:333.0,maxWidth:147.4,size:9},
-      {id:'property_p1_r2c3',label:'רכוש שורה 2/3',page:1,rightEdge:221.2,y:333.0,maxWidth:147.4,size:9},
-      {id:'property_p1_r3c1',label:'רכוש שורה 3/1',page:1,rightEdge:311.6,y:320.8,maxWidth:237.8,size:9},
-      {id:'property_p1_r4c1',label:'רכוש שורה 4/1',page:1,rightEdge:524.0,y:290.1,maxWidth:147.4,size:9},
-      {id:'property_p1_r4c2',label:'רכוש שורה 4/2',page:1,rightEdge:372.6,y:290.1,maxWidth:147.4,size:9},
-      {id:'property_p1_r4c3',label:'רכוש שורה 4/3',page:1,rightEdge:221.2,y:290.1,maxWidth:147.4,size:9},
+      {id:'property_p1_r1c1',label:'10) כותרת/הערה',page:1,rightEdge:297.0,y:364.1,maxWidth:223.2,size:9},
+      {id:'property_p1_r2c1',label:'10) רכוש בעל הדין — תיאור 1',page:1,rightEdge:524.0,y:333.0,maxWidth:147.4,size:9},
+      {id:'property_p1_r2c2',label:'10) רכוש בעל הדין — תיאור 2',page:1,rightEdge:372.6,y:333.0,maxWidth:147.4,size:9},
+      {id:'property_p1_r2c3',label:'10) רכוש בעל הדין שכנגד — תיאור',page:1,rightEdge:221.2,y:333.0,maxWidth:147.4,size:9},
+      {id:'property_p1_r3c1',label:'10) הערה נוספת',page:1,rightEdge:311.6,y:320.8,maxWidth:237.8,size:9},
+      {id:'property_p1_r4c1',label:'10) רכוש בעל הדין — שורה נוספת',page:1,rightEdge:524.0,y:290.1,maxWidth:147.4,size:9},
+      {id:'property_p1_r4c2',label:'10) רכוש שכנגד — שורה נוספת',page:1,rightEdge:372.6,y:290.1,maxWidth:147.4,size:9},
+      {id:'property_p1_r4c3',label:'10) הערה',page:1,rightEdge:221.2,y:290.1,maxWidth:147.4,size:9},
+    ]
+  },
+  residence_p1: {
+    label: 'סעיף 12 — דירת המגורים של בעלי הדין ⚠ כל הקואורדינטות אומדן',
+    fields: [
+      // בעל הדין: כתובת / מספר חדרים / מספר נפשות (estimated y ~ 115)
+      {id:'residence_self_addr',  label:'12) בעל הדין — כתובת ⚠ אומדן',         page:1, rightEdge:451.2, y:115.0, maxWidth:200, size:9},
+      {id:'residence_self_rooms', label:'12) בעל הדין — מס׳ חדרים ⚠ אומדן',     page:1, rightEdge:297.4, y:115.0, maxWidth:60, size:9},
+      {id:'residence_self_people',label:'12) בעל הדין — מס׳ נפשות ⚠ אומדן',     page:1, rightEdge:163.5, y:115.0, maxWidth:60, size:9},
+      // בעל הדין שכנגד (estimated y ~ 78)
+      {id:'residence_other_addr',  label:'12) בעל הדין שכנגד — כתובת ⚠ אומדן',  page:1, rightEdge:451.2, y:78.0,  maxWidth:200, size:9},
+      {id:'residence_other_rooms', label:'12) בעל הדין שכנגד — מס׳ חדרים ⚠ אומדן',page:1, rightEdge:297.4, y:78.0,  maxWidth:60, size:9},
+      {id:'residence_other_people',label:'12) בעל הדין שכנגד — מס׳ נפשות ⚠ אומדן',page:1, rightEdge:163.5, y:78.0,  maxWidth:60, size:9},
     ]
   },
   debts_p1: {
-    label: 'חובות',
+    label: 'סעיף 11 — חובות בעלי הדין (נושה / תשלומים / סה״כ)',
     fields: [
-      {id:'debts_p1_r1c1',label:'חובות שורה 1/1',page:1,rightEdge:297.0,y:230.3,maxWidth:223.2,size:9},
-      {id:'debts_p1_r2c1',label:'חובות שורה 2/1',page:1,rightEdge:524.0,y:199.2,maxWidth:147.4,size:9},
-      {id:'debts_p1_r2c2',label:'חובות שורה 2/2',page:1,rightEdge:372.6,y:199.2,maxWidth:147.4,size:9},
-      {id:'debts_p1_r2c3',label:'חובות שורה 2/3',page:1,rightEdge:221.2,y:199.2,maxWidth:147.4,size:9},
-      {id:'debts_p1_r3c1',label:'חובות שורה 3/1',page:1,rightEdge:311.6,y:186.9,maxWidth:237.8,size:9},
-      {id:'debts_p1_r4c1',label:'חובות שורה 4/1',page:1,rightEdge:451.2,y:156.3,maxWidth:74.6,size:9},
-      {id:'debts_p1_r4c2',label:'חובות שורה 4/2',page:1,rightEdge:297.4,y:156.3,maxWidth:72.2,size:9},
-      {id:'debts_p1_r4c3',label:'חובות שורה 4/3',page:1,rightEdge:163.5,y:156.3,maxWidth:89.7,size:9},
+      {id:'debts_p1_r1c1',label:'11) כותרת/הערה',page:1,rightEdge:297.0,y:230.3,maxWidth:223.2,size:9},
+      {id:'debts_p1_r2c1',label:'11) חובות בעל הדין — הנושה',page:1,rightEdge:524.0,y:199.2,maxWidth:147.4,size:9},
+      {id:'debts_p1_r2c2',label:'11) חובות בעל הדין — תשלומים תקופתיים',page:1,rightEdge:372.6,y:199.2,maxWidth:147.4,size:9},
+      {id:'debts_p1_r2c3',label:'11) חובות בעל הדין — סה״כ',page:1,rightEdge:221.2,y:199.2,maxWidth:147.4,size:9},
+      {id:'debts_p1_r3c1',label:'11) הערה נוספת',page:1,rightEdge:311.6,y:186.9,maxWidth:237.8,size:9},
+      {id:'debts_p1_r4c1',label:'11) חובות שכנגד — הנושה',page:1,rightEdge:451.2,y:156.3,maxWidth:74.6,size:9},
+      {id:'debts_p1_r4c2',label:'11) חובות שכנגד — תשלומים',page:1,rightEdge:297.4,y:156.3,maxWidth:72.2,size:9},
+      {id:'debts_p1_r4c3',label:'11) חובות שכנגד — סה״כ',page:1,rightEdge:163.5,y:156.3,maxWidth:89.7,size:9},
     ]
   },
   spouse_table: {
-    label: 'בני זוג — מקום מושב / אזרחות / דת (זהירות: ברירות מחדל הוסרו עד לכיול)',
+    label: 'בני זוג — מקום מושב / אזרחות / דת (סעיף ב.2/3/4)',
     fields: [
-      {id:'spouse_table_r2c1',label:'תא 1 (rightEdge=524, y=498.5)', page:2,rightEdge:524.0,y:498.5,maxWidth:95.1,size:9},
-      {id:'spouse_table_r2c2',label:'תא 2 (rightEdge=410, y=498.5)', page:2,rightEdge:410.1,y:498.5,maxWidth:130.7,size:9},
-      {id:'spouse_table_r2c3',label:'תא 3 (rightEdge=275, y=498.5)', page:2,rightEdge:275.4,y:498.5,maxWidth:180.4,size:9},
-      {id:'spouse_table_r3c1',label:'תא 4 (rightEdge=499, y=480.6)', page:2,rightEdge:499.3,y:480.6,maxWidth:70.4,size:9},
-      {id:'spouse_table_r3c2',label:'תא 5 (rightEdge=425, y=480.6)', page:2,rightEdge:424.9,y:480.6,maxWidth:145.5,size:9},
-      {id:'spouse_table_r3c3',label:'תא 6 (rightEdge=275, y=480.6)', page:2,rightEdge:275.4,y:480.6,maxWidth:180.4,size:9},
-      {id:'spouse_table_r4c1',label:'תא 7 (rightEdge=498, y=462.2)', page:2,rightEdge:498.3,y:462.2,maxWidth:69.4,size:9},
-      {id:'spouse_table_r4c2',label:'תא 8 (rightEdge=425, y=462.2)', page:2,rightEdge:424.9,y:462.2,maxWidth:145.5,size:9},
-      {id:'spouse_table_r4c3',label:'תא 9 (rightEdge=275, y=462.2)', page:2,rightEdge:275.4,y:462.2,maxWidth:180.4,size:9},
-      {id:'spouse_table_r5c1',label:'אם בני הזוג לא גרים יחד — מי גר בדירה', page:2,rightEdge:524.0,y:407.5,maxWidth:429.0,size:9},
+      // Row 2 = data row for ב.2/3/4 — 3 columns (residence, citizenship, religion)
+      {id:'spouse_table_r2c1',label:'מקום מושב משותף (ב.2) ⚠ אומדן', default:'ישראל', page:2,rightEdge:524.0,y:498.5,maxWidth:95.1,size:9},
+      {id:'spouse_table_r2c2',label:'אזרחות בני הזוג (ב.3) ⚠ אומדן', default:'תושבי ישראל', page:2,rightEdge:410.1,y:498.5,maxWidth:130.7,size:9},
+      {id:'spouse_table_r2c3',label:'דת בני הזוג (ב.4) ⚠ אומדן', default:'יהודים', page:2,rightEdge:275.4,y:498.5,maxWidth:180.4,size:9},
+      // Row 3 — sub-row "בעל"
+      {id:'spouse_table_r3c1',label:'הערה (ב.4 בעל c1)', page:2,rightEdge:499.3,y:480.6,maxWidth:70.4,size:9},
+      {id:'spouse_table_r3c2',label:'דת בעל (ב.4)', default:'יהודי', page:2,rightEdge:424.9,y:480.6,maxWidth:145.5,size:9},
+      {id:'spouse_table_r3c3',label:'הערה (ב.4 בעל c3)', page:2,rightEdge:275.4,y:480.6,maxWidth:180.4,size:9},
+      // Row 4 — sub-row "אישה"
+      {id:'spouse_table_r4c1',label:'הערה (ב.4 אישה c1)', page:2,rightEdge:498.3,y:462.2,maxWidth:69.4,size:9},
+      {id:'spouse_table_r4c2',label:'דת אישה (ב.4)', default:'יהודייה', page:2,rightEdge:424.9,y:462.2,maxWidth:145.5,size:9},
+      {id:'spouse_table_r4c3',label:'הערה (ב.4 אישה c3)', page:2,rightEdge:275.4,y:462.2,maxWidth:180.4,size:9},
+      // Row 5 — "אם לא — מי גר בדירה"
+      {id:'spouse_table_r5c1',label:'אם בני הזוג לא גרים יחד — מי גר בדירה (ב.5)', page:2,rightEdge:524.0,y:407.5,maxWidth:429.0,size:9},
     ]
   },
   parent_table: {
-    label: 'הורים — פרטים (זהירות: ברירות מחדל הוסרו עד לכיול)',
+    label: 'הורים — אזרחות + דת (סעיף ג.3 + ג.4)',
     fields: [
-      {id:'parent_table_r1c1',label:'תא 1 (rightEdge=489, y=282.6)',page:2,rightEdge:488.9,y:282.6,maxWidth:395.8,size:9},
-      {id:'parent_table_r2c1',label:'תא 2 (rightEdge=378, y=274.6)',page:2,rightEdge:378.1,y:274.6,maxWidth:285.0,size:9},
-      {id:'parent_table_r3c1',label:'תא 3 (rightEdge=492, y=244.4)',page:2,rightEdge:492.2,y:244.4,maxWidth:399.1,size:9},
-      {id:'parent_table_r4c1',label:'תא 4 (rightEdge=524, y=192.6)', page:2,rightEdge:524.0,y:192.6,maxWidth:88.5,size:9},
-      {id:'parent_table_r4c2',label:'תא 5 (rightEdge=335, y=192.6)', page:2,rightEdge:334.7,y:192.6,maxWidth:241.6,size:9},
-      {id:'parent_table_r5c1',label:'תא 6 (rightEdge=524, y=171.3)', page:2,rightEdge:524.0,y:171.3,maxWidth:88.5,size:9},
-      {id:'parent_table_r5c2',label:'תא 7 (rightEdge=335, y=171.3)', page:2,rightEdge:334.7,y:171.3,maxWidth:241.6,size:9},
+      {id:'parent_table_r1c1',label:'הערה כללית (ר1)',page:2,rightEdge:488.9,y:282.6,maxWidth:395.8,size:9},
+      {id:'parent_table_r2c1',label:'הערה כללית (ר2)',page:2,rightEdge:378.1,y:274.6,maxWidth:285.0,size:9},
+      {id:'parent_table_r3c1',label:'הערה כללית (ר3)',page:2,rightEdge:492.2,y:244.4,maxWidth:399.1,size:9},
+      {id:'parent_table_r4c1',label:'אזרחות (ג.3) — שם הורה 1', page:2,rightEdge:524.0,y:192.6,maxWidth:88.5,size:9},
+      {id:'parent_table_r4c2',label:'אזרחות (ג.3) — הורה 1', default:'תושב ישראל', page:2,rightEdge:334.7,y:192.6,maxWidth:241.6,size:9},
+      {id:'parent_table_r5c1',label:'אזרחות (ג.3) — שם הורה 2', page:2,rightEdge:524.0,y:171.3,maxWidth:88.5,size:9},
+      {id:'parent_table_r5c2',label:'אזרחות (ג.3) — הורה 2', default:'תושבת ישראל', page:2,rightEdge:334.7,y:171.3,maxWidth:241.6,size:9},
       {id:'parent_table_r6c1',label:'הורים (פרטים) שורה 6/1',page:2,rightEdge:482.3,y:141.2,maxWidth:389.2,size:9},
     ]
   },
   oc_def_p3: {
-    label: 'ילדים אחרים של הנתבע (טבלה)',
+    label: 'סעיף 6 — שאר ילדי הנתבע (שם / גיל / סכום מזונות)',
     fields: [
-      {id:'oc_def_p3_r1c1',label:'ילדים אחרים של הנתבע (טבלה) שורה 1/1',page:3,rightEdge:524.5,y:693.2,maxWidth:24.8,size:7},
-      {id:'oc_def_p3_r1c2',label:'ילדים אחרים של הנתבע (טבלה) שורה 1/2',page:3,rightEdge:495.7,y:693.2,maxWidth:117.2,size:9},
-      {id:'oc_def_p3_r1c3',label:'ילדים אחרים של הנתבע (טבלה) שורה 1/3',page:3,rightEdge:374.5,y:693.2,maxWidth:55.9,size:8},
-      {id:'oc_def_p3_r1c4',label:'ילדים אחרים של הנתבע (טבלה) שורה 1/4',page:3,rightEdge:208.9,y:693.2,maxWidth:111.0,size:9},
-      {id:'oc_def_p3_r2c1',label:'ילדים אחרים של הנתבע (טבלה) שורה 2/1',page:3,rightEdge:507.3,y:672.0,maxWidth:7.6,size:7},
-      {id:'oc_def_p3_r2c2',label:'ילדים אחרים של הנתבע (טבלה) שורה 2/2',page:3,rightEdge:495.7,y:672.0,maxWidth:117.2,size:9},
-      {id:'oc_def_p3_r2c3',label:'ילדים אחרים של הנתבע (טבלה) שורה 2/3',page:3,rightEdge:374.5,y:672.0,maxWidth:55.9,size:8},
-      {id:'oc_def_p3_r2c4',label:'ילדים אחרים של הנתבע (טבלה) שורה 2/4',page:3,rightEdge:208.9,y:672.0,maxWidth:111.0,size:9},
-      {id:'oc_def_p3_r3c1',label:'ילדים אחרים של הנתבע (טבלה) שורה 3/1',page:3,rightEdge:506.4,y:650.8,maxWidth:6.7,size:7},
-      {id:'oc_def_p3_r3c2',label:'ילדים אחרים של הנתבע (טבלה) שורה 3/2',page:3,rightEdge:495.7,y:650.8,maxWidth:117.2,size:9},
-      {id:'oc_def_p3_r3c3',label:'ילדים אחרים של הנתבע (טבלה) שורה 3/3',page:3,rightEdge:374.5,y:650.8,maxWidth:55.9,size:8},
-      {id:'oc_def_p3_r3c4',label:'ילדים אחרים של הנתבע (טבלה) שורה 3/4',page:3,rightEdge:208.9,y:650.8,maxWidth:111.0,size:9},
+      // Row 1
+      {id:'oc_def_p3_r1c1',label:'שורה 1 — מס׳',page:3,rightEdge:524.5,y:693.2,maxWidth:24.8,size:7},
+      {id:'oc_def_p3_r1c2',label:'שורה 1 — שם הילד',page:3,rightEdge:495.7,y:693.2,maxWidth:117.2,size:9},
+      {id:'oc_def_p3_r1c3',label:'שורה 1 — גיל',page:3,rightEdge:374.5,y:693.2,maxWidth:55.9,size:8},
+      {id:'oc_def_p3_r1c4',label:'שורה 1 — סכום מזונות',page:3,rightEdge:208.9,y:693.2,maxWidth:111.0,size:9},
+      // Row 2
+      {id:'oc_def_p3_r2c1',label:'שורה 2 — מס׳',page:3,rightEdge:507.3,y:672.0,maxWidth:7.6,size:7},
+      {id:'oc_def_p3_r2c2',label:'שורה 2 — שם הילד',page:3,rightEdge:495.7,y:672.0,maxWidth:117.2,size:9},
+      {id:'oc_def_p3_r2c3',label:'שורה 2 — גיל',page:3,rightEdge:374.5,y:672.0,maxWidth:55.9,size:8},
+      {id:'oc_def_p3_r2c4',label:'שורה 2 — סכום מזונות',page:3,rightEdge:208.9,y:672.0,maxWidth:111.0,size:9},
+      // Row 3
+      {id:'oc_def_p3_r3c1',label:'שורה 3 — מס׳',page:3,rightEdge:506.4,y:650.8,maxWidth:6.7,size:7},
+      {id:'oc_def_p3_r3c2',label:'שורה 3 — שם הילד',page:3,rightEdge:495.7,y:650.8,maxWidth:117.2,size:9},
+      {id:'oc_def_p3_r3c3',label:'שורה 3 — גיל',page:3,rightEdge:374.5,y:650.8,maxWidth:55.9,size:8},
+      {id:'oc_def_p3_r3c4',label:'שורה 3 — סכום מזונות',page:3,rightEdge:208.9,y:650.8,maxWidth:111.0,size:9},
+      // Row 4 — was missing; using same column pattern + extrapolated y (650.8 - 21.2 = 629.6)
+      {id:'oc_def_p3_r4c1',label:'שורה 4 — מס׳ ⚠ אומדן',page:3,rightEdge:506.4,y:629.6,maxWidth:6.7,size:7},
+      {id:'oc_def_p3_r4c2',label:'שורה 4 — שם הילד ⚠ אומדן',page:3,rightEdge:495.7,y:629.6,maxWidth:117.2,size:9},
+      {id:'oc_def_p3_r4c3',label:'שורה 4 — גיל ⚠ אומדן',page:3,rightEdge:374.5,y:629.6,maxWidth:55.9,size:8},
+      {id:'oc_def_p3_r4c4',label:'שורה 4 — סכום מזונות ⚠ אומדן',page:3,rightEdge:208.9,y:629.6,maxWidth:111.0,size:9},
     ]
   },
   spouse_kids_p3: {
-    label: 'ילדי בן/בת זוג הנתבע',
+    label: 'סעיף 7+8 — בן זוג הנתבע + ילדי בן הזוג',
     fields: [
-      {id:'spouse_kids_p3_r1c1',label:'ילדי בן/בת זוג הנתבע שורה 1/1',page:3,rightEdge:495.7,y:529.6,maxWidth:117.2,size:9},
-      {id:'spouse_kids_p3_r1c2',label:'ילדי בן/בת זוג הנתבע שורה 1/2',page:3,rightEdge:374.5,y:529.6,maxWidth:55.9,size:8},
-      {id:'spouse_kids_p3_r2c1',label:'ילדי בן/בת זוג הנתבע שורה 2/1',page:3,rightEdge:506.8,y:508.4,maxWidth:7.1,size:7},
-      {id:'spouse_kids_p3_r2c2',label:'ילדי בן/בת זוג הנתבע שורה 2/2',page:3,rightEdge:495.7,y:508.4,maxWidth:117.2,size:9},
-      {id:'spouse_kids_p3_r2c3',label:'ילדי בן/בת זוג הנתבע שורה 2/3',page:3,rightEdge:374.5,y:508.4,maxWidth:55.9,size:8},
-      {id:'spouse_kids_p3_r2c4',label:'ילדי בן/בת זוג הנתבע שורה 2/4',page:3,rightEdge:208.9,y:508.4,maxWidth:111.0,size:9},
-      {id:'spouse_kids_p3_r3c1',label:'ילדי בן/בת זוג הנתבע שורה 3/1',page:3,rightEdge:506.8,y:487.2,maxWidth:7.1,size:7},
-      {id:'spouse_kids_p3_r3c2',label:'ילדי בן/בת זוג הנתבע שורה 3/2',page:3,rightEdge:495.7,y:487.2,maxWidth:117.2,size:9},
-      {id:'spouse_kids_p3_r3c3',label:'ילדי בן/בת זוג הנתבע שורה 3/3',page:3,rightEdge:374.5,y:487.2,maxWidth:55.9,size:8},
-      {id:'spouse_kids_p3_r3c4',label:'ילדי בן/בת זוג הנתבע שורה 3/4',page:3,rightEdge:208.9,y:487.2,maxWidth:111.0,size:9},
-      {id:'spouse_kids_p3_r4c1',label:'ילדי בן/בת זוג הנתבע שורה 4/1',page:3,rightEdge:507.3,y:466.0,maxWidth:7.6,size:7},
-      {id:'spouse_kids_p3_r4c2',label:'ילדי בן/בת זוג הנתבע שורה 4/2',page:3,rightEdge:495.7,y:466.0,maxWidth:117.2,size:9},
-      {id:'spouse_kids_p3_r4c3',label:'ילדי בן/בת זוג הנתבע שורה 4/3',page:3,rightEdge:374.5,y:466.0,maxWidth:55.9,size:8},
-      {id:'spouse_kids_p3_r4c4',label:'ילדי בן/בת זוג הנתבע שורה 4/4',page:3,rightEdge:208.9,y:466.0,maxWidth:111.0,size:9},
-      {id:'spouse_kids_p3_r5c1',label:'ילדי בן/בת זוג הנתבע שורה 5/1',page:3,rightEdge:506.4,y:444.8,maxWidth:6.7,size:7},
-      {id:'spouse_kids_p3_r5c2',label:'ילדי בן/בת זוג הנתבע שורה 5/2',page:3,rightEdge:495.7,y:444.8,maxWidth:117.2,size:9},
-      {id:'spouse_kids_p3_r5c3',label:'ילדי בן/בת זוג הנתבע שורה 5/3',page:3,rightEdge:374.5,y:444.8,maxWidth:55.9,size:8},
-      {id:'spouse_kids_p3_r5c4',label:'ילדי בן/בת זוג הנתבע שורה 5/4',page:3,rightEdge:208.9,y:444.8,maxWidth:111.0,size:9},
+      // Row 1 = sect 7 ("האם לנתבע בן זוג שאינו הורהו של התובע?")
+      {id:'spouse_kids_p3_r1c1',label:'7) האם לנתבע בן זוג? — שם/פרטים',page:3,rightEdge:495.7,y:529.6,maxWidth:117.2,size:9},
+      {id:'spouse_kids_p3_r1c2',label:'7) הערה נוספת',page:3,rightEdge:374.5,y:529.6,maxWidth:55.9,size:8},
+      // Rows 2-5 = sect 8 table — ילדי בן הזוג
+      {id:'spouse_kids_p3_r2c1',label:'8) שורה 1 — מס׳',page:3,rightEdge:506.8,y:508.4,maxWidth:7.1,size:7},
+      {id:'spouse_kids_p3_r2c2',label:'8) שורה 1 — שם הילד',page:3,rightEdge:495.7,y:508.4,maxWidth:117.2,size:9},
+      {id:'spouse_kids_p3_r2c3',label:'8) שורה 1 — גיל',page:3,rightEdge:374.5,y:508.4,maxWidth:55.9,size:8},
+      {id:'spouse_kids_p3_r2c4',label:'8) שורה 1 — סכום מזונות',page:3,rightEdge:208.9,y:508.4,maxWidth:111.0,size:9},
+      {id:'spouse_kids_p3_r3c1',label:'8) שורה 2 — מס׳',page:3,rightEdge:506.8,y:487.2,maxWidth:7.1,size:7},
+      {id:'spouse_kids_p3_r3c2',label:'8) שורה 2 — שם הילד',page:3,rightEdge:495.7,y:487.2,maxWidth:117.2,size:9},
+      {id:'spouse_kids_p3_r3c3',label:'8) שורה 2 — גיל',page:3,rightEdge:374.5,y:487.2,maxWidth:55.9,size:8},
+      {id:'spouse_kids_p3_r3c4',label:'8) שורה 2 — סכום מזונות',page:3,rightEdge:208.9,y:487.2,maxWidth:111.0,size:9},
+      {id:'spouse_kids_p3_r4c1',label:'8) שורה 3 — מס׳',page:3,rightEdge:507.3,y:466.0,maxWidth:7.6,size:7},
+      {id:'spouse_kids_p3_r4c2',label:'8) שורה 3 — שם הילד',page:3,rightEdge:495.7,y:466.0,maxWidth:117.2,size:9},
+      {id:'spouse_kids_p3_r4c3',label:'8) שורה 3 — גיל',page:3,rightEdge:374.5,y:466.0,maxWidth:55.9,size:8},
+      {id:'spouse_kids_p3_r4c4',label:'8) שורה 3 — סכום מזונות',page:3,rightEdge:208.9,y:466.0,maxWidth:111.0,size:9},
+      {id:'spouse_kids_p3_r5c1',label:'8) שורה 4 — מס׳',page:3,rightEdge:506.4,y:444.8,maxWidth:6.7,size:7},
+      {id:'spouse_kids_p3_r5c2',label:'8) שורה 4 — שם הילד',page:3,rightEdge:495.7,y:444.8,maxWidth:117.2,size:9},
+      {id:'spouse_kids_p3_r5c3',label:'8) שורה 4 — גיל',page:3,rightEdge:374.5,y:444.8,maxWidth:55.9,size:8},
+      {id:'spouse_kids_p3_r5c4',label:'8) שורה 4 — סכום מזונות',page:3,rightEdge:208.9,y:444.8,maxWidth:111.0,size:9},
     ]
   },
   parent_kids_p3: {
-    label: 'ילדים אחרים של ההורה',
+    label: 'סעיף 9 — התעסקות/רכוש/חובות של בן הזוג של הנתבע',
     fields: [
-      {id:'parent_kids_p3_c1',label:'ילדים אחרים של ההורה שורה 1/1',page:3,rightEdge:448.4,y:372.6,maxWidth:218.5,size:9},
+      {id:'parent_kids_p3_c1',label:'9) התעסקותו / רכושו / חובותיו',page:3,rightEdge:448.4,y:372.6,maxWidth:218.5,size:9},
     ]
   },
   misc_p3: {
-    label: 'פרטים נוספים (עמוד 3)',
+    label: 'סעיפים 10+11 — שאר ילדי ההורה + התעסקות ההורה',
     fields: [
-      {id:'misc_p3_r1c1',label:'פרטים נוספים (עמוד 3) שורה 1/1',page:3,rightEdge:496.2,y:264.7,maxWidth:177.6,size:9},
-      {id:'misc_p3_r2c1',label:'פרטים נוספים (עמוד 3) שורה 2/1',page:3,rightEdge:506.8,y:243.5,maxWidth:6.6,size:7},
-      {id:'misc_p3_r2c2',label:'פרטים נוספים (עמוד 3) שורה 2/2',page:3,rightEdge:496.2,y:243.5,maxWidth:177.6,size:9},
-      {id:'misc_p3_r2c3',label:'פרטים נוספים (עמוד 3) שורה 2/3',page:3,rightEdge:208.9,y:243.5,maxWidth:89.4,size:9},
-      {id:'misc_p3_r3c1',label:'פרטים נוספים (עמוד 3) שורה 3/1',page:3,rightEdge:506.8,y:222.3,maxWidth:6.6,size:7},
-      {id:'misc_p3_r3c2',label:'פרטים נוספים (עמוד 3) שורה 3/2',page:3,rightEdge:496.2,y:222.3,maxWidth:177.6,size:9},
-      {id:'misc_p3_r3c3',label:'פרטים נוספים (עמוד 3) שורה 3/3',page:3,rightEdge:208.9,y:222.3,maxWidth:89.4,size:9},
-      {id:'misc_p3_r4c1',label:'פרטים נוספים (עמוד 3) שורה 4/1',page:3,rightEdge:506.4,y:179.8,maxWidth:6.2,size:7},
-      {id:'misc_p3_r4c2',label:'פרטים נוספים (עמוד 3) שורה 4/2',page:3,rightEdge:371.5,y:179.8,maxWidth:52.9,size:8},
-      {id:'misc_p3_r4c3',label:'פרטים נוספים (עמוד 3) שורה 4/3',page:3,rightEdge:208.9,y:179.8,maxWidth:89.4,size:9},
-      {id:'misc_p3_r5c1',label:'פרטים נוספים (עמוד 3) שורה 5/1',page:3,rightEdge:524.0,y:89.8,maxWidth:294.1,size:9},
+      // sect 10 — table header row
+      {id:'misc_p3_r1c1',label:'10) הערת כותרת',page:3,rightEdge:496.2,y:264.7,maxWidth:177.6,size:9},
+      // sect 10 — rows of table
+      {id:'misc_p3_r2c1',label:'10) שורה 1 — מס׳',page:3,rightEdge:506.8,y:243.5,maxWidth:6.6,size:7},
+      {id:'misc_p3_r2c2',label:'10) שורה 1 — שם',page:3,rightEdge:496.2,y:243.5,maxWidth:177.6,size:9},
+      {id:'misc_p3_r2c3',label:'10) שורה 1 — סכום',page:3,rightEdge:208.9,y:243.5,maxWidth:89.4,size:9},
+      {id:'misc_p3_r3c1',label:'10) שורה 2 — מס׳',page:3,rightEdge:506.8,y:222.3,maxWidth:6.6,size:7},
+      {id:'misc_p3_r3c2',label:'10) שורה 2 — שם',page:3,rightEdge:496.2,y:222.3,maxWidth:177.6,size:9},
+      {id:'misc_p3_r3c3',label:'10) שורה 2 — סכום',page:3,rightEdge:208.9,y:222.3,maxWidth:89.4,size:9},
+      {id:'misc_p3_r4c1',label:'10) שורה 3 — מס׳',page:3,rightEdge:506.4,y:179.8,maxWidth:6.2,size:7},
+      {id:'misc_p3_r4c2',label:'10) שורה 3 — שם',page:3,rightEdge:371.5,y:179.8,maxWidth:52.9,size:8},
+      {id:'misc_p3_r4c3',label:'10) שורה 3 — סכום',page:3,rightEdge:208.9,y:179.8,maxWidth:89.4,size:9},
+      // sect 11
+      {id:'misc_p3_r5c1',label:'11) התעסקות/רכוש/חובות של ההורה',page:3,rightEdge:524.0,y:89.8,maxWidth:294.1,size:9},
     ]
   },
   residence_pq_p4: {
-    label: 'מגורי בעלי הדין',
+    label: 'סעיפים ד.1+ד.2 — מקום מושב קרובים + ילדי בן זוג',
     fields: [
-      {id:'residence_pq_p4_r1c1',label:'מגורי בעלי הדין שורה 1/1',page:4,rightEdge:488.6,y:714.4,maxWidth:159.2,size:9},
-      {id:'residence_pq_p4_r1c2',label:'מגורי בעלי הדין שורה 1/2',page:4,rightEdge:325.4,y:714.4,maxWidth:244.5,size:9},
-      {id:'residence_pq_p4_r2c1',label:'מגורי בעלי הדין שורה 2/1',page:4,rightEdge:488.6,y:696.0,maxWidth:159.2,size:9},
-      {id:'residence_pq_p4_r2c2',label:'מגורי בעלי הדין שורה 2/2',page:4,rightEdge:325.4,y:696.0,maxWidth:244.5,size:9},
-      {id:'residence_pq_p4_r3c1',label:'מגורי בעלי הדין שורה 3/1',page:4,rightEdge:446.2,y:624.4,maxWidth:145.1,size:9},
-      {id:'residence_pq_p4_r3c2',label:'מגורי בעלי הדין שורה 3/2',page:4,rightEdge:297.1,y:624.4,maxWidth:81.8,size:9},
-      {id:'residence_pq_p4_r3c3',label:'מגורי בעלי הדין שורה 3/3',page:4,rightEdge:211.3,y:624.4,maxWidth:130.9,size:9},
-      {id:'residence_pq_p4_r4c1',label:'מגורי בעלי הדין שורה 4/1',page:4,rightEdge:484.8,y:606.0,maxWidth:34.6,size:8},
-      {id:'residence_pq_p4_r4c2',label:'מגורי בעלי הדין שורה 4/2',page:4,rightEdge:446.2,y:606.0,maxWidth:145.1,size:9},
-      {id:'residence_pq_p4_r4c3',label:'מגורי בעלי הדין שורה 4/3',page:4,rightEdge:297.1,y:606.0,maxWidth:81.8,size:9},
-      {id:'residence_pq_p4_r5c1',label:'מגורי בעלי הדין שורה 5/1',page:4,rightEdge:460.1,y:587.6,maxWidth:9.9,size:7},
-      {id:'residence_pq_p4_r5c2',label:'מגורי בעלי הדין שורה 5/2',page:4,rightEdge:446.2,y:587.6,maxWidth:145.1,size:9},
-      {id:'residence_pq_p4_r5c3',label:'מגורי בעלי הדין שורה 5/3',page:4,rightEdge:297.1,y:587.6,maxWidth:81.8,size:9},
-      {id:'residence_pq_p4_r6c1',label:'מגורי בעלי הדין שורה 6/1',page:4,rightEdge:460.6,y:569.2,maxWidth:10.4,size:7},
-      {id:'residence_pq_p4_r6c2',label:'מגורי בעלי הדין שורה 6/2',page:4,rightEdge:446.2,y:569.2,maxWidth:145.1,size:9},
-      {id:'residence_pq_p4_r6c3',label:'מגורי בעלי הדין שורה 6/3',page:4,rightEdge:297.1,y:569.2,maxWidth:81.8,size:9},
+      // ד.1 — table: שם / מקום מושב (2 columns × 2 rows)
+      {id:'residence_pq_p4_r1c1',label:'ד.1 שורה 1 — שם הקרוב',page:4,rightEdge:488.6,y:714.4,maxWidth:159.2,size:9},
+      {id:'residence_pq_p4_r1c2',label:'ד.1 שורה 1 — מקום המושב', default:'ישראל', page:4,rightEdge:325.4,y:714.4,maxWidth:244.5,size:9},
+      {id:'residence_pq_p4_r2c1',label:'ד.1 שורה 2 — שם הקרוב',page:4,rightEdge:488.6,y:696.0,maxWidth:159.2,size:9},
+      {id:'residence_pq_p4_r2c2',label:'ד.1 שורה 2 — מקום המושב', default:'ישראל', page:4,rightEdge:325.4,y:696.0,maxWidth:244.5,size:9},
+      // ד.2 — table: מס׳ / שם / גיל / סכום (3 rows × 4 cols)
+      {id:'residence_pq_p4_r3c1',label:'ד.2 שורה 1 — שם הילד',page:4,rightEdge:446.2,y:624.4,maxWidth:145.1,size:9},
+      {id:'residence_pq_p4_r3c2',label:'ד.2 שורה 1 — גיל',page:4,rightEdge:297.1,y:624.4,maxWidth:81.8,size:9},
+      {id:'residence_pq_p4_r3c3',label:'ד.2 שורה 1 — סכום',page:4,rightEdge:211.3,y:624.4,maxWidth:130.9,size:9},
+      {id:'residence_pq_p4_r4c1',label:'ד.2 שורה 2 — מס׳',page:4,rightEdge:484.8,y:606.0,maxWidth:34.6,size:8},
+      {id:'residence_pq_p4_r4c2',label:'ד.2 שורה 2 — שם הילד',page:4,rightEdge:446.2,y:606.0,maxWidth:145.1,size:9},
+      {id:'residence_pq_p4_r4c3',label:'ד.2 שורה 2 — גיל',page:4,rightEdge:297.1,y:606.0,maxWidth:81.8,size:9},
+      {id:'residence_pq_p4_r5c1',label:'ד.2 שורה 3 — מס׳',page:4,rightEdge:460.1,y:587.6,maxWidth:9.9,size:7},
+      {id:'residence_pq_p4_r5c2',label:'ד.2 שורה 3 — שם הילד',page:4,rightEdge:446.2,y:587.6,maxWidth:145.1,size:9},
+      {id:'residence_pq_p4_r5c3',label:'ד.2 שורה 3 — גיל',page:4,rightEdge:297.1,y:587.6,maxWidth:81.8,size:9},
+      {id:'residence_pq_p4_r6c1',label:'ד.2 שורה 3 — סכום',page:4,rightEdge:460.6,y:569.2,maxWidth:10.4,size:7},
+      {id:'residence_pq_p4_r6c2',label:'ד.2 הערה',page:4,rightEdge:446.2,y:569.2,maxWidth:145.1,size:9},
+      {id:'residence_pq_p4_r6c3',label:'ד.2 הערה נוספת',page:4,rightEdge:297.1,y:569.2,maxWidth:81.8,size:9},
     ]
   },
 };
