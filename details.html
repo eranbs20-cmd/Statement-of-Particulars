@@ -911,17 +911,19 @@ async function extractWithGroq(text){
   } catch(e){
     // Network-level failures (TypeError: Load failed, AbortError, etc.)
     // Fall back to minimal prompt — smaller body, more likely to succeed
-    if(e.name === 'AbortError' || /load failed|network|fetch/i.test(e.message || '')){
+    if(e.name === 'AbortError' || /load failed|network|fetch|connection refused|econnrefused|connection reset|nsurl/i.test(e.message || '')){
       console.warn('[Groq] network error → retry with minimal prompt:', e.message);
       try {
         return await _extractWithGroqMinimal(text, key);
       } catch(e2){
         // Build descriptive error for user
         let userMsg;
-        if(e.name === 'AbortError') userMsg = 'Timeout (Groq לא הגיב תוך 15 שניות)';
-        else if(/load failed|network/i.test(e.message||'')) userMsg = 'שגיאת רשת — בדוק WiFi או נסה שוב';
+        const eMsg = (e.message || '').toLowerCase();
+        if(e.name === 'AbortError') userMsg = '⏱ Timeout (Groq לא הגיב תוך 15 שניות) — נסה שוב';
+        else if(/connection refused|econnrefused/i.test(eMsg)) userMsg = '🚫 Groq חוסם חיבור (Connection refused) — נסה Claude או VPN';
+        else if(/load failed|network|fetch/i.test(eMsg)) userMsg = '📶 שגיאת רשת — בדוק WiFi או נסה שוב';
         else userMsg = e.message;
-        throw new Error(userMsg + ' (גם fallback מצומצם נכשל: ' + (e2.message||'').slice(0,60) + ')');
+        throw new Error(userMsg + ' · גם fallback מצומצם נכשל: ' + (e2.message||'').slice(0,80));
       }
     }
     throw e;

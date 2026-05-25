@@ -3,3 +3,8 @@ node_modules/
 *.bak-*
 .DS_Store
 package-lock.json
+
+# Test artifacts from tools/full-validation + visual-test
+test-overlay.pdf
+test-pdf-with-dummies.pdf
+validation-report.json
