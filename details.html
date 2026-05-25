@@ -1278,18 +1278,57 @@ function initDragAndDrop(){
   }, false);
 }
 
-// Extraction logic — supports multiple files; concatenates their content before extraction
+// Extraction logic — supports multiple files; concatenates their content before extraction.
+// For PDFs that fail text extraction (scanned/image-based), falls back to Claude Vision API.
 async function extractFromFile(input){
   const files = Array.from(input.files || []);
   if(!files.length) return;
   _showUploadedFiles(files);
   showToast(`קורא ${files.length} קובץ${files.length>1?'ים':''}...`);
   const chunks = [];
+  const claudeKey = localStorage.getItem('claude_api_key');
   for(const file of files){
     try {
+      // Empty file check
+      if(file.size === 0){
+        showToast(`⚠ ${file.name}: הקובץ ריק (0 bytes)`, 'err');
+        continue;
+      }
       let text = '';
-      if(file.name.toLowerCase().endsWith('.pdf')){
+      const isPdf = file.name.toLowerCase().endsWith('.pdf');
+      const isImage = file.type && file.type.startsWith('image/');
+      if(isPdf){
         text = await _readPdfText(file);
+        // If text extraction yielded < 50 chars, treat as scanned PDF and try Vision
+        if(text.trim().length < 50){
+          if(claudeKey){
+            showToast(`🔍 ${file.name}: PDF סרוק — מנסה Claude Vision...`, '');
+            try {
+              text = await _extractWithClaudeVision(file, claudeKey);
+            } catch(visionErr){
+              console.error('Vision failed:', visionErr);
+              showToast(`⚠ ${file.name}: Vision נכשל — ${visionErr.message.slice(0,60)}`, 'err');
+              continue;
+            }
+          } else {
+            showToast(`⚠ ${file.name}: PDF סרוק (אין טקסט). הזן מפתח Claude ב-⚙ הגדרות AI לזיהוי תמונה`, 'err');
+            continue;
+          }
+        }
+      } else if(isImage){
+        // Image upload — direct to Vision
+        if(claudeKey){
+          showToast(`🔍 ${file.name}: תמונה — מנסה Claude Vision...`, '');
+          try {
+            text = await _extractWithClaudeVisionImage(file, claudeKey);
+          } catch(visionErr){
+            showToast(`⚠ ${file.name}: Vision נכשל — ${visionErr.message.slice(0,60)}`, 'err');
+            continue;
+          }
+        } else {
+          showToast(`⚠ ${file.name}: תמונה (דורש Claude Vision). הזן מפתח ב-⚙ הגדרות AI`, 'err');
+          continue;
+        }
       } else {
         text = await file.text();
       }
@@ -1297,7 +1336,7 @@ async function extractFromFile(input){
         // Use English/punctuation-only delimiter so AI doesn't mistake it for Hebrew content
         chunks.push(`\n\n--- FILE BOUNDARY (filename: ${file.name}) ---\n${text.trim()}`);
       } else {
-        showToast(`⚠ ${file.name}: לא הצלחתי לקרוא טקסט (אולי PDF סרוק)`, 'err');
+        showToast(`⚠ ${file.name}: לא הצלחתי לקרוא טקסט מהקובץ`, 'err');
       }
     } catch(e){
       console.error('File read failed:', file.name, e);
@@ -1305,7 +1344,7 @@ async function extractFromFile(input){
     }
   }
   if(!chunks.length){
-    showToast('לא חולץ טקסט מאף קובץ — נסה לבדוק שהקבצים תקינים', 'err');
+    showToast('לא חולץ טקסט מאף קובץ — בדוק שהקובץ אינו ריק/פגום/מוצפן', 'err');
     input.value = '';
     return;
   }
@@ -1320,16 +1359,90 @@ async function extractFromFile(input){
 }
 
 async function _readPdfText(file){
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+    let fullText = '';
+    for(let i=1; i<=pdfDoc.numPages; i++){
+      const page = await pdfDoc.getPage(i);
+      const textContent = await page.getTextContent();
+      const pageText = textContent.items.map(item => item.str).join(' ');
+      fullText += pageText + '\n';
+    }
+    return fullText;
+  } catch(e) {
+    console.error('[_readPdfText] failed:', e);
+    return ''; // Empty triggers Vision fallback
+  }
+}
+
+// Render PDF pages to images and send to Claude Vision for text extraction
+async function _extractWithClaudeVision(file, claudeKey){
   const arrayBuffer = await file.arrayBuffer();
   const pdfDoc = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
-  let fullText = '';
-  for(let i=1; i<=pdfDoc.numPages; i++){
+  const maxPages = Math.min(pdfDoc.numPages, 6); // Limit to first 6 pages (memory + API cost)
+  const images = [];
+  for(let i=1; i<=maxPages; i++){
     const page = await pdfDoc.getPage(i);
-    const textContent = await page.getTextContent();
-    const pageText = textContent.items.map(item => item.str).join(' ');
-    fullText += pageText + '\n';
+    const viewport = page.getViewport({scale: 1.5}); // 1.5x for OCR quality
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({canvasContext: ctx, viewport}).promise;
+    const base64 = canvas.toDataURL('image/png').split(',')[1];
+    images.push(base64);
   }
-  return fullText;
+  return await _sendImagesToClaudeVision(images, claudeKey, file.name);
+}
+
+async function _extractWithClaudeVisionImage(file, claudeKey){
+  const arrayBuffer = await file.arrayBuffer();
+  const bytes = new Uint8Array(arrayBuffer);
+  // Convert to base64 in chunks (large images)
+  let binary = '';
+  const chunkSize = 32768;
+  for(let i=0; i<bytes.length; i+=chunkSize){
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i+chunkSize));
+  }
+  const base64 = btoa(binary);
+  return await _sendImagesToClaudeVision([base64], claudeKey, file.name, file.type || 'image/png');
+}
+
+async function _sendImagesToClaudeVision(base64Images, claudeKey, fileName, mediaType='image/png'){
+  const content = [];
+  for(const b64 of base64Images){
+    content.push({
+      type: 'image',
+      source: { type: 'base64', media_type: mediaType, data: b64 }
+    });
+  }
+  content.push({
+    type: 'text',
+    text: `קרא את כל הטקסט מהמסמך/תמונה שצורפו (זה מסמך משפטי בעברית). החזר את הטקסט המלא כפי שהוא, כולל מספרים ופרטים. בלי תקציר.`
+  });
+  const r = await _fetchWithTimeout('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'x-api-key': claudeKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 4096,
+      messages: [{ role: 'user', content }]
+    })
+  }, 30000); // 30s — Vision takes longer
+  if(!r.ok){
+    const err = await r.text();
+    throw new Error('Vision API ' + r.status + ': ' + err.slice(0, 150));
+  }
+  const data = await r.json();
+  const text = (data.content && data.content[0] && data.content[0].text) || '';
+  console.log(`[Vision] ${fileName}: extracted ${text.length} chars`);
+  return text;
 }
 
 function _showUploadedFiles(files){
@@ -1337,8 +1450,12 @@ function _showUploadedFiles(files){
   if(!box) return;
   box.style.display = 'block';
   box.innerHTML = '<b>קבצים שהועלו:</b> ' + files.map(f => {
-    const kb = Math.round(f.size/1024);
-    return `<span style="display:inline-block;background:#eef2ff;color:#2d1b69;padding:2px 8px;border-radius:10px;margin:2px 3px;font-size:10.5px">📄 ${f.name} (${kb}KB)</span>`;
+    let sizeStr;
+    if(f.size === 0) sizeStr = '0B (ריק!)';
+    else if(f.size < 1024) sizeStr = `${f.size}B`;
+    else if(f.size < 1024*1024) sizeStr = `${(f.size/1024).toFixed(1)}KB`;
+    else sizeStr = `${(f.size/1024/1024).toFixed(2)}MB`;
+    return `<span style="display:inline-block;background:#eef2ff;color:#2d1b69;padding:2px 8px;border-radius:10px;margin:2px 3px;font-size:10.5px">📄 ${f.name} (${sizeStr})</span>`;
   }).join('');
 }
 
