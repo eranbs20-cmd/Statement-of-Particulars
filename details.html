@@ -769,6 +769,14 @@ function _isBlacklisted(s){
   }
   // Reject if it's only underscores/dashes/dots
   if(/^[_\-\.\s]+$/.test(trim)) return true;
+  // Reject if value matches or contains an uploaded filename (no extension)
+  const filenames = window._uploadedFileNames || [];
+  for(const fn of filenames){
+    if(!fn || fn.length < 3) continue;
+    if(low === fn) return true;
+    if(low.includes(fn)) return true;
+    if(fn.includes(low) && low.length >= 4) return true;
+  }
   return false;
 }
 
@@ -858,7 +866,7 @@ function _buildExtractionPromptCompact(text){
   return `חלץ נתונים למילוי טופס "הרצאת פרטים" (טופס 4) מהמסמך למטה.
 שדות מותרים: ${fieldLines.join(',')}
 
-החזר JSON תקין בלבד. **חובה: דלג לחלוטין על שדות שלא במסמך — אל תחזיר "0" או "" או "לא ידוע" עבור שדות חסרים, פשוט אל תכלול אותם ב-JSON.** ת.ז. = 9 ספרות. מספרים = ספרות בלבד. תאריכים = dd/mm/yyyy. אל תכלול תוויות כמו "לתשומת ליבך"/"חתימה"/"ברוטו" כערכים. אל תקצר שמות (כתוב שם מלא כפי שמופיע).
+החזר JSON תקין בלבד. **חובה: דלג לחלוטין על שדות שלא במסמך — אל תחזיר "0" או "" או "לא ידוע", פשוט אל תכלול אותם.** **כל שדה מקבל ערך אחד בלבד**: אם המסמך אומר "דוד כהן ת.ז. 123456789" → plaintiff_name="דוד כהן" (רק שם) ו-g_id="123456789" (רק 9 ספרות). אסור להכניס ת.ז./תאריך/הסבר לתוך שדה שם. **אל תשתמש בשמות קבצים, כותרות מסמך, או metadata כערכים.** ת.ז. = בדיוק 9 ספרות. מספרים = ספרות בלבד. תאריכים = dd/mm/yyyy. אל תכלול תוויות כמו "לתשומת ליבך"/"חתימה"/"ברוטו" כערכים. אל תקצר שמות (כתוב שם מלא כפי שמופיע במסמך).
 
 מסמך:
 ${docText}`;
@@ -880,7 +888,7 @@ async function extractWithGemini(text){
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
           temperature: 0.1,
-          maxOutputTokens: 2048,
+          maxOutputTokens: 4096,
           responseMimeType: 'application/json'
         }
       })
@@ -1467,7 +1475,7 @@ async function extractFromFile(input){
       }
       if(text && text.trim()){
         // Use English/punctuation-only delimiter so AI doesn't mistake it for Hebrew content
-        chunks.push(`\n\n--- FILE BOUNDARY (filename: ${file.name}) ---\n${text.trim()}`);
+        chunks.push(`\n\n--- DOCUMENT START ---\n${text.trim()}\n--- DOCUMENT END ---`);
       } else {
         showToast(`⚠ ${file.name}: לא הצלחתי לקרוא טקסט מהקובץ`, 'err');
       }
@@ -1579,6 +1587,11 @@ async function _sendImagesToClaudeVision(base64Images, claudeKey, fileName, medi
 }
 
 function _showUploadedFiles(files){
+  // Track uploaded filenames so blacklist can reject them as field values
+  window._uploadedFileNames = (files || []).map(f => {
+    const n = (f.name || '').toLowerCase();
+    return n.replace(/\.(pdf|json|txt|png|jpg|jpeg|gif|webp|docx?)$/, '').trim();
+  }).filter(n => n.length >= 3);
   const box = $('uploaded-files-list');
   if(!box) return;
   box.style.display = 'block';
