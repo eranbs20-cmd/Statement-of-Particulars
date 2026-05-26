@@ -96,7 +96,7 @@ details.sect>summary:hover{background:#ede8f6}
       <label style="display:block;font-size:11.5px;color:#475569;text-align:right;font-weight:600;margin-bottom:4px">או — הדבק טקסט חופשי לחילוץ:</label>
       <textarea id="extract-input-text" placeholder="הדבק כאן הודעה, סיכום או פרטי לקוח..." style="width:100%;height:58px;padding:8px;font-size:12px;border:1px solid #cbd5e1;border-radius:6px;resize:vertical;box-sizing:border-box"></textarea>
       <button class="qbtn" style="width:100%;margin:6px 0 0;background:#2d1b69;color:#fff;border:none;font-weight:700;padding:8px" onclick="extractFromText($('extract-input-text').value)">⚡ חלץ פרטים מהטקסט</button>
-      <button class="qbtn" style="width:100%;margin:6px 0 0;background:#10b981;color:#fff;border:none;font-weight:700;padding:8px" onclick="openAiSettings()">⚙ הגדרות AI חכם (Claude + Groq)</button>
+      <button class="qbtn" style="width:100%;margin:6px 0 0;background:#10b981;color:#fff;border:none;font-weight:700;padding:8px" onclick="openAiSettings()">⚙ הגדרות AI חכם (Gemini + Claude + Groq)</button>
       <button class="qbtn" style="width:100%;margin:6px 0 0;background:#64748b;color:#fff;border:none;font-weight:700;padding:8px;font-size:11.5px" onclick="copyAiPromptToClipboard()">📋 העתק תבנית AI ל-ChatGPT/Claude</button>
     </div>
   </div>
@@ -142,7 +142,14 @@ details.sect>summary:hover{background:#ede8f6}
 <div id="ai-settings-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:2000;align-items:center;justify-content:center;overflow-y:auto">
   <div style="background:#fff;border-radius:14px;padding:22px 18px;width:92%;max-width:440px;direction:rtl;font-family:'David Libre',serif;max-height:90vh;overflow-y:auto;margin:auto">
     <div style="font-weight:700;font-size:16px;color:#2d1b69;margin-bottom:6px">🤖 הגדרות AI חכם — חילוץ נתונים</div>
-    <div style="font-size:12px;color:#475569;line-height:1.6;margin-bottom:12px">תוכל להגדיר שתי מערכות AI: <b>Claude</b> (איכותי, איטי יותר) או/ו <b>Groq</b> (מהיר, חינמי). המערכת תנסה Claude קודם ואם נכשל — תעבור ל-Groq.</div>
+    <div style="font-size:12px;color:#475569;line-height:1.6;margin-bottom:12px">3 מנועים אפשריים. סדר עדיפויות: <b>Gemini</b> ראשון (חינמי + Vision), אחריו Claude (איכותי), אחריו Groq (גיבוי). מספיק להגדיר אחד.</div>
+
+    <div style="border:2px solid #4285f4;border-radius:10px;padding:12px;margin-bottom:12px;background:#eef4ff">
+      <div style="font-weight:700;font-size:14px;color:#1e40af;margin-bottom:4px">🔵 Gemini (Google) — מומלץ ⭐</div>
+      <div style="font-size:11.5px;color:#64748b;line-height:1.55;margin-bottom:8px">חינמי לגמרי, ללא כרטיס אשראי. תומך ב-Vision (PDF סרוקים + תמונות). עברית מצוינת.</div>
+      <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="display:inline-block;background:#4285f4;color:#fff;padding:7px 12px;border-radius:7px;font-size:11.5px;font-weight:700;text-decoration:none;margin-bottom:8px">→ קבל מפתח Gemini חינמי</a>
+      <input type="password" id="gemini-api-key" placeholder="AIzaSy..." style="width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:6px;font-size:12.5px;direction:ltr;font-family:monospace;box-sizing:border-box">
+    </div>
 
     <div style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:12px;background:#f8fafc">
       <div style="font-weight:700;font-size:14px;color:#c97a00;margin-bottom:4px">🟠 Claude AI (Anthropic)</div>
@@ -153,7 +160,7 @@ details.sect>summary:hover{background:#ede8f6}
 
     <div style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:14px;background:#f8fafc">
       <div style="font-weight:700;font-size:14px;color:#10b981;margin-bottom:4px">🟢 Groq AI (Llama 3.3)</div>
-      <div style="font-size:11.5px;color:#64748b;line-height:1.55;margin-bottom:8px">חינמי לחלוטין, מהיר מאוד. רישום קל.</div>
+      <div style="font-size:11.5px;color:#64748b;line-height:1.55;margin-bottom:8px">חינמי לחלוטין, מהיר מאוד. רישום קל. ללא תמיכת Vision.</div>
       <a href="https://console.groq.com/keys" target="_blank" rel="noopener" style="display:inline-block;background:#10b981;color:#fff;padding:7px 12px;border-radius:7px;font-size:11.5px;font-weight:700;text-decoration:none;margin-bottom:8px">→ קבל מפתח Groq חינמי</a>
       <input type="password" id="groq-api-key" placeholder="gsk_..." style="width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:6px;font-size:12.5px;direction:ltr;font-family:monospace;box-sizing:border-box">
     </div>
@@ -622,15 +629,20 @@ function openAiSettings(){
   $('ai-settings-modal').style.display = 'flex';
   $('groq-api-key').value = localStorage.getItem('groq_api_key') || '';
   const ck = $('claude-api-key'); if(ck) ck.value = localStorage.getItem('claude_api_key') || '';
+  const gem = $('gemini-api-key'); if(gem) gem.value = localStorage.getItem('gemini_api_key') || '';
 }
 function saveAiKeys(){
   const gk = ($('groq-api-key').value || '').trim();
   const ckEl = $('claude-api-key');
   const ck = ckEl ? (ckEl.value || '').trim() : '';
+  const gemEl = $('gemini-api-key');
+  const gem = gemEl ? (gemEl.value || '').trim() : '';
   if(gk) localStorage.setItem('groq_api_key', gk); else localStorage.removeItem('groq_api_key');
   if(ck) localStorage.setItem('claude_api_key', ck); else localStorage.removeItem('claude_api_key');
+  if(gem) localStorage.setItem('gemini_api_key', gem); else localStorage.removeItem('gemini_api_key');
   $('ai-settings-modal').style.display = 'none';
   const parts = [];
+  if(gem) parts.push('Gemini');
   if(ck) parts.push('Claude');
   if(gk) parts.push('Groq');
   showToast(parts.length ? '✓ נשמרו: ' + parts.join(' + ') : 'המפתחות הוסרו', 'ok');
@@ -767,12 +779,17 @@ function _normalizeExtracted(obj){
     if(raw === null || raw === undefined || raw === '') continue;
     let v = String(raw).trim();
     if(_isBlacklisted(v)) continue;
+    // Reject lone "0" — strong signal of "AI didn't know" rather than real value
+    // (Exception: monetary fields explicitly handled below where "0" can be valid)
+    const isMonetaryField = /_g_\d+$|_n_\d+$|_amount|monthly_alimony|last_payment_amount|vehicle_value/i.test(k);
+    if((v === '0' || v === '00' || v === '0.0' || v === '0.00') && !isMonetaryField) continue;
+
     if(/_id$|^g_id$/i.test(k)){
       const digits = v.replace(/\D/g,'');
       if(digits.length === 9) v = digits;
       else continue;
     }
-    else if(/_g_\d+$|_n_\d+$|_amount|monthly_alimony|last_payment_amount|vehicle_value/i.test(k)){
+    else if(isMonetaryField){
       v = v.replace(/[^\d.]/g,'');
       if(!v) continue;
     }
@@ -783,15 +800,15 @@ function _normalizeExtracted(obj){
     }
     else if(/_birth$|^.*date.*$|^.*_dt$|marriage|payment_date/i.test(k)){
       const norm = _normalizeDate(v);
-      if(norm) v = norm;
+      if(!norm) continue; // Drop date if not parseable — was the source of "last_payment_date: 0"
+      v = norm;
     }
     else if(/_p_\d+$/i.test(k)){
       const m = v.match(/(\d{1,2})[\/\-\.](\d{2,4})/);
-      if(m){
-        const mm = String(m[1]).padStart(2,'0');
-        const yy = m[2].length === 4 ? m[2].slice(2) : String(m[2]).padStart(2,'0');
-        v = mm + '/' + yy;
-      }
+      if(!m) continue; // Drop period if no valid mm/yy format
+      const mm = String(m[1]).padStart(2,'0');
+      const yy = m[2].length === 4 ? m[2].slice(2) : String(m[2]).padStart(2,'0');
+      v = mm + '/' + yy;
     }
     out[k] = v;
   }
@@ -841,10 +858,101 @@ function _buildExtractionPromptCompact(text){
   return `חלץ נתונים למילוי טופס "הרצאת פרטים" (טופס 4) מהמסמך למטה.
 שדות מותרים: ${fieldLines.join(',')}
 
-החזר JSON תקין בלבד. דלג על שדות שלא במסמך. ת.ז. = 9 ספרות. מספרים = ספרות בלבד. תאריכים = dd/mm/yyyy. אל תכלול תוויות כמו "לתשומת ליבך"/"חתימה"/"ברוטו" כערכים.
+החזר JSON תקין בלבד. **חובה: דלג לחלוטין על שדות שלא במסמך — אל תחזיר "0" או "" או "לא ידוע" עבור שדות חסרים, פשוט אל תכלול אותם ב-JSON.** ת.ז. = 9 ספרות. מספרים = ספרות בלבד. תאריכים = dd/mm/yyyy. אל תכלול תוויות כמו "לתשומת ליבך"/"חתימה"/"ברוטו" כערכים. אל תקצר שמות (כתוב שם מלא כפי שמופיע).
 
 מסמך:
 ${docText}`;
+}
+
+// === Gemini (Google AI) extraction ===
+// Gemini 2.5 Flash — free tier (15 RPM, 1500 RPD, Vision-capable)
+async function extractWithGemini(text){
+  const key = localStorage.getItem('gemini_api_key');
+  if(!key) return null;
+  const prompt = _buildExtractionPromptCompact(text);
+  console.log('[Gemini] prompt size:', prompt.length, 'chars');
+  const r = await _fetchWithTimeout(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.1,
+          maxOutputTokens: 2048,
+          responseMimeType: 'application/json'
+        }
+      })
+    },
+    20000
+  );
+  if(!r.ok){
+    const errTxt = await r.text();
+    throw new Error('Gemini API ' + r.status + ': ' + errTxt.slice(0,200));
+  }
+  const data = await r.json();
+  const raw = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text) || '';
+  let jsonText = raw.trim().replace(/^```(?:json)?\s*/i,'').replace(/```\s*$/,'').trim();
+  const first = jsonText.indexOf('{');
+  const last = jsonText.lastIndexOf('}');
+  if(first >= 0 && last > first) jsonText = jsonText.slice(first, last+1);
+  return JSON.parse(jsonText);
+}
+
+// Gemini Vision — accepts PDF (rendered to images) or direct image
+async function extractWithGeminiVision(file, geminiKey){
+  const isPdf = file.name.toLowerCase().endsWith('.pdf');
+  const parts = [];
+  if(isPdf){
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+    const maxPages = Math.min(pdfDoc.numPages, 6);
+    for(let i=1; i<=maxPages; i++){
+      const page = await pdfDoc.getPage(i);
+      const viewport = page.getViewport({scale: 1.5});
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({canvasContext: canvas.getContext('2d'), viewport}).promise;
+      const base64 = canvas.toDataURL('image/png').split(',')[1];
+      parts.push({ inline_data: { mime_type: 'image/png', data: base64 } });
+    }
+  } else {
+    // Direct image
+    const arrayBuffer = await file.arrayBuffer();
+    const bytes = new Uint8Array(arrayBuffer);
+    let binary = '';
+    const chunkSize = 32768;
+    for(let i=0; i<bytes.length; i+=chunkSize){
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i+chunkSize));
+    }
+    const base64 = btoa(binary);
+    parts.push({ inline_data: { mime_type: file.type || 'image/png', data: base64 } });
+  }
+  parts.push({
+    text: `קרא את כל הטקסט מהמסמך/תמונה שצורפו (זה מסמך משפטי בעברית). החזר את הטקסט המלא כפי שהוא, כולל מספרים ופרטים. בלי תקציר.`
+  });
+  const r = await _fetchWithTimeout(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(geminiKey)}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts }],
+        generationConfig: { temperature: 0.1, maxOutputTokens: 4096 }
+      })
+    },
+    40000  // Vision needs more time
+  );
+  if(!r.ok){
+    const errTxt = await r.text();
+    throw new Error('Gemini Vision ' + r.status + ': ' + errTxt.slice(0,200));
+  }
+  const data = await r.json();
+  const text = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text) || '';
+  console.log(`[Gemini Vision] ${file.name}: extracted ${text.length} chars`);
+  return text;
 }
 
 async function extractWithClaude(text){
@@ -1287,6 +1395,7 @@ async function extractFromFile(input){
   showToast(`קורא ${files.length} קובץ${files.length>1?'ים':''}...`);
   const chunks = [];
   const claudeKey = localStorage.getItem('claude_api_key');
+  const geminiKey = localStorage.getItem('gemini_api_key');
   for(const file of files){
     try {
       // Empty file check
@@ -1301,7 +1410,20 @@ async function extractFromFile(input){
         text = await _readPdfText(file);
         // If text extraction yielded < 50 chars, treat as scanned PDF and try Vision
         if(text.trim().length < 50){
-          if(claudeKey){
+          // Try Gemini Vision first (free), then Claude
+          if(geminiKey){
+            showToast(`🔍 ${file.name}: PDF סרוק — מנסה Gemini Vision...`, '');
+            try {
+              text = await extractWithGeminiVision(file, geminiKey);
+            } catch(e){
+              console.error('Gemini Vision failed:', e);
+              if(claudeKey){
+                showToast(`Gemini נכשל, מנסה Claude...`, '');
+                try { text = await _extractWithClaudeVision(file, claudeKey); }
+                catch(e2){ showToast(`⚠ ${file.name}: Vision נכשל — ${e2.message.slice(0,60)}`, 'err'); continue; }
+              } else { showToast(`⚠ ${file.name}: Gemini Vision נכשל — ${e.message.slice(0,60)}`, 'err'); continue; }
+            }
+          } else if(claudeKey){
             showToast(`🔍 ${file.name}: PDF סרוק — מנסה Claude Vision...`, '');
             try {
               text = await _extractWithClaudeVision(file, claudeKey);
@@ -1311,13 +1433,24 @@ async function extractFromFile(input){
               continue;
             }
           } else {
-            showToast(`⚠ ${file.name}: PDF סרוק (אין טקסט). הזן מפתח Claude ב-⚙ הגדרות AI לזיהוי תמונה`, 'err');
+            showToast(`⚠ ${file.name}: PDF סרוק (אין טקסט). הזן מפתח Gemini (חינמי!) או Claude ב-⚙ הגדרות AI`, 'err');
             continue;
           }
         }
       } else if(isImage){
-        // Image upload — direct to Vision
-        if(claudeKey){
+        // Image upload — direct to Vision (Gemini → Claude)
+        if(geminiKey){
+          showToast(`🔍 ${file.name}: תמונה — מנסה Gemini Vision...`, '');
+          try {
+            text = await extractWithGeminiVision(file, geminiKey);
+          } catch(e){
+            if(claudeKey){
+              showToast(`Gemini נכשל, מנסה Claude...`, '');
+              try { text = await _extractWithClaudeVisionImage(file, claudeKey); }
+              catch(e2){ showToast(`⚠ ${file.name}: Vision נכשל — ${e2.message.slice(0,60)}`, 'err'); continue; }
+            } else { showToast(`⚠ ${file.name}: Vision נכשל — ${e.message.slice(0,60)}`, 'err'); continue; }
+          }
+        } else if(claudeKey){
           showToast(`🔍 ${file.name}: תמונה — מנסה Claude Vision...`, '');
           try {
             text = await _extractWithClaudeVisionImage(file, claudeKey);
@@ -1326,7 +1459,7 @@ async function extractFromFile(input){
             continue;
           }
         } else {
-          showToast(`⚠ ${file.name}: תמונה (דורש Claude Vision). הזן מפתח ב-⚙ הגדרות AI`, 'err');
+          showToast(`⚠ ${file.name}: תמונה (דורש Vision). הזן מפתח Gemini חינמי ב-⚙ הגדרות AI`, 'err');
           continue;
         }
       } else {
@@ -1496,7 +1629,34 @@ async function extractFromText(text){
   if(!text) return;
   if(!$('form-sections').children.length)_buildFormUI();
 
-  // 0a. Try Claude first (highest quality)
+  // 0. Try Gemini first (free, fast, Vision-capable, recommended)
+  if(localStorage.getItem('gemini_api_key')){
+    try {
+      showToast('🔵 מחלץ עם Gemini AI...', '');
+      const rawResult = await extractWithGemini(text);
+      console.log('[AI/Gemini] raw response:', rawResult);
+      window._lastAiResponse = rawResult;
+      const result = _normalizeExtracted(rawResult);
+      console.log('[AI/Gemini] after normalize:', result);
+      const rawCount = rawResult ? Object.keys(rawResult).length : 0;
+      const normCount = Object.keys(result).length;
+      if(result && typeof result === 'object' && normCount > 0){
+        const count = _applyExtractedFields(result);
+        showToast(`✓ Gemini חילץ ${count} שדות (מ-${rawCount})`, 'ok');
+        _showDebugOverlay('Gemini', rawResult, result, count);
+        sync();
+        return;
+      }
+      _showDebugOverlay('Gemini', rawResult, result, 0);
+      showToast(rawCount === 0 ? 'Gemini לא מצא שדות — מנסה Claude' : `Gemini החזיר ${rawCount} אבל כולם נדחו — מנסה Claude`, '');
+    } catch(e){
+      console.error('Gemini failed:', e);
+      _showDebugOverlay('Gemini ERROR', {error: e.message}, {}, 0);
+      showToast('Gemini נכשל (' + e.message.slice(0,80) + ') — מנסה Claude', 'err');
+    }
+  }
+
+  // 0a. Try Claude (highest quality, fallback to Gemini)
   if(localStorage.getItem('claude_api_key')){
     try {
       showToast('🟠 מחלץ עם Claude AI...', '');
