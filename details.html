@@ -350,7 +350,7 @@ const FORM_SCHEMA = {
     ]
   },
   reason_no_alimony_section: {
-    label: 'סעיף ד.5 — הסיבה לאי קבלת מזונות מקרובים ⚠ קואורדינטות אומדן',
+    label: 'סעיף ד.5 — הסיבה לאי קבלת מזונות מקרובים',
     fields: [
       {id:'reason_no_alimony', label:'ד.5) הסיבה שהתובע אינו יכול לקבל מזונות מקרובים', page:5, rightEdge:524.0, y:330.0, maxWidth:454.0, size:10},
     ]
@@ -361,43 +361,30 @@ const FORM_SCHEMA = {
       {id:'prior_case_extra_c1',label:'הליכים קודמים (פרטים נוספים) שורה 1/1',page:0,rightEdge:505.4,y:474.9,maxWidth:431.6,size:9},
     ]
   },
-  property_p1: {
-    label: 'סעיף 10 — רכוש בעלי הדין',
-    fields: [
-      {id:'property_p1_r1c1',label:'10) כותרת/הערה',page:1,rightEdge:297.0,y:364.1,maxWidth:223.2,size:9},
-      {id:'property_p1_r2c1',label:'10) רכוש בעל הדין — תיאור 1',page:1,rightEdge:524.0,y:333.0,maxWidth:147.4,size:9},
-      {id:'property_p1_r2c2',label:'10) רכוש בעל הדין — תיאור 2',page:1,rightEdge:372.6,y:333.0,maxWidth:147.4,size:9},
-      {id:'property_p1_r2c3',label:'10) רכוש בעל הדין שכנגד — תיאור',page:1,rightEdge:221.2,y:333.0,maxWidth:147.4,size:9},
-      {id:'property_p1_r3c1',label:'10) הערה נוספת',page:1,rightEdge:311.6,y:320.8,maxWidth:237.8,size:9},
-      {id:'property_p1_r4c1',label:'10) רכוש בעל הדין — שורה נוספת',page:1,rightEdge:524.0,y:290.1,maxWidth:147.4,size:9},
-      {id:'property_p1_r4c2',label:'10) רכוש שכנגד — שורה נוספת',page:1,rightEdge:372.6,y:290.1,maxWidth:147.4,size:9},
-      {id:'property_p1_r4c3',label:'10) הערה',page:1,rightEdge:221.2,y:290.1,maxWidth:147.4,size:9},
-    ]
-  },
   residence_p1: {
-    label: 'סעיף 12 — דירת המגורים של בעלי הדין ⚠ כל הקואורדינטות אומדן',
+    label: 'סעיף 12 — דירת המגורים של בעלי הדין',
     fields: [
-      // בעל הדין: כתובת / מספר חדרים / מספר נפשות (estimated y ~ 115)
-      {id:'residence_self_addr',  label:'12) בעל הדין — כתובת ⚠ אומדן',         page:1, rightEdge:451.2, y:115.0, maxWidth:200, size:9},
-      {id:'residence_self_rooms', label:'12) בעל הדין — מס׳ חדרים ⚠ אומדן',     page:1, rightEdge:297.4, y:115.0, maxWidth:60, size:9},
-      {id:'residence_self_people',label:'12) בעל הדין — מס׳ נפשות ⚠ אומדן',     page:1, rightEdge:163.5, y:115.0, maxWidth:60, size:9},
-      // בעל הדין שכנגד (estimated y ~ 78)
-      {id:'residence_other_addr',  label:'12) בעל הדין שכנגד — כתובת ⚠ אומדן',  page:1, rightEdge:451.2, y:78.0,  maxWidth:200, size:9},
-      {id:'residence_other_rooms', label:'12) בעל הדין שכנגד — מס׳ חדרים ⚠ אומדן',page:1, rightEdge:297.4, y:78.0,  maxWidth:60, size:9},
-      {id:'residence_other_people',label:'12) בעל הדין שכנגד — מס׳ נפשות ⚠ אומדן',page:1, rightEdge:163.5, y:78.0,  maxWidth:60, size:9},
+      // בעל הדין — שורת נתונים ראשונה (y=199.2, מתחת לכותרות העמודות ב-y=217.5)
+      {id:'residence_self_addr',  label:'12) בעל הדין — כתובת',     page:1, rightEdge:524.0, y:199.2, maxWidth:147.4, size:9},
+      {id:'residence_self_rooms', label:'12) בעל הדין — מס׳ חדרים', page:1, rightEdge:372.6, y:199.2, maxWidth:147.4, size:9},
+      {id:'residence_self_people',label:'12) בעל הדין — מס׳ נפשות', page:1, rightEdge:221.2, y:199.2, maxWidth:147.4, size:9},
+      // בעל הדין שכנגד — שורת נתונים שנייה (y=156.3, מתחת לכותרות העמודות ב-y=174.1)
+      {id:'residence_other_addr',  label:'12) בעל הדין שכנגד — כתובת',     page:1, rightEdge:524.0, y:156.3, maxWidth:147.4, size:9},
+      {id:'residence_other_rooms', label:'12) בעל הדין שכנגד — מס׳ חדרים', page:1, rightEdge:372.6, y:156.3, maxWidth:147.4, size:9},
+      {id:'residence_other_people',label:'12) בעל הדין שכנגד — מס׳ נפשות', page:1, rightEdge:221.2, y:156.3, maxWidth:147.4, size:9},
     ]
   },
   debts_p1: {
     label: 'סעיף 11 — חובות בעלי הדין (נושה / תשלומים / סה״כ)',
     fields: [
-      {id:'debts_p1_r1c1',label:'11) כותרת/הערה',page:1,rightEdge:297.0,y:230.3,maxWidth:223.2,size:9},
-      {id:'debts_p1_r2c1',label:'11) חובות בעל הדין — הנושה',page:1,rightEdge:524.0,y:199.2,maxWidth:147.4,size:9},
-      {id:'debts_p1_r2c2',label:'11) חובות בעל הדין — תשלומים תקופתיים',page:1,rightEdge:372.6,y:199.2,maxWidth:147.4,size:9},
-      {id:'debts_p1_r2c3',label:'11) חובות בעל הדין — סה״כ',page:1,rightEdge:221.2,y:199.2,maxWidth:147.4,size:9},
-      {id:'debts_p1_r3c1',label:'11) הערה נוספת',page:1,rightEdge:311.6,y:186.9,maxWidth:237.8,size:9},
-      {id:'debts_p1_r4c1',label:'11) חובות שכנגד — הנושה',page:1,rightEdge:451.2,y:156.3,maxWidth:74.6,size:9},
-      {id:'debts_p1_r4c2',label:'11) חובות שכנגד — תשלומים',page:1,rightEdge:297.4,y:156.3,maxWidth:72.2,size:9},
-      {id:'debts_p1_r4c3',label:'11) חובות שכנגד — סה״כ',page:1,rightEdge:163.5,y:156.3,maxWidth:89.7,size:9},
+      // בעל הדין — שורת נתונים ראשונה (y=333.2, מתחת לכותרות העמודות ב-y=351.2)
+      {id:'debt_self_creditor',  label:'11) בעל הדין — הנושה',                  page:1, rightEdge:524.0, y:333.2, maxWidth:147.4, size:9},
+      {id:'debt_self_payments',  label:'11) בעל הדין — תשלומים תקופתיים',       page:1, rightEdge:372.6, y:333.2, maxWidth:147.4, size:9},
+      {id:'debt_self_total',     label:'11) בעל הדין — סה״כ חובות',             page:1, rightEdge:221.2, y:333.2, maxWidth:147.4, size:9},
+      // בעל הדין שכנגד — שורת נתונים שנייה (y=290.0, מתחת לכותרות העמודות ב-y=308.0)
+      {id:'debt_other_creditor', label:'11) בעל הדין שכנגד — הנושה',            page:1, rightEdge:524.0, y:290.0, maxWidth:147.4, size:9},
+      {id:'debt_other_payments', label:'11) בעל הדין שכנגד — תשלומים תקופתיים', page:1, rightEdge:372.6, y:290.0, maxWidth:147.4, size:9},
+      {id:'debt_other_total',    label:'11) בעל הדין שכנגד — סה״כ חובות',       page:1, rightEdge:221.2, y:290.0, maxWidth:147.4, size:9},
     ]
   },
   spouse_table: {

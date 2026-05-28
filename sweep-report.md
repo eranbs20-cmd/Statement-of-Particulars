@@ -1,8 +1,8 @@
 # Sweep Report — בדיקת בריחות
 
-Generated: 2026-05-25T11:06:18.752Z
+Generated: 2026-05-27T15:31:54.951Z
 Font: Heebo-Bold | Pad: 2pt left, 2pt right
-Total checked: 201 | Leaks found: 0
+Total checked: 193 | Leaks found: 0
 
 ## Leakage Details
 
