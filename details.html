@@ -62,7 +62,29 @@ details.sect>summary:hover{background:#ede8f6}
 .extraction-card{margin:18px;padding:16px;border:2px dashed #c0a8e8;border-radius:12px;background:#f8faff;text-align:center}
 .drop-zone{padding:20px;border:1px dashed #2d1b69;border-radius:8px;background:#fff;cursor:pointer;transition:all 0.2s}
 .drop-zone:hover,.drop-zone.hover{background:#ede8f6;border-color:#1a6b3a;transform:scale(1.01)}
+/* Uploaded files list — interactive badges */
+.file-badge{display:inline-flex;align-items:center;background:#eef2ff;color:#2d1b69;padding:4px 4px 4px 10px;border:1px solid #d4c5f0;border-radius:12px;margin:3px;font-size:11px;line-height:1.4;transition:background 0.15s,border-color 0.15s,box-shadow 0.15s}
+.file-badge:hover{background:#e0d6f5;border-color:#9d7fd4;box-shadow:0 1px 3px rgba(45,27,105,0.08)}
+.file-badge-text{display:inline-block;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}
+.file-badge-x{display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px;margin-right:6px;padding:0;background:transparent;color:#7c6b9f;border:none;border-radius:50%;cursor:pointer;font-size:14px;font-weight:700;line-height:1;transition:background 0.15s,color 0.15s}
+.file-badge-x:hover,.file-badge-x:focus{background:#f3e8ff;color:#c0392b;outline:none}
+.files-clear-btn{padding:5px 11px;background:#fff;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:inherit;transition:background 0.15s,border-color 0.15s}
+.files-clear-btn:hover,.files-clear-btn:focus{background:#fdecec;border-color:#e57373;outline:none}
+/* Subtle focus state for inputs and selects (a11y) */
+.fg select,.fg input[type=text],input[type=password]{transition:border-color 0.15s,box-shadow 0.15s}
+.fg select:focus,input[type=password]:focus{border-color:#2d1b69;box-shadow:0 0 0 3px rgba(45,27,105,0.15);outline:none}
+/* Smooth hover on qbtn / btn-g / btn-r */
+.qbtn,.btn-g,.btn-r{transition:background 0.15s,transform 0.15s,box-shadow 0.15s,border-color 0.15s}
+/* Action buttons — secondary outline variant for less visual noise */
+.qbtn.btn-outline{background:#fff !important;color:#475569 !important;border:1px solid #cbd5e1 !important;font-weight:600 !important}
+.qbtn.btn-outline:hover{background:#f8fafc !important;border-color:#94a3b8 !important;color:#2d1b69 !important}
+/* AI debug panel — softer brand-aligned colors */
+.ai-debug-panel{background:#f5efff !important;border:1.5px solid #c0a8e8 !important}
+.ai-debug-panel pre,.ai-debug-panel code{background:#fff !important;border:1px solid #e2e8f0 !important;color:#2d1b69 !important}
 @media screen and (max-width:768px){
+  .file-badge{font-size:11.5px;padding:5px 5px 5px 11px}
+  .file-badge-x{min-width:28px;min-height:28px}
+  .files-clear-btn{padding:7px 13px;font-size:12px}
   body{background:#f0f3f8}
   .topbar{font-size:15px;padding:12px 14px;padding-top:max(12px,env(safe-area-inset-top))}
   .wrap{padding:10px;gap:10px}
@@ -97,7 +119,7 @@ details.sect>summary:hover{background:#ede8f6}
       <textarea id="extract-input-text" placeholder="הדבק כאן הודעה, סיכום או פרטי לקוח..." style="width:100%;height:58px;padding:8px;font-size:12px;border:1px solid #cbd5e1;border-radius:6px;resize:vertical;box-sizing:border-box"></textarea>
       <button class="qbtn" style="width:100%;margin:6px 0 0;background:#2d1b69;color:#fff;border:none;font-weight:700;padding:8px" onclick="extractFromText($('extract-input-text').value)">⚡ חלץ פרטים מהטקסט</button>
       <button class="qbtn" style="width:100%;margin:6px 0 0;background:#10b981;color:#fff;border:none;font-weight:700;padding:8px" onclick="openAiSettings()">⚙ הגדרות AI חכם (Gemini + Claude + Groq)</button>
-      <button class="qbtn" style="width:100%;margin:6px 0 0;background:#64748b;color:#fff;border:none;font-weight:700;padding:8px;font-size:11.5px" onclick="copyAiPromptToClipboard()">📋 העתק תבנית AI ל-ChatGPT/Claude</button>
+      <button class="qbtn btn-outline" style="width:100%;margin:6px 0 0;padding:8px;font-size:11.5px" onclick="copyAiPromptToClipboard()">📋 העתק תבנית AI ל-ChatGPT/Claude</button>
     </div>
   </div>
 
@@ -881,14 +903,14 @@ ${docText}`;
 }
 
 // === Gemini (Google AI) extraction ===
-// Gemini 3.5 Flash — free tier (15 RPM, 1500 RPD, Vision-capable)
+// Gemini 2.5 Flash — free tier (15 RPM, 1500 RPD, Vision-capable)
 async function extractWithGemini(text){
   const key = localStorage.getItem('gemini_api_key');
   if(!key) return null;
   const prompt = _buildExtractionPromptCompact(text);
   console.log('[Gemini] prompt size:', prompt.length, 'chars');
   const r = await _fetchWithTimeout(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${encodeURIComponent(key)}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -950,7 +972,7 @@ async function extractWithGeminiVision(file, geminiKey){
     text: `קרא את כל הטקסט מהמסמך/תמונה שצורפו (זה מסמך משפטי בעברית). החזר את הטקסט המלא כפי שהוא, כולל מספרים ופרטים. בלי תקציר.`
   });
   const r = await _fetchWithTimeout(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${encodeURIComponent(geminiKey)}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(geminiKey)}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1110,21 +1132,22 @@ function _showDebugOverlay(source, raw, normalized, appliedCount){
   if(!box){
     box = document.createElement('div');
     box.id = 'ai-debug-overlay';
-    box.style.cssText = 'margin:10px 0;padding:12px;background:#fef3c7;border:2px solid #f59e0b;border-radius:10px;direction:rtl;font-size:11.5px;font-family:monospace;max-height:400px;overflow:auto;text-align:left;line-height:1.5';
+    box.className = 'ai-debug-panel';
+    box.style.cssText = 'margin:10px 0;padding:12px;border-radius:10px;direction:rtl;font-size:11.5px;font-family:monospace;max-height:400px;overflow:auto;text-align:left;line-height:1.5';
     const extractCard = document.querySelector('.extraction-card');
     if(extractCard) extractCard.appendChild(box); else document.body.appendChild(box);
   }
   const rawStr = JSON.stringify(raw, null, 2);
   const normStr = JSON.stringify(normalized, null, 2);
   box.innerHTML = `
-    <div style="direction:rtl;font-family:Arial,sans-serif;font-weight:700;color:#92400e;font-size:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
-      <span>🔍 דיבאג חילוץ AI (${source}) — נכתבו ${appliedCount} שדות</span>
-      <button onclick="this.parentElement.parentElement.style.display='none'" style="background:#fff;border:1px solid #f59e0b;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px">סגור ✕</button>
+    <div style="direction:rtl;font-family:Arial,sans-serif;font-weight:700;color:#2d1b69;font-size:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+      <span>🔍 פירוט חילוץ AI (${source}) — נכתבו ${appliedCount} שדות</span>
+      <button onclick="this.parentElement.parentElement.style.display='none'" style="background:#fff;border:1px solid #c0a8e8;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;color:#2d1b69">סגור ✕</button>
     </div>
-    <div style="direction:rtl;font-family:Arial,sans-serif;font-size:11px;color:#78350f;margin-bottom:4px">📥 גולמי שה-AI החזיר (${raw ? Object.keys(raw).length : 0} שדות):</div>
-    <pre style="background:#fff;padding:8px;border-radius:6px;margin:4px 0;overflow:auto;direction:ltr;text-align:left">${rawStr.replace(/</g,'&lt;')}</pre>
-    <div style="direction:rtl;font-family:Arial,sans-serif;font-size:11px;color:#78350f;margin-bottom:4px;margin-top:6px">✨ אחרי סינון וניקוי (${normalized ? Object.keys(normalized).length : 0} שדות):</div>
-    <pre style="background:#fff;padding:8px;border-radius:6px;margin:4px 0;overflow:auto;direction:ltr;text-align:left">${normStr.replace(/</g,'&lt;')}</pre>
+    <div style="direction:rtl;font-family:Arial,sans-serif;font-size:11px;color:#5b4983;margin-bottom:4px">📥 גולמי שה-AI החזיר (${raw ? Object.keys(raw).length : 0} שדות):</div>
+    <pre style="padding:8px;border-radius:6px;margin:4px 0;overflow:auto;direction:ltr;text-align:left">${rawStr.replace(/</g,'&lt;')}</pre>
+    <div style="direction:rtl;font-family:Arial,sans-serif;font-size:11px;color:#5b4983;margin-bottom:4px;margin-top:6px">✨ אחרי סינון וניקוי (${normalized ? Object.keys(normalized).length : 0} שדות):</div>
+    <pre style="padding:8px;border-radius:6px;margin:4px 0;overflow:auto;direction:ltr;text-align:left">${normStr.replace(/</g,'&lt;')}</pre>
   `;
   box.style.display = 'block';
 }
@@ -1594,23 +1617,55 @@ async function _sendImagesToClaudeVision(base64Images, claudeKey, fileName, medi
   return text;
 }
 
+function _fileIcon(name){
+  const n = (name || '').toLowerCase();
+  if(/\.pdf$/.test(n)) return '📕';
+  if(/\.(png|jpe?g|gif|webp|bmp|svg)$/.test(n)) return '🖼';
+  if(/\.(json|js|html|css|md|xml|csv)$/.test(n)) return '📋';
+  return '📄';
+}
+
 function _showUploadedFiles(files){
+  // Persist file list so user can remove individual files
+  window._uploadedFiles = (files || []).slice();
   // Track uploaded filenames so blacklist can reject them as field values
-  window._uploadedFileNames = (files || []).map(f => {
+  window._uploadedFileNames = window._uploadedFiles.map(f => {
     const n = (f.name || '').toLowerCase();
     return n.replace(/\.(pdf|json|txt|png|jpg|jpeg|gif|webp|docx?)$/, '').trim();
   }).filter(n => n.length >= 3);
   const box = $('uploaded-files-list');
   if(!box) return;
+  if(!window._uploadedFiles.length){
+    box.style.display = 'none';
+    box.innerHTML = '';
+    return;
+  }
   box.style.display = 'block';
-  box.innerHTML = '<b>קבצים שהועלו:</b> ' + files.map(f => {
+  const badges = window._uploadedFiles.map((f, idx) => {
     let sizeStr;
     if(f.size === 0) sizeStr = '0B (ריק!)';
     else if(f.size < 1024) sizeStr = `${f.size}B`;
     else if(f.size < 1024*1024) sizeStr = `${(f.size/1024).toFixed(1)}KB`;
     else sizeStr = `${(f.size/1024/1024).toFixed(2)}MB`;
-    return `<span style="display:inline-block;background:#eef2ff;color:#2d1b69;padding:2px 8px;border-radius:10px;margin:2px 3px;font-size:10.5px">📄 ${f.name} (${sizeStr})</span>`;
+    const safeName = String(f.name).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return `<span class="file-badge"><span class="file-badge-text">${_fileIcon(f.name)} ${safeName} <span style="color:#94a3b8">(${sizeStr})</span></span><button type="button" class="file-badge-x" aria-label="הסר קובץ" title="הסר קובץ" onclick="removeUploadedFile(${idx})">✕</button></span>`;
   }).join('');
+  box.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><b style="color:#2d1b69">קבצים שהועלו (${window._uploadedFiles.length}):</b><button type="button" class="files-clear-btn" onclick="clearUploadedFiles()">🗑 נקה הכל</button></div>${badges}`;
+}
+
+function removeUploadedFile(idx){
+  if(!Array.isArray(window._uploadedFiles)) return;
+  window._uploadedFiles.splice(idx, 1);
+  _showUploadedFiles(window._uploadedFiles);
+}
+
+function clearUploadedFiles(){
+  window._uploadedFiles = [];
+  window._uploadedFileNames = [];
+  const box = $('uploaded-files-list');
+  if(box){ box.style.display = 'none'; box.innerHTML = ''; }
+  const input = $('file-upload-input');
+  if(input) input.value = '';
 }
 
 // Pay-slip (תלוש משכורת) extraction
