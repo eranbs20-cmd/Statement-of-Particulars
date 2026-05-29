@@ -361,6 +361,20 @@ const FORM_SCHEMA = {
       {id:'prior_case_extra_c1',label:'הליכים קודמים (פרטים נוספים) שורה 1/1',page:0,rightEdge:505.4,y:474.9,maxWidth:431.6,size:9},
     ]
   },
+  property_p1: {
+    label: 'סעיף 10 — רכוש בעלי הדין (2 עמודות × 3 שורות)',
+    fields: [
+      // שורה 1 (y=460) — מתחת לכותרות sub "בעל הדין"/"בעל הדין שכנגד" ב-y=479.9
+      {id:'property_self_row1',  label:'10) בעל הדין — רכוש (שורה 1)',     page:1, rightEdge:524.0, y:460.0, maxWidth:226.0, size:9},
+      {id:'property_other_row1', label:'10) בעל הדין שכנגד — רכוש (שורה 1)',page:1, rightEdge:290.1, y:460.0, maxWidth:218.7, size:9},
+      // שורה 2 (y=440)
+      {id:'property_self_row2',  label:'10) בעל הדין — רכוש (שורה 2)',     page:1, rightEdge:524.0, y:440.0, maxWidth:226.0, size:9},
+      {id:'property_other_row2', label:'10) בעל הדין שכנגד — רכוש (שורה 2)',page:1, rightEdge:290.1, y:440.0, maxWidth:218.7, size:9},
+      // שורה 3 (y=420) — מעל לכותרת סעיף 11 ב-y=399.7
+      {id:'property_self_row3',  label:'10) בעל הדין — רכוש (שורה 3)',     page:1, rightEdge:524.0, y:420.0, maxWidth:226.0, size:9},
+      {id:'property_other_row3', label:'10) בעל הדין שכנגד — רכוש (שורה 3)',page:1, rightEdge:290.1, y:420.0, maxWidth:218.7, size:9},
+    ]
+  },
   residence_p1: {
     label: 'סעיף 12 — דירת המגורים של בעלי הדין',
     fields: [
@@ -442,6 +456,13 @@ const FORM_SCHEMA = {
       {id:'oc_def_p3_r4c2',label:'שורה 4 — שם הילד ⚠ אומדן',page:3,rightEdge:495.7,y:629.6,maxWidth:117.2,size:9},
       {id:'oc_def_p3_r4c3',label:'שורה 4 — גיל ⚠ אומדן',page:3,rightEdge:374.5,y:629.6,maxWidth:55.9,size:8},
       {id:'oc_def_p3_r4c4',label:'שורה 4 — סכום מזונות ⚠ אומדן',page:3,rightEdge:208.9,y:629.6,maxWidth:111.0,size:9},
+    ]
+  },
+  def_spouse_section: {
+    label: 'סעיף ב.7 — האם לנתבע בן זוג שאינו הורהו של התובע',
+    fields: [
+      // טקסט חופשי על קו תחתון (אזור x=70-250, y=623.9)
+      {id:'def_spouse_exists', label:'ב.7) האם לנתבע בן זוג שאינו הורהו של התובע? (טקסט חופשי — כן/לא + פרטים)', page:3, rightEdge:250.0, y:624.0, maxWidth:170.0, size:10},
     ]
   },
   spouse_kids_p3: {
@@ -860,14 +881,14 @@ ${docText}`;
 }
 
 // === Gemini (Google AI) extraction ===
-// Gemini 2.5 Flash — free tier (15 RPM, 1500 RPD, Vision-capable)
+// Gemini 3.5 Flash — free tier (15 RPM, 1500 RPD, Vision-capable)
 async function extractWithGemini(text){
   const key = localStorage.getItem('gemini_api_key');
   if(!key) return null;
   const prompt = _buildExtractionPromptCompact(text);
   console.log('[Gemini] prompt size:', prompt.length, 'chars');
   const r = await _fetchWithTimeout(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${encodeURIComponent(key)}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -929,7 +950,7 @@ async function extractWithGeminiVision(file, geminiKey){
     text: `קרא את כל הטקסט מהמסמך/תמונה שצורפו (זה מסמך משפטי בעברית). החזר את הטקסט המלא כפי שהוא, כולל מספרים ופרטים. בלי תקציר.`
   });
   const r = await _fetchWithTimeout(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(geminiKey)}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${encodeURIComponent(geminiKey)}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
