@@ -281,7 +281,7 @@ const FORM_SCHEMA = {
     fields: [
       {id:'cars_details',   label:'מכוניות — פרטים (תיאור כללי)',       page:2, rightEdge:244.8, y:630.7, maxWidth:142, size:10},
       {id:'vehicle_type',   label:'סוג רכב (יצרן/דגם)',                   page:2, rightEdge:140, y:632, maxWidth:90, size:9},
-      {id:'monthly_alimony',label:'סכום מזונות חודשי דרוש (₪)',         page:2, rightEdge:271.2, y:612.8, maxWidth:52, size:10},
+      {id:'monthly_alimony',label:'סכום מזונות חודשי שדרוש מהנתבע (₪)',  page:2, rightEdge:271.2, y:612.8, maxWidth:52, size:10},
     ]
   },
   bank_accounts_v2: {
@@ -491,7 +491,7 @@ const FORM_SCHEMA = {
     label: 'סעיף ב.7 — האם לנתבע בן זוג שאינו הורהו של התובע',
     fields: [
       // טקסט חופשי על קו תחתון (אזור x=70-250, y=623.9)
-      {id:'def_spouse_exists', label:'ב.7) האם לנתבע בן זוג שאינו הורהו של התובע? (טקסט חופשי — כן/לא + פרטים)', page:3, rightEdge:250.0, y:624.0, maxWidth:170.0, size:10},
+      {id:'def_spouse_exists', label:'האם לנתבע בן זוג שאינו הורה של התובע? (כן/לא + פרטים אם רלוונטי)', page:3, rightEdge:250.0, y:624.0, maxWidth:170.0, size:10},
     ]
   },
   spouse_kids_p3: {
@@ -548,12 +548,12 @@ const FORM_SCHEMA = {
     label: 'סעיפים ד.1+ד.2 — מקום מושב קרובים + ילדי בן זוג',
     fields: [
       // ד.1 — table: שם / מקום מושב (2 columns × 2 rows)
-      {id:'residence_pq_p4_r1c1',label:'ד.1 שורה 1 — שם הקרוב',page:4,rightEdge:488.6,y:714.4,maxWidth:159.2,size:9},
-      {id:'residence_pq_p4_r1c2',label:'ד.1 שורה 1 — מקום המושב', default:'ישראל', page:4,rightEdge:325.4,y:714.4,maxWidth:244.5,size:9},
-      {id:'residence_pq_p4_r2c1',label:'ד.1 שורה 2 — שם הקרוב',page:4,rightEdge:488.6,y:696.0,maxWidth:159.2,size:9},
-      {id:'residence_pq_p4_r2c2',label:'ד.1 שורה 2 — מקום המושב', default:'ישראל', page:4,rightEdge:325.4,y:696.0,maxWidth:244.5,size:9},
+      {id:'residence_pq_p4_r1c1',label:'ד.1 — שם של בעל דין (שורה 1, לא ילד)',page:4,rightEdge:488.6,y:720.0,maxWidth:159.2,size:9},
+      {id:'residence_pq_p4_r1c2',label:'ד.1 — מקום מושבו של אותו בעל דין (שורה 1)', default:'ישראל', page:4,rightEdge:325.4,y:720.0,maxWidth:244.5,size:9},
+      {id:'residence_pq_p4_r2c1',label:'ד.1 — שם של בעל דין (שורה 2, לא ילד)',page:4,rightEdge:488.6,y:702.0,maxWidth:159.2,size:9},
+      {id:'residence_pq_p4_r2c2',label:'ד.1 — מקום מושבו של אותו בעל דין (שורה 2)', default:'ישראל', page:4,rightEdge:325.4,y:702.0,maxWidth:244.5,size:9},
       // ד.2 — table: מס׳ / שם / גיל / סכום (3 rows × 4 cols)
-      {id:'residence_pq_p4_r3c1',label:'ד.2 שורה 1 — שם הילד',page:4,rightEdge:446.2,y:624.4,maxWidth:145.1,size:9},
+      {id:'residence_pq_p4_r3c1',label:'ד.2 — שם ילד בן הזוג של הנתבע (שורה 1)',page:4,rightEdge:446.2,y:624.4,maxWidth:145.1,size:9},
       {id:'residence_pq_p4_r3c2',label:'ד.2 שורה 1 — גיל',page:4,rightEdge:297.1,y:624.4,maxWidth:81.8,size:9},
       {id:'residence_pq_p4_r3c3',label:'ד.2 שורה 1 — סכום',page:4,rightEdge:211.3,y:624.4,maxWidth:130.9,size:9},
       {id:'residence_pq_p4_r4c1',label:'ד.2 שורה 2 — מס׳',page:4,rightEdge:484.8,y:606.0,maxWidth:34.6,size:8},
@@ -2100,11 +2100,13 @@ async function _buildPDFBlob(includeSig){
   const drawCheckmark = (pageIdx, cx, cy, isChecked) => {
     if(!isChecked) return;
     const page = pages[pageIdx];
-    const font = pdfDoc.embedStandardFont(PDFLib.StandardFonts.Helvetica);
+    // Helvetica-Bold gives a thicker, more visible X. Size 11 fills ~10pt checkbox.
+    // Offsets +2/+1 center the X glyph (Helvetica-Bold 'X' is ~7pt wide at size 11).
+    const font = pdfDoc.embedStandardFont(PDFLib.StandardFonts.HelveticaBold);
     page.drawText('X', {
-      x: cx + 3,
-      y: cy + 3,
-      size: 9,
+      x: cx + 2,
+      y: cy + 1,
+      size: 11,
       font: font,
       color: blueColor
     });
