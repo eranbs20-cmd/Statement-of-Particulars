@@ -36,10 +36,8 @@ body{font-family:'Merriweather','David Libre','Times New Roman',serif;font-size:
   border-radius:6px;font-size:12px;direction:rtl;font-family:'David Libre',serif;color:#1e293b;background:#fff;transition:all 0.2s}
 .fg textarea{resize:vertical;min-height:58px;line-height:1.5}
 .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(200,153,104,0.20);outline:none}
-.qbtn{display:inline-block;margin:2px 2px;padding:7px 14px;background:var(--cream-deep);color:var(--ink);border-radius:8px;font-family:'Merriweather','David Libre',serif;
-  color:#2d1b69;border:1px solid #c0a8e8;border-radius:6px;font-size:12px;font-weight:600;
-  cursor:pointer;font-family:'David Libre',serif;transition:all 0.2s}
-.qbtn:hover{background:var(--gold-soft);color:var(--ink)}
+.qbtn{display:inline-block;margin:2px 2px;padding:7px 14px;background:var(--cream-deep);color:var(--ink);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Merriweather','David Libre',serif;transition:all 0.2s}
+.qbtn:hover{background:var(--gold-soft);color:var(--ink);border-color:var(--gold)}
 .btn-g,.btn-r{display:block;width:calc(100% - 36px);margin:10px 18px 4px;
   border:none;border-radius:8px;cursor:pointer;font-family:'David Libre',serif;font-weight:700;color:#fff;transition:all 0.2s;text-align:center}
 .btn-g{background:var(--gold);color:var(--ink);padding:13px;font-size:14px;font-weight:700;font-family:'Playfair Display','David Libre',serif;letter-spacing:0.3px;box-shadow:var(--shadow-gold)}
@@ -48,13 +46,13 @@ body{font-family:'Merriweather','David Libre','Times New Roman',serif;font-size:
 .btn-r:hover{background:#0d2738;transform:translateY(-1px);box-shadow:0 6px 22px rgba(26,58,82,0.30)}
 .stat{font-size:12px;color:#64748b;text-align:center;min-height:16px;margin:4px 18px;font-weight:600}
 .stat.ok{color:#27ae60}.stat.err{color:#c0392b}
-details.sect{margin:8px 18px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.02)}
-details.sect>summary{background:#f8fafc;color:#2d1b69;padding:12px 18px;font-size:13px;font-weight:700;cursor:pointer;list-style:none;transition:background 0.2s}
+details.sect{margin:8px 18px;border:1px solid var(--border);border-radius:10px;background:#fff;overflow:hidden;box-shadow:var(--shadow-sm)}
+details.sect>summary{background:var(--cream);color:var(--ink);padding:12px 18px;font-size:13px;font-weight:700;cursor:pointer;list-style:none;transition:background 0.2s;font-family:'Playfair Display','David Libre',serif;letter-spacing:0.2px}
 details.sect>summary::-webkit-details-marker{display:none}
-details.sect>summary::before{content:'▸';display:inline-block;margin-left:8px;transition:transform .2s;color:#64748b}
-details.sect[open]>summary::before{transform:rotate(90deg);color:#2d1b69}
-details.sect[open]>summary{background:#f1ecf9;border-bottom:1px solid #e2e8f0}
-details.sect>summary:hover{background:#ede8f6}
+details.sect>summary::before{content:'▸';display:inline-block;margin-left:8px;transition:transform .2s;color:var(--gold)}
+details.sect[open]>summary::before{transform:rotate(90deg);color:var(--gold)}
+details.sect[open]>summary{background:var(--cream-deep);border-bottom:1px solid var(--gold-soft)}
+details.sect>summary:hover{background:var(--gold-soft)}
 .radio-group{display:flex;gap:16px;margin:6px 0 10px}
 .radio-label{display:inline-flex;align-items:center;font-size:13px !important;font-weight:normal !important;color:#334155 !important;cursor:pointer}
 .radio-label input{margin-left:6px;accent-color:var(--ink);width:18px;height:18px}
@@ -67,32 +65,24 @@ details.sect>summary:hover{background:#ede8f6}
 .drop-zone{padding:22px;border:1px dashed var(--ink);border-radius:10px;background:#fff;cursor:pointer;transition:all 0.2s}
 .drop-zone:hover,.drop-zone.hover{background:var(--cream-deep);border-color:var(--gold);transform:scale(1.01)}
 /* Uploaded files list — interactive badges */
-.file-badge{display:inline-flex;align-items:center;background:#eef2ff;color:#2d1b69;padding:4px 4px 4px 10px;border:1px solid #d4c5f0;border-radius:12px;margin:3px;font-size:11px;line-height:1.4;transition:background 0.15s,border-color 0.15s,box-shadow 0.15s}
-.file-badge:hover{background:#e0d6f5;border-color:#9d7fd4;box-shadow:0 1px 3px rgba(45,27,105,0.08)}
+.file-badge{display:inline-flex;align-items:center;background:var(--cream);color:var(--ink);padding:5px 5px 5px 11px;border:1px solid var(--border);border-radius:12px;margin:3px;font-size:11.5px;line-height:1.4;transition:all 0.15s}
+.file-badge:hover{background:var(--gold-soft);border-color:var(--gold);box-shadow:var(--shadow-sm)}
 .file-badge-text{display:inline-block;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}
-.file-badge-x{display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px;margin-right:6px;padding:0;background:transparent;color:#7c6b9f;border:none;border-radius:50%;cursor:pointer;font-size:14px;font-weight:700;line-height:1;transition:background 0.15s,color 0.15s}
-.file-badge-x:hover,.file-badge-x:focus{background:#f3e8ff;color:#c0392b;outline:none}
-.files-clear-btn{padding:5px 11px;background:#fff;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:inherit;transition:background 0.15s,border-color 0.15s}
+.file-badge-x{display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px;margin-right:6px;padding:0;background:transparent;color:var(--ink-soft);border:none;border-radius:50%;cursor:pointer;font-size:14px;font-weight:700;line-height:1;transition:all 0.15s}
+.file-badge-x:hover,.file-badge-x:focus{background:#fdecec;color:#c0392b;outline:none}
+.files-clear-btn{padding:6px 12px;background:#fff;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Merriweather','David Libre',serif;transition:all 0.15s}
 .files-clear-btn:hover,.files-clear-btn:focus{background:#fdecec;border-color:#e57373;outline:none}
-/* Subtle focus state for inputs and selects (a11y) */
-.fg select,.fg input[type=text],input[type=password]{transition:border-color 0.15s,box-shadow 0.15s}
-.fg select:focus,input[type=password]:focus{border-color:#2d1b69;box-shadow:0 0 0 3px rgba(45,27,105,0.15);outline:none}
-/* Smooth hover on qbtn / btn-g / btn-r */
-.qbtn,.btn-g,.btn-r{transition:background 0.15s,transform 0.15s,box-shadow 0.15s,border-color 0.15s}
-/* Action buttons — secondary outline variant for less visual noise */
-.qbtn.btn-outline{background:#fff !important;color:#475569 !important;border:1px solid #cbd5e1 !important;font-weight:600 !important}
-.qbtn.btn-outline:hover{background:#f8fafc !important;border-color:#94a3b8 !important;color:#2d1b69 !important}
-/* AI debug panel — softer brand-aligned colors */
-.ai-debug-panel{background:#f5efff !important;border:1.5px solid #c0a8e8 !important}
-.ai-debug-panel pre,.ai-debug-panel code{background:#fff !important;border:1px solid #e2e8f0 !important;color:#2d1b69 !important}
+.qbtn.btn-outline{background:#fff !important;color:var(--ink-soft) !important;border:1px solid var(--border) !important;font-weight:600 !important}
+.qbtn.btn-outline:hover{background:var(--cream) !important;border-color:var(--gold) !important;color:var(--ink) !important}
+.ai-debug-panel{background:var(--cream) !important;border:1.5px solid var(--gold-soft) !important;border-radius:10px !important}
+.ai-debug-panel pre,.ai-debug-panel code{background:#fff !important;border:1px solid var(--border) !important;color:var(--ink) !important}
 @media screen and (max-width:768px){
-  .file-badge{font-size:11.5px;padding:5px 5px 5px 11px}
+  .file-badge{font-size:12px;padding:6px 6px 6px 12px}
   .file-badge-x{min-width:28px;min-height:28px}
   .files-clear-btn{padding:7px 13px;font-size:12px}
-  body{background:#f0f3f8}
   .topbar{font-size:15px;padding:12px 14px;padding-top:max(12px,env(safe-area-inset-top))}
   .wrap{padding:10px;gap:10px}
-  .fg input[type=text],.fg textarea{padding:10px;font-size:14px;min-height:44px}
+  .fg input[type=text],.fg textarea,.fg select{padding:10px;font-size:14px;min-height:44px}
   .btn-g{padding:13px;font-size:14px}
   .btn-r{padding:14px;font-size:15px}
 }
