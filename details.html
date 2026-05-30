@@ -589,7 +589,7 @@ function _buildFormUI(){
           html+=`<tr>
             <td><input type="text" id="${section.prefix}_name_${i}" placeholder="ילד ${i}" onchange="sync()"></td>
             <td><input type="text" id="${section.prefix}_age_${i}" placeholder="גיל" onchange="sync()"></td>
-            <td><input type="text" id="${section.prefix}_amount_${i}" placeholder="0" inputmode="text" onchange="sync()"></td>
+            <td><input type="text" id="${section.prefix}_amount_${i}" placeholder="0" inputmode="numeric" pattern="[0-9,]*" onchange="sync()"></td>
           </tr>`;
         }
         html+=`</tbody></table>`;
@@ -610,8 +610,8 @@ function _buildFormUI(){
         for(let i=1;i<=12;i++){
           html+=`<tr>
             <td><input type="text" id="${section.prefix}_p_${i}" placeholder="חודש ${i}" onchange="sync()"></td>
-            <td><input type="text" id="${section.prefix}_g_${i}" placeholder="0" inputmode="text" onchange="sync()"></td>
-            <td><input type="text" id="${section.prefix}_n_${i}" placeholder="0" inputmode="text" onchange="sync()"></td>
+            <td><input type="text" id="${section.prefix}_g_${i}" placeholder="0" inputmode="numeric" pattern="[0-9,]*" onchange="sync()"></td>
+            <td><input type="text" id="${section.prefix}_n_${i}" placeholder="0" inputmode="numeric" pattern="[0-9,]*" onchange="sync()"></td>
           </tr>`;
         }
         html+=`</tbody></table>`;
@@ -634,10 +634,18 @@ function _buildFormUI(){
           }
           html+=`</select>`;
         } else {
-          const isNumeric = /amount|date|age|deps|num/.test(f.id);
-          const inputMode = isNumeric ? ' inputmode="text"' : '';
+          // Numeric fields get numeric mobile keyboard. Bank/branch/account/amount/value
+          // are pure digits; dates allow / and -. Pattern hints (non-blocking) help UX.
+          const isPureDigit = /^bank_\d_(branch|account)$|_amount$|_amount_\d+$|^monthly_alimony$|^last_payment_amount$|^vehicle_value$|_g_\d+$|_n_\d+$|^_g$|^_n$|salary/i.test(f.id);
+          const isDate = /date|birth|marriage|payment_date|_dt$/i.test(f.id);
+          const isAge = /_age|_deps/i.test(f.id);
+          let inputMode = '';
+          let pattern = '';
+          if(isPureDigit){ inputMode = ' inputmode="numeric"'; pattern = ' pattern="[0-9,]*"'; }
+          else if(isAge){ inputMode = ' inputmode="numeric"'; pattern = ' pattern="[0-9]*"'; }
+          else if(isDate){ inputMode = ' inputmode="text"'; pattern = ' placeholder="dd/mm/yyyy"'; }
           const defVal = f.default ? ` value="${f.default}"` : '';
-          html+=`<label>${f.label}</label><input type="text" id="${f.id}"${inputMode}${defVal} onchange="sync()">`;
+          html+=`<label>${f.label}</label><input type="text" id="${f.id}"${inputMode}${pattern}${defVal} onchange="sync()">`;
         }
       }
     }
@@ -783,8 +791,10 @@ const _BLACKLIST_VALUES = new Set([
   'הרצאת פרטים', 'טופס 4', 'תקנה', 'תקנה 12', 'מהדורה',
   '___', '____', '_____', '________', '________________',
   'undefined', 'null', 'N/A', 'n/a',
-  // OCR-garbled outputs (seen in production v32 signed PDF) — meaningless Hebrew clusters
+  // OCR-garbled outputs (seen in production v32/v33 signed PDFs) — meaningless Hebrew clusters
   'יחלח', 'ןםם', 'ןןן', 'לסלל', 'לדלגל', 'מזנו', 'ןלל', 'םם', 'ןן',
+  // v33 signed PDF (3) — vehicle field garble
+  'חגלגלצכל', 'לרלרל', 'חגלגלצכל לרלרל',
   // Name-field separator words that AI sometimes melds into name values
   'סדר', 'מס׳', 'מס\'', "מס'", 'מספר', 'ת.ז.', 'ת"ז', 'תעודת זהות', 'ז.ת.'
 ]);
@@ -792,6 +802,21 @@ const _BLACKLIST_VALUES = new Set([
 // Regex check: short meaningless Hebrew (1-3 chars) made of only "final" letters
 // or repeating chars — these are OCR-garbled outputs that pass length checks.
 const _OCR_GARBLE_RE = /^[ןםףץךץםףן]{1,4}$|^(.)\1{1,3}$/;
+
+// Stronger detection: catches mixed-final-letter Hebrew garble like "חגלגלצכל" (v33 leak).
+// Hebrew has 5 final-only letters (ך,ם,ן,ף,ץ) that almost never appear mid-word in real
+// text. If 2+ of them appear in a short string (≤12 chars), or if final-letter frequency
+// exceeds 25% of Hebrew letters, treat as garble.
+function _isHebrewGarble(s){
+  const trim = (s||'').trim();
+  if(trim.length === 0 || trim.length > 14) return false;
+  const finals = (trim.match(/[ןםףץך]/g) || []).length;
+  const heb = (trim.match(/[א-ת]/g) || []).length;
+  if(heb < 2) return false;
+  if(finals >= 2 && trim.length <= 12) return true;
+  if(finals / heb > 0.25 && trim.length < 10) return true;
+  return false;
+}
 function _isBlacklisted(s){
   if(!s) return true;
   const trim = s.trim();
@@ -799,6 +824,10 @@ function _isBlacklisted(s){
   if(_BLACKLIST_VALUES.has(trim)) return true;
   // OCR garble detection: short repeats or final-letter-only clusters
   if(_OCR_GARBLE_RE.test(trim)) return true;
+  // Word-level garble detection (handles "חגלגלצכל" + multi-word combos like "חגלגלצכל לרלרל")
+  for(const w of trim.split(/\s+/)){
+    if(_isHebrewGarble(w)) return true;
+  }
   // Reject if it matches any blacklist exactly (case-insensitive)
   const low = trim.toLowerCase();
   for(const b of _BLACKLIST_VALUES){
@@ -833,6 +862,12 @@ function _normalizeExtracted(obj){
       const digits = v.replace(/\D/g,'');
       if(digits.length === 9) v = digits;
       else continue;
+    }
+    else if(/^bank_\d+_(branch|account)$/i.test(k)){
+      // Bank branch/account are digit-only (+ optional dash for account). Drop letters.
+      const digits = v.replace(/[^\d\-]/g,'');
+      if(digits.length < 3) continue; // too short to be real
+      v = digits;
     }
     else if(isMonetaryField){
       v = v.replace(/[^\d.]/g,'');
@@ -2090,16 +2125,12 @@ async function _buildPDFBlob(includeSig){
   const drawCheckmark = (pageIdx, cx, cy, isChecked) => {
     if(!isChecked) return;
     const page = pages[pageIdx];
-    // Helvetica-Bold gives a thicker, more visible X. Size 11 fills ~10pt checkbox.
-    // Offsets +2/+1 center the X glyph (Helvetica-Bold 'X' is ~7pt wide at size 11).
-    const font = pdfDoc.embedStandardFont(PDFLib.StandardFonts.HelveticaBold);
-    page.drawText('X', {
-      x: cx + 2,
-      y: cy + 1,
-      size: 11,
-      font: font,
-      color: blueColor
-    });
+    // Draw a precise X using 2 crossing lines — guarantees X is inside the checkbox box
+    // regardless of font metric quirks. Box is ~9pt; (cx,cy) is bottom-left corner.
+    // Lines span from (cx+1.5, cy+1.5) to (cx+7.5, cy+7.5) — 6pt diagonal, 1.5pt inset.
+    const opts = { thickness: 1.6, color: blueColor };
+    page.drawLine({ start:{x:cx+1.5, y:cy+1.5}, end:{x:cx+7.5, y:cy+7.5}, ...opts });
+    page.drawLine({ start:{x:cx+1.5, y:cy+7.5}, end:{x:cx+7.5, y:cy+1.5}, ...opts });
   };
 
   if(typeof FORM_SCHEMA!=='undefined'){
