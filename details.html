@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <title>הרצאת פרטים — עו"ד ערן בן שושן</title>
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,29 +22,30 @@
 <script>if(window['pdfjs-dist/build/pdf']){window.pdfjsLib=window['pdfjs-dist/build/pdf'];pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'David Libre','Times New Roman',serif;font-size:12px;background:#f0f3f8;color:#2c3e50;direction:rtl;line-height:1.5}
-.topbar{background:linear-gradient(135deg, #2d1b69 0%, #1a0f40 100%);color:#fff;padding:16px 24px;font-size:18px;font-weight:700;
+:root{--ink:#1a3a52;--ink-soft:#54657a;--gold:#c89968;--gold-soft:#e0c79a;--cream:#faf6ef;--cream-deep:#e8ded3;--surface:#fdfbf7;--border:#d4c9b8;--shadow-sm:0 2px 8px rgba(26,58,82,0.06);--shadow-md:0 4px 18px rgba(26,58,82,0.10);--shadow-gold:0 2px 14px rgba(200,153,104,0.25)}
+body{font-family:'Merriweather','David Libre','Times New Roman',serif;font-size:12.5px;background:var(--cream);color:var(--ink);direction:rtl;line-height:1.65}
+.topbar{background:linear-gradient(135deg,#1a3a52 0%,#0d2738 100%);color:#fdfbf7;padding:18px 26px;font-size:19px;font-weight:700;font-family:'Playfair Display','David Libre',serif;letter-spacing:0.4px;border-bottom:3px solid var(--gold);
   text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 3px 10px rgba(0,0,0,.2);letter-spacing:0.5px}
 .wrap{display:flex;gap:20px;padding:20px;max-width:700px;margin:0 auto;align-items:flex-start}
-.fp{width:100%;background:#fff;border-radius:12px;
+.fp{width:100%;background:var(--surface);border-radius:14px;border:1px solid var(--border);
   box-shadow:0 4px 20px rgba(0,0,0,.08);padding-bottom:20px;overflow:hidden}
-.sh{background:#f1ecf9;color:#2d1b69;padding:10px 18px;font-size:13px;font-weight:700;border-right:4px solid #2d1b69}
+.sh{background:var(--cream-deep);color:var(--ink);padding:11px 20px;font-size:13.5px;font-weight:700;border-right:4px solid var(--gold);font-family:'Playfair Display','David Libre',serif;letter-spacing:0.3px}
 .fg{padding:12px 18px}
-.fg label{display:block;font-size:12px;color:#34495e;margin:10px 0 4px;font-weight:600}
-.fg input[type=text],.fg textarea{width:100%;padding:8px 12px;border:1px solid #cbd5e1;
+.fg label{display:block;font-size:12.5px;color:var(--ink);margin:10px 0 4px;font-weight:600;font-family:'Merriweather','David Libre',serif}
+.fg input[type=text],.fg textarea,.fg select{width:100%;padding:9px 13px;border:1px solid var(--border);background:#fff;
   border-radius:6px;font-size:12px;direction:rtl;font-family:'David Libre',serif;color:#1e293b;background:#fff;transition:all 0.2s}
 .fg textarea{resize:vertical;min-height:58px;line-height:1.5}
-.fg input:focus,.fg textarea:focus{border-color:#2d1b69;box-shadow:0 0 0 3px rgba(45,27,105,0.15);outline:none}
-.qbtn{display:inline-block;margin:2px 2px;padding:6px 12px;background:#f1ecf9;
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(200,153,104,0.20);outline:none}
+.qbtn{display:inline-block;margin:2px 2px;padding:7px 14px;background:var(--cream-deep);color:var(--ink);border-radius:8px;font-family:'Merriweather','David Libre',serif;
   color:#2d1b69;border:1px solid #c0a8e8;border-radius:6px;font-size:12px;font-weight:600;
   cursor:pointer;font-family:'David Libre',serif;transition:all 0.2s}
-.qbtn:hover{background:#d4c5f0;color:#1e0f4a}
+.qbtn:hover{background:var(--gold-soft);color:var(--ink)}
 .btn-g,.btn-r{display:block;width:calc(100% - 36px);margin:10px 18px 4px;
   border:none;border-radius:8px;cursor:pointer;font-family:'David Libre',serif;font-weight:700;color:#fff;transition:all 0.2s;text-align:center}
-.btn-g{background:#27ae60;padding:12px;font-size:14px;box-shadow:0 2px 5px rgba(39,174,96,0.2)}
-.btn-g:hover{background:#219150;transform:translateY(-1px)}
-.btn-r{background:#2d1b69;padding:14px;font-size:15px;box-shadow:0 2px 6px rgba(45,27,105,0.25)}
-.btn-r:hover{background:#1e114a;transform:translateY(-1px)}
+.btn-g{background:var(--gold);color:var(--ink);padding:13px;font-size:14px;font-weight:700;font-family:'Playfair Display','David Libre',serif;letter-spacing:0.3px;box-shadow:var(--shadow-gold)}
+.btn-g:hover{background:#b88550;transform:translateY(-1px);box-shadow:0 4px 18px rgba(200,153,104,0.35)}
+.btn-r{background:var(--ink);color:#fdfbf7;padding:15px;font-size:15px;font-weight:700;font-family:'Playfair Display','David Libre',serif;letter-spacing:0.4px;border:1px solid var(--gold);box-shadow:var(--shadow-md)}
+.btn-r:hover{background:#0d2738;transform:translateY(-1px);box-shadow:0 6px 22px rgba(26,58,82,0.30)}
 .stat{font-size:12px;color:#64748b;text-align:center;min-height:16px;margin:4px 18px;font-weight:600}
 .stat.ok{color:#27ae60}.stat.err{color:#c0392b}
 details.sect{margin:8px 18px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.02)}
@@ -53,15 +57,15 @@ details.sect[open]>summary{background:#f1ecf9;border-bottom:1px solid #e2e8f0}
 details.sect>summary:hover{background:#ede8f6}
 .radio-group{display:flex;gap:16px;margin:6px 0 10px}
 .radio-label{display:inline-flex;align-items:center;font-size:13px !important;font-weight:normal !important;color:#334155 !important;cursor:pointer}
-.radio-label input{margin-left:6px;accent-color:#2d1b69;width:16px;height:16px}
+.radio-label input{margin-left:6px;accent-color:var(--ink);width:18px;height:18px}
 .income-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
-.income-table th{background:#f1f5f9;color:#475569;font-weight:700;padding:8px;text-align:right;border-bottom:2px solid #e2e8f0}
+.income-table th{background:var(--cream-deep);color:var(--ink);font-weight:700;padding:9px;text-align:right;border-bottom:2px solid var(--gold);font-family:'Playfair Display','David Libre',serif}
 .income-table td{padding:5px;border-bottom:1px solid #f1f5f9}
 .income-table td input{width:100%;padding:6px 10px;font-size:12px;border:1px solid #cbd5e1;border-radius:4px;box-sizing:border-box}
 .income-table td input:focus{border-color:#2d1b69;outline:none;box-shadow:0 0 0 2px rgba(45,27,105,0.1)}
-.extraction-card{margin:18px;padding:16px;border:2px dashed #c0a8e8;border-radius:12px;background:#f8faff;text-align:center}
-.drop-zone{padding:20px;border:1px dashed #2d1b69;border-radius:8px;background:#fff;cursor:pointer;transition:all 0.2s}
-.drop-zone:hover,.drop-zone.hover{background:#ede8f6;border-color:#1a6b3a;transform:scale(1.01)}
+.extraction-card{margin:18px;padding:18px;border:1.5px dashed var(--gold);border-radius:14px;background:var(--surface);text-align:center;box-shadow:var(--shadow-sm)}
+.drop-zone{padding:22px;border:1px dashed var(--ink);border-radius:10px;background:#fff;cursor:pointer;transition:all 0.2s}
+.drop-zone:hover,.drop-zone.hover{background:var(--cream-deep);border-color:var(--gold);transform:scale(1.01)}
 /* Uploaded files list — interactive badges */
 .file-badge{display:inline-flex;align-items:center;background:#eef2ff;color:#2d1b69;padding:4px 4px 4px 10px;border:1px solid #d4c5f0;border-radius:12px;margin:3px;font-size:11px;line-height:1.4;transition:background 0.15s,border-color 0.15s,box-shadow 0.15s}
 .file-badge:hover{background:#e0d6f5;border-color:#9d7fd4;box-shadow:0 1px 3px rgba(45,27,105,0.08)}
@@ -220,7 +224,7 @@ const FORM_SCHEMA = {
   case: {
     label: 'כותרת התיק',
     fields: [
-      {id:'case_court',  label:'בית המשפט (עיר)',  page:0, rightEdge:516.9, y:756.6, maxWidth:105, size:10},
+      {id:'case_court',  label:'בחר עיר בית המשפט',  page:0, rightEdge:516.9, y:756.6, maxWidth:105, size:10},
       {id:'case_number', label:'מס׳ תיק תמ״ש',     page:0, rightEdge:182.1, y:756.6, maxWidth:110, size:10},
     ]
   },
@@ -241,8 +245,17 @@ const FORM_SCHEMA = {
     label: 'הליכים קודמים ותשלום אחרון',
     fields: [
       {id:'prior_case_exists', label:'האם הוגשו הליכים משפטיים בעניין מזונות?', type:'radio', options:[{val:'yes',label:'כן'},{val:'no',label:'לא'}], page:0, coords:{yes:{x:507.1,y:487.82},no:{x:507.1,y:451.32}}},
-      {id:'prior_case_details',  label:'הליך קודם — פרטים (אם "כן")', page:0, rightEdge:433.4, y:488.8, maxWidth:185, size:10},
-      {id:'prior_case_outcome',  label:'הליך קודם — תוצאה/החלטה',    page:0, rightEdge:440.0, y:470.9, maxWidth:215, size:10},
+      {id:'prior_case_type', label:'סוג ההליך הקודם — בחר מרשימה', type:'select', options:[
+        {val:'תביעת מזונות', label:'תביעת מזונות'},
+        {val:'תביעת רכוש', label:'תביעת רכוש / חלוקת רכוש'},
+        {val:'תביעת אבהות', label:'תביעת אבהות'},
+        {val:'צו הגנה', label:'צו הגנה / מניעת הטרדה'},
+        {val:'החזקת ילדים', label:'החזקת ילדים / הסדרי שהות'},
+        {val:'גירושין', label:'תביעת גירושין'},
+        {val:'אחר', label:'אחר — פרט בשדה למטה'},
+      ], page:0, rightEdge:505.4, y:474.9, maxWidth:170, size:9},
+      {id:'prior_case_details',  label:'היכן הוגש ההליך? (בית משפט / עיר)', page:0, rightEdge:433.4, y:488.8, maxWidth:185, size:10},
+      {id:'prior_case_outcome',  label:'מה הוחלט בהליך הקודם?',    page:0, rightEdge:440.0, y:470.9, maxWidth:215, size:10},
       {id:'last_payment_amount', label:'סכום אחרון ששולם (₪)',         page:0, rightEdge:451.8, y:416.7, maxWidth:118, size:10},
       {id:'last_payment_date',   label:'תאריך התשלום האחרון',          page:0, rightEdge:240.1, y:416.7, maxWidth:100, size:10},
     ]
@@ -299,11 +312,11 @@ const FORM_SCHEMA = {
     label: 'הורי התובע (קטין)',
     fields: [
       {id:'parents_split_exists', label:'האם ההורים פרודים או גרושים?', type:'radio', options:[{val:'yes',label:'כן'},{val:'no',label:'לא'}], page:2, coords:{yes:{x:507.34,y:314.26},no:{x:507.34,y:295.51}}},
-      {id:'parents_status',   label:'מצב משפחתי ההורים (פרודים/גרושים/אינם בני זוג)', page:2, rightEdge:464.1, y:314.9, maxWidth:58,  size:9},
+      {id:'parents_status',   label:'מצב משפחתי של הורי התובע', page:2, rightEdge:464.1, y:314.9, maxWidth:58,  size:9},
       {id:'parents_split_dt', label:'תאריך/פרטי פרידה',                                page:2, rightEdge:346.2, y:278.6, maxWidth:100, size:10},
       {id:'plaintiff_resid',  label:'מקום מושב התובע', default:'ישראל',                page:2, rightEdge:359.9, y:254.1, maxWidth:148, size:10},
       {id:'custody_with',     label:'בחזקתו של מי נמצא',                                page:2, rightEdge:374.9, y:151.3, maxWidth:255, size:10, type:'select', options:[{val:'האם',label:'האם'},{val:'האב',label:'האב'},{val:'שני ההורים',label:'שני ההורים'},{val:'אחר',label:'אחר'}]},
-      {id:'independent_explain', label:'הסבר — מתקיים בלתי-תלוי',                       page:3, rightEdge:313.6, y:622.7, maxWidth:137, size:10},
+      {id:'independent_explain', label:'הסבר — בן/בת הדין עצמאי כלכלית',                       page:3, rightEdge:313.6, y:622.7, maxWidth:137, size:10},
     ]
   },
   other_children: {
@@ -377,12 +390,6 @@ const FORM_SCHEMA = {
       {id:'reason_no_alimony', label:'ד.5) הסיבה שהתובע אינו יכול לקבל מזונות מקרובים', page:5, rightEdge:524.0, y:330.0, maxWidth:454.0, size:10},
     ]
   },
-  prior_case_extra: {
-    label: 'הליכים קודמים (פרטים נוספים)',
-    fields: [
-      {id:'prior_case_extra_c1',label:'הליכים קודמים (פרטים נוספים) שורה 1/1',page:0,rightEdge:505.4,y:474.9,maxWidth:431.6,size:9},
-    ]
-  },
   property_p1: {
     label: 'סעיף 10 — רכוש בעלי הדין (2 עמודות × 3 שורות)',
     fields: [
@@ -427,9 +434,9 @@ const FORM_SCHEMA = {
     label: 'בני זוג — מקום מושב / אזרחות / דת (סעיף ב.2/3/4)',
     fields: [
       // Row 2 = data row for ב.2/3/4 — 3 columns (residence, citizenship, religion)
-      {id:'spouse_table_r2c1',label:'מקום מושב משותף (ב.2) ⚠ אומדן', default:'ישראל', page:2,rightEdge:524.0,y:498.5,maxWidth:95.1,size:9},
-      {id:'spouse_table_r2c2',label:'אזרחות בני הזוג (ב.3) ⚠ אומדן', default:'תושבי ישראל', page:2,rightEdge:410.1,y:498.5,maxWidth:130.7,size:9},
-      {id:'spouse_table_r2c3',label:'דת בני הזוג (ב.4) ⚠ אומדן', default:'יהודים', page:2,rightEdge:275.4,y:498.5,maxWidth:180.4,size:9},
+      {id:'spouse_table_r2c1',label:'איפה גרים בני הזוג?', default:'ישראל', page:2,rightEdge:524.0,y:498.5,maxWidth:95.1,size:9},
+      {id:'spouse_table_r2c2',label:'אזרחות בני הזוג', default:'תושבי ישראל', page:2,rightEdge:410.1,y:498.5,maxWidth:130.7,size:9},
+      {id:'spouse_table_r2c3',label:'דת בני הזוג', default:'יהודים', page:2,rightEdge:275.4,y:498.5,maxWidth:180.4,size:9},
       // Row 3 — sub-row "בעל"
       {id:'spouse_table_r3c1',label:'הערה (ב.4 בעל c1)', page:2,rightEdge:499.3,y:480.6,maxWidth:70.4,size:9},
       {id:'spouse_table_r3c2',label:'דת בעל (ב.4)', default:'יהודי', page:2,rightEdge:424.9,y:480.6,maxWidth:145.5,size:9},
@@ -474,10 +481,10 @@ const FORM_SCHEMA = {
       {id:'oc_def_p3_r3c3',label:'שורה 3 — גיל',page:3,rightEdge:374.5,y:650.8,maxWidth:55.9,size:8},
       {id:'oc_def_p3_r3c4',label:'שורה 3 — סכום מזונות',page:3,rightEdge:208.9,y:650.8,maxWidth:111.0,size:9},
       // Row 4 — was missing; using same column pattern + extrapolated y (650.8 - 21.2 = 629.6)
-      {id:'oc_def_p3_r4c1',label:'שורה 4 — מס׳ ⚠ אומדן',page:3,rightEdge:506.4,y:629.6,maxWidth:6.7,size:7},
-      {id:'oc_def_p3_r4c2',label:'שורה 4 — שם הילד ⚠ אומדן',page:3,rightEdge:495.7,y:629.6,maxWidth:117.2,size:9},
-      {id:'oc_def_p3_r4c3',label:'שורה 4 — גיל ⚠ אומדן',page:3,rightEdge:374.5,y:629.6,maxWidth:55.9,size:8},
-      {id:'oc_def_p3_r4c4',label:'שורה 4 — סכום מזונות ⚠ אומדן',page:3,rightEdge:208.9,y:629.6,maxWidth:111.0,size:9},
+      {id:'oc_def_p3_r4c1',label:'שורה 4 — מס׳ (אם ידוע)',page:3,rightEdge:506.4,y:629.6,maxWidth:6.7,size:7},
+      {id:'oc_def_p3_r4c2',label:'שורה 4 — שם הילד (אם ידוע)',page:3,rightEdge:495.7,y:629.6,maxWidth:117.2,size:9},
+      {id:'oc_def_p3_r4c3',label:'שורה 4 — גיל (אם ידוע)',page:3,rightEdge:374.5,y:629.6,maxWidth:55.9,size:8},
+      {id:'oc_def_p3_r4c4',label:'שורה 4 — סכום מזונות (אם ידוע)',page:3,rightEdge:208.9,y:629.6,maxWidth:111.0,size:9},
     ]
   },
   def_spouse_section: {
@@ -785,13 +792,23 @@ const _BLACKLIST_VALUES = new Set([
   // Form metadata
   'הרצאת פרטים', 'טופס 4', 'תקנה', 'תקנה 12', 'מהדורה',
   '___', '____', '_____', '________', '________________',
-  'undefined', 'null', 'N/A', 'n/a'
+  'undefined', 'null', 'N/A', 'n/a',
+  // OCR-garbled outputs (seen in production v32 signed PDF) — meaningless Hebrew clusters
+  'יחלח', 'ןםם', 'ןןן', 'לסלל', 'לדלגל', 'מזנו', 'ןלל', 'םם', 'ןן',
+  // Name-field separator words that AI sometimes melds into name values
+  'סדר', 'מס׳', 'מס\'', "מס'", 'מספר', 'ת.ז.', 'ת"ז', 'תעודת זהות', 'ז.ת.'
 ]);
+
+// Regex check: short meaningless Hebrew (1-3 chars) made of only "final" letters
+// or repeating chars — these are OCR-garbled outputs that pass length checks.
+const _OCR_GARBLE_RE = /^[ןםףץךץםףן]{1,4}$|^(.)\1{1,3}$/;
 function _isBlacklisted(s){
   if(!s) return true;
   const trim = s.trim();
   if(trim.length < 2) return true;
   if(_BLACKLIST_VALUES.has(trim)) return true;
+  // OCR garble detection: short repeats or final-letter-only clusters
+  if(_OCR_GARBLE_RE.test(trim)) return true;
   // Reject if it matches any blacklist exactly (case-insensitive)
   const low = trim.toLowerCase();
   for(const b of _BLACKLIST_VALUES){
@@ -896,7 +913,7 @@ function _buildExtractionPromptCompact(text){
   return `חלץ נתונים למילוי טופס "הרצאת פרטים" (טופס 4) מהמסמך למטה.
 שדות מותרים: ${fieldLines.join(',')}
 
-החזר JSON תקין בלבד. **חובה: דלג לחלוטין על שדות שלא במסמך — אל תחזיר "0" או "" או "לא ידוע", פשוט אל תכלול אותם.** **כל שדה מקבל ערך אחד בלבד**: אם המסמך אומר "דוד כהן ת.ז. 123456789" → plaintiff_name="דוד כהן" (רק שם) ו-g_id="123456789" (רק 9 ספרות). אסור להכניס ת.ז./תאריך/הסבר לתוך שדה שם. **אל תשתמש בשמות קבצים, כותרות מסמך, או metadata כערכים.** ת.ז. = בדיוק 9 ספרות. מספרים = ספרות בלבד. תאריכים = dd/mm/yyyy. אל תכלול תוויות כמו "לתשומת ליבך"/"חתימה"/"ברוטו" כערכים. אל תקצר שמות (כתוב שם מלא כפי שמופיע במסמך).
+החזר JSON תקין בלבד. **חובה: דלג לחלוטין על שדות שלא במסמך — אל תחזיר "0" או "" או "לא ידוע", פשוט אל תכלול אותם.** **כל שדה מקבל ערך אחד בלבד**: אם המסמך אומר "דוד כהן ת.ז. 123456789" → plaintiff_name="דוד כהן" (רק שם) ו-g_id="123456789" (רק 9 ספרות). אסור להכניס ת.ז./תאריך/הסבר לתוך שדה שם. **אל תשתמש בשמות קבצים, כותרות מסמך, או metadata כערכים.** ת.ז. = בדיוק 9 ספרות. מספרים = ספרות בלבד. תאריכים = dd/mm/yyyy. אל תכלול תוויות כמו "לתשומת ליבך"/"חתימה"/"ברוטו" כערכים. אל תקצר שמות. דוגמה לפיצול שם/ת"ז: "אריאנה שמחה סדר 241267301" → name="אריאנה שמחה" (המילה "סדר" היא רעש מבני, **לא חלק מהשם**), id="241267301". המילים "סדר"/"מס'"/"מספר"/"ת.ז."/"ת\"ז" אסורות בשדה name. **אל תחזיר בליל-OCR** (יחלח, ןםם, ןןן, לסלל, לדלגל, מזנו, או כל בליל אותיות קצר חסר משמעות) — אם לא בטוח שהערך אמיתי, דלג עליו.
 
 מסמך:
 ${docText}`;
@@ -1989,8 +2006,14 @@ function saveSig(){
 
 function showStat(id,msg,cls){const el=$(id);if(!el)return;el.textContent=msg;el.className='stat'+(cls?' '+cls:'');}
 
-function reverseHebrewRTL(str){
+// LTR-run reversal helper. Hebrew (RTL) is handled by fontkit bidi, but embedded
+// digit/latin runs need pre-reversal. Skip entirely for fields that are pure-LTR
+// data (dates, IDs, phone, bank account/branch numbers, case numbers) — those
+// should render left-to-right as-is, and reversing them produces garbage like '&/&/929'.
+function reverseHebrewRTL(str, fieldId){
   if(!str)return'';
+  // Skip reversal for known LTR-data field types
+  if(fieldId && /(^|_)(id|num|number|account|branch|phone|tel|dt|date|birth|marriage|payment_date|teud)(_|$)|^p_id$|^g_id$|^p_phone$|^case_number$|^marriage_date$|^prior_case_dt$|^last_payment_date$|^parents_split_dt$|^bank_\d+_(account|branch)$/i.test(fieldId)) return str;
   if(!/[֐-׿]/.test(str)) return str;
   return str.replace(/[\d/a-zA-Z\-]+/g, m => m.split('').reverse().join(''));
 }
@@ -2095,23 +2118,23 @@ async function _buildPDFBlob(includeSig){
           for(let i=1;i<=5;i++){
             const y = section.yStart - (i - 1) * section.yStep;
             const nVal = v(section.prefix + '_name_' + i);
-            if(nVal) drawFieldText(reverseHebrewRTL(nVal), section.page, 446.2, y, 145, 9);
+            if(nVal) drawFieldText(reverseHebrewRTL(nVal, 'name'), section.page, 446.2, y, 145, 9);
             const aVal = v(section.prefix + '_age_' + i);
-            if(aVal) drawFieldText(reverseHebrewRTL(aVal), section.page, 297.1, y, 85, 9);
+            if(aVal) drawFieldText(reverseHebrewRTL(aVal, 'age'), section.page, 297.1, y, 85, 9);
             const amVal = v(section.prefix + '_amount_' + i);
-            if(amVal) drawFieldText(reverseHebrewRTL(formatNumber(amVal)), section.page, 211.3, y, 130, 9);
+            if(amVal) drawFieldText(reverseHebrewRTL(formatNumber(amVal), 'amount'), section.page, 211.3, y, 130, 9);
           }
         } else {
           // Table rows (1 to 12) — income tables: numeric fields get thousands separator
           for(let i=1;i<=12;i++){
             const y = section.yStart - (i - 1) * section.yStep;
             const pVal = v(section.prefix + '_p_' + i);
-            // Period cell: rightEdge=435 (empty cell LEFT of "התקופה" label)
-            if(pVal) drawFieldText(reverseHebrewRTL(pVal), section.page, 439.1, y, 100, 9);
+            // Period cell — date/month string, treat as LTR data
+            if(pVal) drawFieldText(reverseHebrewRTL(pVal, 'date'), section.page, 439.1, y, 100, 9);
             const gVal = v(section.prefix + '_g_' + i);
-            if(gVal) drawFieldText(reverseHebrewRTL(formatNumber(gVal)), section.page, 290.1, y, 90, 9);
+            if(gVal) drawFieldText(reverseHebrewRTL(formatNumber(gVal), 'amount'), section.page, 290.1, y, 90, 9);
             const nVal = v(section.prefix + '_n_' + i);
-            if(nVal) drawFieldText(reverseHebrewRTL(formatNumber(nVal)), section.page, 153.8, y, 76, 9);
+            if(nVal) drawFieldText(reverseHebrewRTL(formatNumber(nVal), 'amount'), section.page, 153.8, y, 76, 9);
           }
         }
       } else {
@@ -2123,7 +2146,7 @@ async function _buildPDFBlob(includeSig){
               drawCheckmark(f.page, f.coords[raw].x, f.coords[raw].y, true);
             }
           } else {
-            const text=reverseHebrewRTL(raw);
+            const text=reverseHebrewRTL(raw, f.id);
             drawFieldText(text, f.page || 0, f.rightEdge, f.y, f.maxWidth, f.size);
           }
         }
